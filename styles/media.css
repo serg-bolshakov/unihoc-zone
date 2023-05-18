@@ -1,0 +1,11 @@
+@media (max-width: 755px) {
+    .container {
+        display: none;
+    }
+}
+
+@media (min-width: 756px) {
+    .container-index_mobile-320 {
+        display: none;
+    }
+}

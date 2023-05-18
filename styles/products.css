@@ -1,0 +1,665 @@
+.d-flex {
+    display: flex;
+}
+
+.flex-sb {
+    justify-content: space-between;
+}
+
+.container-products {
+    /* height: 100vh; */
+    margin: 0 auto 0 auto;
+    background-color: white;
+    padding: 12px;
+    width: 1140px;
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: 40px 80px auto 40px auto 48px 330px;
+    grid-template-areas: 
+    "header-top header-top"
+    "header-main header-main"
+    "content content"
+    "nav-bar nav-bar"
+    "menu-products assortiment-cards"
+    "pagination-products pagination-products"
+    "footer footer"
+    ;
+}
+
+.content-products {
+    grid-area: content;
+    margin-top: 4px;
+} 
+
+.content-products img {
+    width: 100%;
+    overflow: hidden;
+    object-fit: contain;
+    border-radius: 4px;
+} 
+
+.products-type {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+  color:white;
+}
+
+.products-type:hover {opacity: 0.5;}
+
+.products-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.product-title {
+  width: 100%;
+  font-size: 25px;
+  letter-spacing: 5.25px;
+}
+
+.nav-bar {
+  grid-area: nav-bar;
+  display: flex;
+  align-items: center;
+  margin: 4px 0 4px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.category-description {
+  margin-top: 6px;
+  margin-bottom: 20px;
+  padding: 8px;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: justify;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.products-filter__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.products-filter__title img {
+  width: 15px;
+}
+
+/* Style the list */
+ul.breadcrumb {
+    padding: 5px 8px;
+    list-style: none;
+    /* background-color: #eee; */
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 14px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+
+.menu-products {
+    grid-area: menu-products;
+    width: 300px;
+    margin: 4px 0 2px 0;
+    border-radius: 8px;
+}
+
+.accordion-non {
+  /* margin-bottom: 8px; */
+  background-color: white;
+  color: #444;
+  cursor: pointer;
+  /* padding: 18px; */
+  width: 100%;
+  height: 40px;
+  font-family: 'Noto Sans';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  font-display: swap;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  /* border-radius: 12px; */
+  outline: none;
+  transition: 0.4s;
+} 
+
+/* Стиль кнопок, которые используются для открытия и закрытия панели аккордеона */
+.accordion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    background-color: white;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    height: 40px;
+    font-family: 'Noto Sans';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    font-display: swap;
+    text-align: left;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    outline: none;
+    transition: 0.4s;
+  } 
+  
+  /* Добавить цвет фона для кнопки, если она нажата (добавить .активный класс с JS), а при наведении на него курсора мыши (наведите курсор) */
+  .active, .accordion:hover {
+    background-color: #ccc;
+  } 
+  
+  /* Стиль аккордеон панели. Примечание: скрыто по умолчанию */
+  .panel {
+    padding: 12px 12px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    font-size: 12px;
+    align-items: center;
+  } 
+
+  .panel a {
+    text-decoration: none;
+  } 
+
+  /*Добавляем символ для каждой кнопки, указывающий, является ли складное содержимое открытым или закрытым*/
+  .accordion:after {
+    content: '\02795'; /* Символ юникода для "плюса" знак (+) */
+    font-size: 10px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+    margin-top: 5px;
+    align-items: center;
+  }
+
+  .active:after {
+    content: "\2796"; /* Символ юникода для "минуса" знак (-) */
+  }
+
+
+/*Пробуем "Аккордеон" только на CSS*/
+.accordion-css {
+    display: block;
+    margin: 0px;
+    position: relative;
+    font-family: 'Noto Sans';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16pt;
+    font-display: swap;
+    text-align: left;
+    border: none;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  .accordion-css input {
+    display: none;
+    position: absolute;
+    visibility: hidden;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+  }
+  
+  .accordion-css__header {
+    background-color: white;
+    /* border: 1px solid #CFD8DC; */
+    /* border-bottom-width: 0px; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    color:black;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .accordion-css__header:hover {
+    background-color: #CFD8DC;
+    color: white;
+  }
+  .accordion-css__header:hover:before, .accordion-css__header:hover:after {
+    background-color: white;
+  }
+  .accordion-css__header:before, .accordion-css__header:after {
+    background-color:  black;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 3;
+  }
+  .accordion-css__header:before {
+    height: 2px;
+    margin-top: -1px;
+    top: 50%;
+    right: 20px;
+    width: 8px;
+  }
+  .accordion-css__header:after {
+    height: 8px;
+    margin-top: -4px;
+    top: 50%;
+    right: 23px;
+    width: 2px;
+  }
+  .accordion-css input:checked ~ .accordion-css__header {
+    background: #607D8B;
+    /* border-color: #607D8B; */
+    border-color: white;
+    color: white;
+  }
+  .accordion-css input:checked ~ .accordion-css__header:hover {
+    background-color: #607D8B;
+    border-color: #607D8B;
+    color: white;
+  }
+  .accordion-css input:checked ~ .accordion-css__header:before {
+    background-color: white;
+  }
+  .accordion-css input:checked ~ .accordion-css__header:after {
+    display: none;
+  }
+  .accordion-css:first-child .accordion-css__header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .accordion-css:last-child .accordion-css__header {
+    border-bottom-width: 1px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  .accordion-css:last-child input:checked ~ .accordion-css__header {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  
+  .accordion-css__content {
+    background-color: white;
+    border: 1px solid #607D8B;
+    border-width: 0px 0px;
+    font-family: 'Noto Sans';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12pt;
+    display: none;
+    padding: 20px;
+  }
+
+  .accordion-css__content a {
+    text-decoration: none;
+    color: black;
+  }
+  .accordion-css input:checked ~ .accordion-css__content {
+    display: block;
+  }
+  .accordion-css:last-child .accordion-css__content {
+    border-bottom-width: 1px;
+    border-radius: 0px 0px 4px 4px;
+  }
+  .accordion-css__content h6 {
+    color: #607D8B;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .filter-products {
+    margin: 4px 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 12px;
+  }
+  
+  .filter-products p {
+    height: 20px;
+  }
+  
+
+  .prop-list {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: auto;
+    }
+
+  .checkbox-block {
+    position: relative;
+    align-items: center;
+    /* background-color: rgba(40, 38, 38, 0.1); */
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
+    border-radius: 4px;
+    margin: 4px;
+    /* padding: 0 8px; */
+  }
+  
+  .pop-up__checkbox-block-hint {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted rgb(193, 193, 193);
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 8px 0;;
+  } 
+  
+  .pop-up__checkbox-block-hint-text {
+    display: block;
+    width: 340px;
+    height: auto;
+    background-color: rgb(248, 248, 228);
+    padding: 8px;
+    font-family: 'Noto Sans';
+    /* font-weight: 400; */
+    font-style: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .pop-up__checkbox-block-hint .pop-up__checkbox-block-hint-text {
+    visibility: hidden;
+    text-align:left;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1;
+    transform: translate(55%, -55%);
+    -ms-transform: translate(555%, -55%);   
+    opacity: 0;
+    transition: opacity 1.2s;
+  }
+  
+  .pop-up__checkbox-block-hint .pop-up__checkbox-block-hint-text::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    border: 10px solid transparent;
+    border-right: 20px solid  rgb(248, 248, 228);
+  }
+  
+  .pop-up__checkbox-block-hint:hover .pop-up__checkbox-block-hint-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Задумано, чтобы убрать квадратики у чекбоксов, но функцию чекбоксов не выполняют переключатели, хотя должны... нужно разобраться */
+  /* input[type="checkbox"],
+    input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    } */
+  
+  /* Для начала увеличим высоту строк и отодвинем label'ы от левого края, чтобы там поместились наши новые элементы: */
+  input[type="checkbox"] + label,
+  input[type="radio"] + label {
+    position: relative;
+    cursor: pointer;
+    line-height: 30px;
+  }
+  
+  input[type="checkbox"] + label {
+    padding: 0 0 0 50px;
+  }
+  
+  /* Дальше начинаем рисовать сами элементы. 
+  Для этого воспользуемся псевдоэлементами :before и :after. Начнем с состояния "выключено": */
+  input[type="checkbox"] + label:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left:10px;
+    width: 30px;
+    height: 15px;
+    border-radius: 13px;
+    background:  rgb(248, 248, 228);
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+  }
+    
+  /* Дальше пропишем стили для элементов в статусе "включено": */
+    input[type="checkbox"] + label:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 13px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+    transition: .2s;
+    }
+  input[type="checkbox"]:checked + label:before {
+    background: #9FD468;
+  }
+  
+  input[type="checkbox"]:checked + label:after {
+    left: 27px;
+  }
+     
+  .submit {
+    cursor: pointer;
+    border: 1px solid #cecece;
+    background: #f6f6f6;
+    box-shadow: inset 0px 20px 20px #ffffff;
+    border-radius: 8px;
+    margin: 20px auto 0 auto;
+    padding: 8px 14px;
+    width: 100px;
+    height: 30px;
+  }
+  .submit:hover {
+    box-shadow: inset 0px -20px 20px #ffffff;
+  }
+  
+  /* с этим классом почему-то не работает отправка формы - разобраться!
+  .submit:active {
+    margin-top: 1px;
+    margin-bottom: -1px;
+    zoom: 1;
+  } */
+  
+  
+  .submit:focus
+  {
+    outline:none;
+  }  
+  
+  /*	=	Reset Form */
+.reset-form button {
+  margin: 20px auto 0 auto;
+  padding: 8px 14px;
+  width: 100px;
+	height: 30px;
+	border: 1px solid #ccc;
+	background: #fff;
+	color: #666;
+	border-radius: 8px;
+	box-shadow: inset 0 1px 1px #ccc;
+	cursor: pointer;
+}
+.reset-form button:hover {
+	box-shadow: 0 0 20px #ccc;
+}
+.reset-form button:active {
+	margin-top: 1px;
+	margin-bottom: -1px;
+	zoom: 1;
+}
+
+.assortiment-cards {
+    /* background-color: red; */
+    grid-area: assortiment-cards;
+    width: 100%;
+    margin: 2px auto 0 auto;
+    border-radius: 8px;
+    /* padding: 4px; */
+}
+
+.assortiment-card {
+    /* display: grid; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 8px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    /* padding: 4px; */
+    justify-content: flex-start;
+    /* grid-template-columns: repeat(3, 1fr); */
+    /* margin: 0; */
+}
+
+.assortiment-card__block {
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 31%;
+  height: 392px;
+  margin: 8px;
+  padding: 10px;
+}
+
+.assortiment-card img {
+    display: block;
+    border-radius: 10px;  
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+    object-fit: contain;
+      
+}
+
+.assortiment-card_productName {
+    height: 20%;
+    display: flex;
+    align-items: flex-start;
+    font-family: 'Inter';
+    font-weight:400;
+    font-style: normal;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.assortiment-card_productPrice {
+    width: 100%;
+    height: 36px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    align-content: center;
+    font-family: 'Inter';
+    font-weight:600;
+    font-style: normal;
+    font-size: 16px;
+    padding: 4px;
+    margin-bottom: 12px;
+}
+
+.priceCurrent {
+    grid-column: 1;
+    font-family: 'Inter';
+    font-weight:600;
+    font-style: normal;
+    font-size: 14px;
+    }
+
+.priceCurrentSale {
+  grid-column: 1;
+  font-family: 'Inter';
+  font-weight:600;
+  font-style: normal;
+  font-size: 14px;
+  color: red;
+  }
+
+
+.priceBeforSale {
+    grid-column: 3;
+    font-family: 'Inter';
+    font-weight:400;
+    font-style: normal;
+    font-size: 12px;
+    text-decoration: line-through;
+    align-content: center;
+    }
+
+.priceDiscountInPercentage {
+    grid-column: 5;
+    border: 1px solid rgba(0, 253, 0);
+    border-radius: 4px;
+    font-family: 'Inter';
+    font-weight:400;
+    font-style: normal;
+    font-size: 10px;
+    padding: 2px;
+    align-content: center;
+}
+
+.pagination-products {
+    grid-area: pagination-products;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin: 8px;  
+}
+
+/* Ссылки для разбиения на страницы */
+.pagination-products a {
+    display: inline-block;
+    border-radius: 4px;
+    text-align: center;
+    color: black;
+    padding: 0 8px;
+    margin: 0 4px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+  
+ /* Стиль активной/текущей ссылки */
+ a.activeProduct {
+    background-color: dodgerblue;
+    color: white;
+}
+
+  /* Добавить серый цвет фона при наведении курсора мыши */
+  .pagination-products a:hover:not(.active) {background-color: #ddd;}
