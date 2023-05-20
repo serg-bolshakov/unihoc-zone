@@ -54,20 +54,20 @@
                                 require_once 'db.php';
 
                                 // этот запрос тоже работает... аналогично... какой лучше использовать?
-                                // $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
-                                //         FROM products, categories, properties, prod_prop
-                                //         WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-                                //         AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-                                //         AND prop_title LIKE 'hook'
-                                //         ";
+                                $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
+                                    FROM products, categories, properties, prod_prop
+                                    WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+                                    AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+                                    AND prop_title LIKE 'hook'
+                                ";
 
-                                $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
-                                        FROM products
-                                            LEFT JOIN categories ON products.category_id = categories.id 
-                                            LEFT JOIN properties ON properties.category_id = categories.id
-                                            LEFT JOIN prod_prop ON prod_prop.property_id = properties.id
-                                        WHERE prop_title LIKE 'hook' 
-                                        ";
+                                // $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
+                                //         FROM products
+                                //             LEFT JOIN categories ON products.category_id = categories.id 
+                                //             LEFT JOIN properties ON properties.category_id = categories.id
+                                //             LEFT JOIN prod_prop ON prod_prop.property_id = properties.id
+                                //         WHERE prop_title LIKE 'hook' 
+                                //         ";
                                 //выполняем запрос и результат кладём в переменную $result
                                 $result=$connect->query($sql);    
                             ?>
@@ -92,18 +92,7 @@
                                 <input type="checkbox" name="hook[]" value="left">
                                 <label for="hook">Левый</label></input>   
                             </div> -->
-                            <?php 
-                                require_once 'db.php';
-                                $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
-                                        FROM products
-                                            LEFT JOIN categories ON products.category_id = categories.id 
-                                            LEFT JOIN properties ON properties.category_id = categories.id
-                                            LEFT JOIN prod_prop ON prod_prop.property_id = properties.id
-                                        WHERE prop_title LIKE 'shaft_length' 
-                                        ";
-                                //выполняем запрос и результат кладём в переменную $result
-                                $result=$connect->query($sql);    
-                            ?>
+                            
                             <div  class="pop-up__checkbox-block-hint">Длина рукоятки (см)
                                 <div class="pop-up__checkbox-block-hint-text">
                                     Клюшки подбираются по росту игрока. Если поставить клюшку на пол вдоль туловища (габаритная высота), - макушка клюшки должна быть выше 
@@ -113,37 +102,23 @@
                                     Пример: клюшка с длиной рукоятки 96см (общая длина клюшки 106см, габаритная высота - примерно 112см) - рекомендуется для игроков ростом (165) 170-180см.
                                 </div>
                             </div>
+                            <?php 
+                                require_once 'db.php';
+                                $sql = "SELECT DISTINCT size_title, size_value
+                                        FROM products
+                                            INNER JOIN sizes ON products.size_id = sizes.id 
+                                        ";
+                                $result=$connect->query($sql);    
+                            ?>
                             <div class="prop-list">
-                                <div>
-                                    <?php while ($item = $result->fetch_object()):?>
-                                        <input type="checkbox" name="<?= $item->prop_title?>[]" value="<?= $item->prop_value?>">
-                                        <label for="<?= $item->prop_title?>"><?= $item->prop_value_view?></label></input>
-                                    <?php endwhile; ?> 
-                                </div>    
+                                <?php while ($item = $result->fetch_object()):?>
+                                    <div>
+                                        <input type="checkbox" name="<?= $item->size_title?>[]" value="<?= $item->size_value?>">
+                                        <label for="<?= $item->size_title?>"><?= $item->size_value?></label></input> 
+                                    </div>
+                                <?php endwhile; ?>    
                             </div>
-                            <!-- <div class="prop-list">
-                                <div>
-                                    <input type="checkbox" name="shaft_length" value="55">
-                                    <label for="shaft_length">55</label>  
-                                </div>                      
-                                <div>
-                                    <input type="checkbox" name="shaft_length" value="87">
-                                    <label for="shaft_length">87</label>   
-                                </div>
-                                <div> 
-                                    <input type="checkbox" name="shaft_length" value="96">
-                                    <label for="shaft_length">96</label>   
-                                </div>
-                                <div> 
-                                    <input type="checkbox" name="shaft_length" value="100">
-                                    <label for="shaft_length">100</label>   
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="shaft_length" value="104">
-                                    <label for="shaft_length">104</label>    
-                                </div>
-                            </div> -->
-
+                            
                             <div  class="pop-up__checkbox-block-hint">Индекс жёсткости рукоятки
                                 <div class="pop-up__checkbox-block-hint-text">
                                     Показывает на сколько миллиметров прогибается рукоятка под действием силы в 300Н 
@@ -205,16 +180,21 @@
                                     Renew Group Sweden AB. UNIHOC - основной технический партнёр и спонсор международной федерации флорбола (IFF). 
                                 </div>
                             </div>
-                            
+                            <?php 
+                                require_once 'db.php';
+                                $sql = "SELECT DISTINCT brand, brand_view
+                                        FROM products
+                                            INNER JOIN brands ON products.brand_id = brands.id 
+                                        ";
+                                $result=$connect->query($sql);    
+                            ?>
                             <div class="prop-list">
-                                <div>
-                                    <input type="checkbox" name="brand" value="UNIHOC">
-                                    <label for="brand">UNIHOC</label>  
-                                </div>                      
-                                <div>
-                                    <input type="checkbox" name="brand" value="ZONEFLOORBALL.">
-                                    <label for="brand">ZONE</label>   
-                                </div>
+                                <?php while ($item = $result->fetch_object()):?>
+                                    <div>
+                                        <input type="checkbox" name="<?= $item->brand?>[]" value="<?= $item->brand?>">
+                                        <label for="<?= $item->brand?>"><?= $item->brand_view?></label>  
+                                    </div>  
+                                <?php endwhile; ?>                    
                             </div>
                             <div class="prop-list">
                                 <button type="submit" class="submit" value="submit">Применить</button>

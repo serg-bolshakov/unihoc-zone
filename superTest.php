@@ -1,3 +1,20 @@
+<?php
+require_once 'db.php';
+$sql = "SELECT DISTINCT size_title, size_value
+  FROM products
+  LEFT JOIN sizes ON products.size_id = sizes.id 
+";
+$result=$connect->query($sql);    
+?>
+
+<table border = 1>
+  <tr><td>size_title</td><td>size_value</td></tr>
+  <?php while ($item = $result->fetch_object()):?>
+  <tr><td><?= $item->size_title?></td><td><?= $item->size_value?></td></tr>
+  <?php endwhile; ?>
+</table>
+
+
 <?php 
 require_once 'db.php';
 $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
@@ -8,8 +25,6 @@ $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
 ";
 //выполняем запрос и результат кладём в переменную $result
 $result=$connect->query($sql);    
-?>переменную $result
-    $result=$connect->query($sql);    
 ?>
 
 
