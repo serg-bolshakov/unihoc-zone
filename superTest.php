@@ -1,6 +1,52 @@
 <?php 
 require_once 'db.php';
+$sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
+    FROM products, categories, properties, prod_prop
+    WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+    AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+    AND prop_title LIKE 'shaft_flex'    
+";
+//выполняем запрос и результат кладём в переменную $result
+$result=$connect->query($sql);    
+?>переменную $result
+    $result=$connect->query($sql);    
+?>
 
+
+<table border = 1>
+  <tr><td>prop_title</td><td>prop_value</td><td>prop_value_view</td></tr>
+  <?php while ($item = $result->fetch_object()):?>
+  <tr><td><?= $item->prop_title?></td><td><?= $item->prop_value?></td><td><?= $item->prop_value_view?></td></tr>
+  <?php endwhile; ?>
+</table>
+
+
+
+
+<?php 
+require_once 'db.php';
+
+$sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
+        FROM products, categories, properties, prod_prop
+        WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+        AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+        AND prop_title LIKE 'hook' 
+        ";
+//выполняем запрос и результат кладём в переменную $result
+$result=$connect->query($sql);    
+var_dump($result)  
+?>
+
+<table border = 1>
+  <tr><td>prop_title</td><td>prop_value</td><td>prop_value_view</td></tr>
+  <?php while ($item = $result->fetch_object()):?>
+  <tr><td><?= $item->prop_title?></td><td><?= $item->prop_value?></td><td><?= $item->prop_value_view?></td></tr>
+  <?php endwhile; ?>
+</table>
+
+
+
+<?php
 // $name = $_GET['name'] ?? 'Хват';
 // $val = $_GET['value'] ?? 'Левый';
 

@@ -49,8 +49,38 @@
                                     Большинство играет на левую сторону (левый хват) - левая рука внизу, 
                                     крюк с левой стороны и, соответственно, наоборот: правый хват - правая рука внизу (если нормально держать клюшку в обеих руках, клюшка опущена на пол).
                                 </div>
-                            </div>
-                            <div>
+                            </div> 
+                            <?php 
+                                require_once 'db.php';
+
+                                // этот запрос тоже работает... аналогично... какой лучше использовать?
+                                // $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
+                                //         FROM products, categories, properties, prod_prop
+                                //         WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+                                //         AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+                                //         AND prop_title LIKE 'hook'
+                                //         ";
+
+                                $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
+                                        FROM products
+                                            LEFT JOIN categories ON products.category_id = categories.id 
+                                            LEFT JOIN properties ON properties.category_id = categories.id
+                                            LEFT JOIN prod_prop ON prod_prop.property_id = properties.id
+                                        WHERE prop_title LIKE 'hook' 
+                                        ";
+                                //выполняем запрос и результат кладём в переменную $result
+                                $result=$connect->query($sql);    
+                            ?>
+                            <div class="prop-list">
+                                <?php while ($item = $result->fetch_object()):?>    
+                                <div>
+                                    <input type="checkbox" name="<?= $item->prop_title?>[]" value="<?= $item->prop_value?>">
+                                    <label for="<?= $item->prop_title?>"><?= $item->prop_value_view?></label></input>
+                                </div>
+                                <?php endwhile; ?>
+                                </div>    
+                            
+                            <!-- <div>
                                 <input type="checkbox" name="hook[]" value="nuetral">
                                 <label for="hook">С обеих сторон</label></input>  
                             </div>                      
@@ -61,8 +91,19 @@
                             <div> 
                                 <input type="checkbox" name="hook[]" value="left">
                                 <label for="hook">Левый</label></input>   
-                            </div>
-
+                            </div> -->
+                            <?php 
+                                require_once 'db.php';
+                                $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
+                                        FROM products
+                                            LEFT JOIN categories ON products.category_id = categories.id 
+                                            LEFT JOIN properties ON properties.category_id = categories.id
+                                            LEFT JOIN prod_prop ON prod_prop.property_id = properties.id
+                                        WHERE prop_title LIKE 'shaft_length' 
+                                        ";
+                                //выполняем запрос и результат кладём в переменную $result
+                                $result=$connect->query($sql);    
+                            ?>
                             <div  class="pop-up__checkbox-block-hint">Длина рукоятки (см)
                                 <div class="pop-up__checkbox-block-hint-text">
                                     Клюшки подбираются по росту игрока. Если поставить клюшку на пол вдоль туловища (габаритная высота), - макушка клюшки должна быть выше 
@@ -73,6 +114,14 @@
                                 </div>
                             </div>
                             <div class="prop-list">
+                                <div>
+                                    <?php while ($item = $result->fetch_object()):?>
+                                        <input type="checkbox" name="<?= $item->prop_title?>[]" value="<?= $item->prop_value?>">
+                                        <label for="<?= $item->prop_title?>"><?= $item->prop_value_view?></label></input>
+                                    <?php endwhile; ?> 
+                                </div>    
+                            </div>
+                            <!-- <div class="prop-list">
                                 <div>
                                     <input type="checkbox" name="shaft_length" value="55">
                                     <label for="shaft_length">55</label>  
@@ -93,7 +142,7 @@
                                     <input type="checkbox" name="shaft_length" value="104">
                                     <label for="shaft_length">104</label>    
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div  class="pop-up__checkbox-block-hint">Индекс жёсткости рукоятки
                                 <div class="pop-up__checkbox-block-hint-text">
@@ -105,16 +154,38 @@
                                     в этом случае достигается максимальный эффект для выполнения броска или удара по мячу.
                                 </div>
                             </div>
-                            <div class="prop-list">
-                                <div>
+
+                            <?php 
+                                    require_once 'db.php';
+                                    $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
+                                        FROM products, categories, properties, prod_prop
+                                        WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+                                        AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+                                        AND prop_title LIKE 'shaft_flex'    
+                                    ";
+                                    //выполняем запрос и результат кладём в переменную $result
+                                    $result=$connect->query($sql);    
+                                ?>
+                                
+                                <div class="prop-list">
+                                    <?php while ($item = $result->fetch_object()):?>
+                                    <div>
+                                        <input type="checkbox" name="<?= $item->prop_title?>[]" value="<?= $item->prop_value?>">
+                                        <label for="<?= $item->prop_title?>"><?= $item->prop_value_view?></label></input>
+                                    </div>
+                                    <?php endwhile; ?>
+                                </div> 
+                            
+                            <div class="prop-list">    
+                                <!-- <div>
                                     <input type="checkbox" name="shaft_flex" value="36">
                                     <label for="shaft_flex">36</label>  
                                 </div>                      
                                 <div>
                                     <input type="checkbox" name="shaft_flex" value="30">
                                     <label for="shaft_flex">30</label>   
-                                </div>
-                                <div> 
+                                </div> -->
+                                <!-- <div> 
                                     <input type="checkbox" name="shaft_flex" value="29">
                                     <label for="shaft_flex">29</label>   
                                 </div>
@@ -125,7 +196,7 @@
                                 <div>
                                     <input type="checkbox" name="shaft_flex" value="27 value=""">
                                     <label for="shaft_flex">27</label>    
-                                </div>
+                                </div> -->
                             </div>
                             <div  class="pop-up__checkbox-block-hint">Бренд
                                 <div class="pop-up__checkbox-block-hint-text">
@@ -134,6 +205,7 @@
                                     Renew Group Sweden AB. UNIHOC - основной технический партнёр и спонсор международной федерации флорбола (IFF). 
                                 </div>
                             </div>
+                            
                             <div class="prop-list">
                                 <div>
                                     <input type="checkbox" name="brand" value="UNIHOC">
@@ -158,12 +230,7 @@
                 
                 <?php
                 require_once 'db.php'; 
-                //проверяем набор чекбоксов, где можно выбрать несколько значений
-                if(isset($_GET["hook"])){
-                    $hook = $_GET["hook"];   
-                }
-
-
+                
                 $page = $_GET['page'] ?? 1;
                 //проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
                 $page = filter_var($page, FILTER_VALIDATE_INT, array("options" =>
@@ -171,6 +238,11 @@
 
                 $notesOnPage = 6; //LIMIT количество товаров на странице начиная с 0 позиции, 6 товаров, далее с 6-й шесть товаров...
                 $fromNewPageStart = ($page - 1) * $notesOnPage;        
+
+                //проверяем набор чекбоксов, где можно выбрать несколько значений
+                if(isset($_GET["hook"])){
+                    $hook = $_GET["hook"];   
+                }
 
                 // $sql = "SELECT * 
                 // FROM products, categories, brands, properties, prod_prop, prices, sizes, images
@@ -209,13 +281,10 @@
                             <div class="assortiment-card_productName"><?= $item->title?> </div>
                             <div class="assortiment-card_productPrice">
                             
-                            <?php
-                              /* если не назначена акция (специальная цена, 
-                              то полный блок цен не выводится, его пропускаем - 
-                              выводится только актуальная цена (следующий блок)*/
-                            ?>
-
-                            <?php if ($item->price_special): ?> 
+                            <?php if ($item->price_special): 
+                            /* если не назначена акция (специальная цена, то полный блок цен не выводится, его пропускаем - 
+                              выводится только актуальная цена (следующий блок)*/    
+                            ?> 
                                 <p class="priceCurrentSale"><nobr><?= number_format($price= $item->price_special, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
                                 <p class="priceBeforSale"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
                                 <p class="priceDiscountInPercentage"><nobr>- <?= $discount = ceil(100 - ($price= $item->price_special) / ($price= $item->price_regular) * 100); ?>&#37;</nobr></p>
