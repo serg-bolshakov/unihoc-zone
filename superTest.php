@@ -1,5 +1,31 @@
 <?php
 require_once 'db.php';
+$sql = "SELECT * 
+FROM products, categories, brands, properties, prod_prop, prices, sizes, images
+WHERE products.category_id = categories.id AND properties.category_id = categories.id AND products.size_id = sizes.id
+AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id AND prices.product_id = products.id
+AND products.brand_id = brands.id AND products.id = images.product_id AND img_showcase = true
+-- AND products.category_id = 3
+-- AND prop_title LIKE 'hook' AND prop_value LIKE 'Левый'
+-- HAVING prop_title LIKE 'Серия' AND prop_value LIKE 'BASIC COLLECTION'
+AND prop_title LIKE 'hook' AND prop_value LIKE 'left'
+ORDER BY article
+";
+$result=$connect->query($sql);    
+$row_cnt = mysqli_num_rows($result);
+
+printf("Получено %d строк.\n", $row_cnt);
+?>
+
+<table border = 1>
+  <tr><td>Артикул</td><td>Наименование</td><td>Размер</td><td>Бренд</td><td>категория</td><td>значение</td><td>значение</td><td>Цена</td></tr>
+  <?php while ($item = $result->fetch_object()):?>
+  <tr><td><?= $item->article?></td><td><?= $item->title?></td><td><?= $item->size_value?></td><td><?= $item->brand?></td><td><?= $item->img_link?></td><td><?= $item->prop_title?></td><td><?= $item->prop_value?></td><td><?= $item->price_regular?></td></tr>
+  <?php endwhile; ?>
+</table>
+
+<?php
+require_once 'db.php';
 $sql = "SELECT DISTINCT size_title, size_value
   FROM products
   LEFT JOIN sizes ON products.size_id = sizes.id 
@@ -66,10 +92,10 @@ var_dump($result)
 // $val = $_GET['value'] ?? 'Левый';
 
 $sql = "SELECT * 
-        FROM products, categories, brands, properties, prod_prop, prices, sizes
+        FROM products, categories, brands, properties, prod_prop, prices, sizes, images
         WHERE products.category_id = categories.id AND properties.category_id = categories.id AND products.size_id = sizes.id
         AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id AND prices.product_id = products.id
-        AND products.brand_id = brands.id 
+        AND products.brand_id = brands.id AND products.id = images.product_id
         -- AND products.category_id = 3
         -- AND prop_title LIKE 'hook' AND prop_value LIKE 'Левый'
         -- HAVING prop_title LIKE 'Серия' AND prop_value LIKE 'BASIC COLLECTION'

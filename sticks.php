@@ -220,37 +220,47 @@
                 $fromNewPageStart = ($page - 1) * $notesOnPage;        
 
                 //проверяем набор чекбоксов, где можно выбрать несколько значений
-                if(isset($_GET["hook"])){
-                    $hook = $_GET["hook"];   
+                if(isset($_GET['hook'])){
+                    foreach ($_GET['hook'] as $key => $value) {
+                        
+                 } 
+                $sql = "SELECT DISTINCT article, title, category, brand, model, marka, size_value, size_unit, price_regular, 
+                price_special, img_link  
+                 FROM products, categories, brands, properties, prod_prop, prices, sizes, images
+                 WHERE products.category_id = categories.id AND properties.category_id = categories.id AND products.size_id = sizes.id
+                 AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id AND prices.product_id = products.id
+                 AND products.brand_id = brands.id AND products.id = images.product_id AND img_showcase = true
+                 -- AND products.category_id = 3
+                 AND prop_title LIKE 'hook' AND prop_value LIKE '$value'
+                 ORDER BY RAND()
+                --  LIMIT $notesOnPage OFFSET $fromNewPageStart
+                 ";
+                $result=$connect->query($sql);
+                // $row_cnt = mysqli_num_rows($result);
                 }
+                
+                
 
-                // $sql = "SELECT * 
-                // FROM products, categories, brands, properties, prod_prop, prices, sizes, images
-                // WHERE products.category_id = categories.id AND properties.category_id = categories.id AND products.size_id = sizes.id
-                // AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id AND prices.product_id = products.id
-                // AND products.brand_id = brands.id AND images.product_id = products.id
-                // AND prop_title LIKE 'hook'
-                // LIMIT $notesOnPage OFFSET $fromNewPageStart
+
+                // $sql = "SELECT article, title, category, brand, model, marka, size_value, size_unit, price_regular, price_special, img_link FROM products 
+                //  LEFT JOIN categories
+                //      ON products.category_id = categories.id
+                //  LEFT JOIN brands
+                //      ON products.brand_id = brands.id
+                //  INNER JOIN prices
+                //      ON prices.product_id = products.id
+                //  LEFT JOIN sizes
+                //      ON products.size_id = sizes.id
+                //  INNER JOIN images
+                //      ON products.id = images.product_id
+                //      WHERE categories.id = 1
+                //          AND img_showcase = true
+                //  ORDER BY RAND()
+                //  LIMIT $notesOnPage OFFSET $fromNewPageStart
                 // ";
-                                $sql = "SELECT article, title, category, brand, model, marka, size_value, size_unit, price_regular, price_special, img_link FROM products 
-                                  LEFT JOIN categories
-                                      ON products.category_id = categories.id
-                                  LEFT JOIN brands
-                                      ON products.brand_id = brands.id
-                                  INNER JOIN prices
-                                      ON prices.product_id = products.id
-                                  LEFT JOIN sizes
-                                      ON products.size_id = sizes.id
-                                  INNER JOIN images
-                                      ON products.id = images.product_id
-                                      WHERE categories.id = 1
-                                          AND img_showcase = true
-                                  ORDER BY RAND()
-                                  LIMIT $notesOnPage OFFSET $fromNewPageStart
-                            ";
                 
                 //выполняем запрос и результат кладём в переменную $result
-                $result=$connect->query($sql);
+                //$result=$connect->query($sql);
                 ?>    
                           
                 <section class="assortiment-cards">
@@ -282,25 +292,16 @@
                 <?php
                 //делаем новый запрос, который посчитает количество записей в БД
                               
-                // $sql = "SELECT COUNT(*) as count 
-                // FROM products, categories, brands, properties, prod_prop, prices, sizes, images
-                // WHERE products.category_id = categories.id AND properties.category_id = categories.id AND products.size_id = sizes.id
-                // AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id AND prices.product_id = products.id
-                // AND products.brand_id = brands.id AND images.product_id = products.id
-                // AND prop_title LIKE 'hook'
-                // LIMIT $notesOnPage OFFSET $fromNewPageStart
-                // ";
-
-                $sql = "SELECT COUNT(category_id) as count FROM products
+                $sql = "SELECT COUNT(*) as count FROM products
                 WHERE category_id = 1
-        ";                 
+                ";                 
 
                 $result=$connect->query($sql);
                 $count = $result->fetch_assoc() ['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
                 //считаем количество страниц
                 $pagesCount = ceil($count / $notesOnPage);
                 
-                
+                //$pagesCount = ceil($row_cnt / $notesOnPage);
                 // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
                 if ($page != 1){
                     $prev = $page - 1; //предыдущая страница
