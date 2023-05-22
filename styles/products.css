@@ -663,3 +663,7 @@ ul.breadcrumb li a:hover {
 
   /* Добавить серый цвет фона при наведении курсора мыши */
   .pagination-products a:hover:not(.active) {background-color: #ddd;}
+
+.prop-list input{
+    display: none;
+}
