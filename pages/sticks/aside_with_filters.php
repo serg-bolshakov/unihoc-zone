@@ -1,18 +1,36 @@
 <?php
+################################################################################
+##                            aside_with_filters.php                           #
+##                            -----------------------                          #
+##                           НЕЗАВИСИМЫЙ ПЕРЕКЛЮЧАТЕЛЬ                         #
+##                                  "checkbox"                                 #
+##                                                                             #
+################################################################################
+################################################################################
+
+
 /**
  * @var $connect
  */
 
+################################################################################
+#                           getFiltersHook($connect)                           #
+#                   ---------------------------------------                    #
+# ПОЛУЧАЕТ ДОСТУПНЫЕ В БАЗЕ ДАННЫХ ВАРИАНТЫ ХВАТОВ ДЛЯ КЛЮШЕК (ПРАВЫЙ/ЛЕВЫЙ...)#
+#                                                                              #
+# $connect - подключаемся к БД                                                 #
+# Выполняем SQL-запрос                                                         #
+# Возвращаем результат, который записывается в переменную $filters_hook        #
+#                                                                              #
+################################################################################
 
 function getFiltersHook($connect){
-    // этот запрос тоже работает... аналогично... какой лучше использовать?
     $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
-                                    FROM products, categories, properties, prod_prop
-                                    WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-                                    AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-                                    AND prop_title LIKE 'hook'
-                                ";
-
+                FROM products, categories, properties, prod_prop
+                WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+                AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+                AND prop_title LIKE 'hook'
+            ";
 // $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view
 //         FROM products
 //             LEFT JOIN categories ON products.category_id = categories.id
@@ -23,32 +41,85 @@ function getFiltersHook($connect){
 //выполняем запрос и результат кладём в переменную $result
     return $connect->query($sql);
 }
+
+################################################################################
+#                           getFiltersSize($connect)                           #
+#                   ---------------------------------------                    #
+# ПОЛУЧАЕТ ДОСТУПНЫЕ В БАЗЕ ДАННЫХ ВАРИАНТЫ ДЛИН РУКОЯТОК КЛЮШЕК               #
+#                                                                              #
+# $connect - подключаемся к БД                                                 #
+# Выполняем SQL-запрос                                                         #
+# Возвращаем результат, который записывается в переменную $filters_size        #
+#                                                                              #
+################################################################################
+
 function getFiltersSize($connect){
     $sql = "SELECT DISTINCT size_title, size_value
-                                        FROM products
-                                            INNER JOIN sizes ON products.size_id = sizes.id 
-                                        ";
+                FROM products
+                    INNER JOIN sizes ON products.size_id = sizes.id 
+                ";
     return $connect->query($sql);
 }
+
+################################################################################
+#                        getFiltersShaftFlex($connect)                         #
+#                   ---------------------------------------                    #
+# ПОЛУЧАЕТ ДОСТУПНЫЕ В БАЗЕ ДАННЫХ ВАРИАНТЫ ЖЁСТКОСТИ РУКОЯТОК КЛЮШЕК          #
+#                                                                              #
+# $connect - подключаемся к БД                                                 #
+# Выполняем SQL-запрос                                                         #
+# Возвращаем результат, который записывается в переменную getFiltersShaftFlex  #
+#                                                                              #
+################################################################################
+
 function getFiltersShaftFlex($connect){
     $sql = "SELECT DISTINCT prop_title, prop_value, prop_value_view 
-                                        FROM products, categories, properties, prod_prop
-                                        WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-                                        AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-                                        AND prop_title LIKE 'shaft_flex'    
-                                    ";
-    //выполняем запрос и результат кладём в переменную $result
+                FROM products, categories, properties, prod_prop
+                WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+                AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+                AND prop_title LIKE 'shaft_flex'    
+            ";
     return $connect->query($sql);
 }
+
+
+################################################################################
+#                           getFiltersBrand($connect)                          #
+#                   ---------------------------------------                    #
+# ПОЛУЧАЕТ ДОСТУПНЫЕ В БАЗЕ ДАННЫХ ВАРИАНТЫ БРЕНДОВ ДЛЯ КЛЮШЕК                 #
+#                                                                              #
+# $connect - подключаемся к БД                                                 #
+# Выполняем SQL-запрос                                                         #
+# Возвращаем результат, который записывается в переменную getFiltersBrand      #
+#                                                                              #
+################################################################################
 function getFiltersBrand($connect){
 
     $sql = "SELECT DISTINCT brand, brand_view
-                                        FROM products
-                                            INNER JOIN brands ON products.brand_id = brands.id 
-                                        ";
+                FROM products
+                    INNER JOIN brands ON products.brand_id = brands.id 
+            ";
     return $connect->query($sql);
 }
 
+################################################################################
+#                          checkParams($params, $value)                        #
+#                        --------------------------------                      #
+#   ПРОВЕРЯЕТ КАКИЕ ФИЛЬТРЫ БЫЛИ ОТМЕЧЕНЫ В КАЧЕСТВЕ ПАРАМЕТРОВ ДЛЯ ВЫБОРКИ    #
+#                                                                              #
+# $params = $_GET;                                                             #
+#                                                                              #
+# in_array — Проверяет, присутствует ли в массиве значение                     #
+#                                                                              #
+# in_array(mixed $needle, array $haystack, bool $strict = false): bool         #
+#                                                                              #
+# Ищет в haystack значение needle. Если strict не установлен, то при поиске    #
+# будет использовано нестрогое сравнение.                                      #
+# Если needle - строка, сравнение будет произведено с учётом регистра.         #
+# Возвращает true, если needle был найден в массиве,                           #
+# и false в противном случае.                                                  #
+#                                                                              #
+################################################################################
 function checkParams($params, $value){
  if (isset($_GET[$params])) {
      return in_array($value, $_GET[$params]) ? "checked" : "";
@@ -56,13 +127,19 @@ function checkParams($params, $value){
  return "";
 }
 
+$filters_hook = getFiltersHook($connect); //кладём в переменную результат sql-запроса 
+//на выборку из БД доступных вариантов хвата для клюшек (Правый/Левый/Нейтральный)
 
-$filters_hook = getFiltersHook($connect);
-$filters_size = getFiltersSize($connect);
-$filters_shaft_flex = getFiltersShaftFlex($connect);
-$filters_brand = getFiltersBrand($connect);
+$filters_size = getFiltersSize($connect); //кладём в переменную результат sql-запроса 
+//на выборку из БД доступных вариантов длин рукояток для клюшек (55/60/65...)
 
-$params = $_GET;
+$filters_shaft_flex = getFiltersShaftFlex($connect); //кладём в переменную результат 
+//sql-запроса на выборку из БД доступных вариантов жёсткости рукояток для клюшек (23/24/25...)
+
+$filters_brand = getFiltersBrand($connect); //кладём в переменную результат sql-запроса 
+//на выборку из БД доступных вариантов брендов клюшек (Unihoc/Zone)
+
+$params = $_GET; //в переменную $params кладётся массив $_GET - Ассоциативный массив параметров, переданных скрипту через URL.
 /**
  * @var $item
  */

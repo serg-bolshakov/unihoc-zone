@@ -1,15 +1,34 @@
 <?php
-//подключаемся к базе данных
 /**
- * @var $connect
+ * @var $connect // $connect = new mysqli($host, $username, $password, $db);
  */
-require_once 'db.php';
+require_once 'db.php'; //подключаемся к базе данных
 
+################################################################################
+#                              getCategory($connect)                           #
+#                        --------------------------------                      #
+#      ВЫБИРАЕТ ИЗ БАЗЫ ДАННЫХ ЗНАЧЕНИЯ ДЛЯ ОПИСАНИЯ КАТЕГОРИИ ТОВАРОВ         #
+#                                                                              #
+#                                                                              #
+# $connect - подключаемся к БД                                                 #
+# Выполняем SQL-запрос                                                         #
+# Возвращаем результат, который записывается в переменную $result              #
+#                                                                              #
+# mysqli_result::fetch_object -- mysqli_fetch_object —                         #
+# Выбирает следующую строку из набора результатов в виде объекта               #                                                             #
+#                                                                              #
+# Выбирает одну строку данных из набора результатов и возвращает её            #
+# как объект, где каждое свойство представляет имя столбца набора результатов. #
+# Каждый последующий вызов этой функции будет возвращать следующую строку в    # 
+# наборе результатов или null, если строк больше нет.                          #
+#                                                                              #
+################################################################################
 function getCategory($connect)
 {
-    $sql = "SELECT tag_title, cat_description, meta_name_description, meta_name_keywords, meta_name_robots, style_link FROM categories WHERE id = 1";
+    $sql = "SELECT tag_title, cat_description, meta_name_description, meta_name_keywords, 
+    meta_name_robots, style_link FROM categories WHERE id = 1";
     $result = $connect->query($sql);
-    return $result->fetch_object();
+    return $result->fetch_object(); 
 }
 function getList($name)
 {
