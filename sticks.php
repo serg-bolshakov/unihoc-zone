@@ -15,7 +15,7 @@ require_once 'db.php'; //подключаемся к базе данных
 # Возвращаем результат, который записывается в переменную $result              #
 #                                                                              #
 # mysqli_result::fetch_object -- mysqli_fetch_object —                         #
-# Выбирает следующую строку из набора результатов в виде объекта               #                                                             #
+# Выбирает следующую строку из набора результатов в виде объекта               # 
 #                                                                              #
 # Выбирает одну строку данных из набора результатов и возвращает её            #
 # как объект, где каждое свойство представляет имя столбца набора результатов. #
@@ -30,6 +30,38 @@ function getCategory($connect)
     $result = $connect->query($sql);
     return $result->fetch_object(); 
 }
+
+##################################################################################
+#                                   getList($name)                               #
+#                        --------------------------------                        #
+#        ПОЛУЧАЕМ СПИСОК СВОЙСТВ, ЗАПРОШЕННЫХ ПОЛЬЗОВАТЕЛЕМ ЧЕРЕЗ URL          #
+#                                                                                #
+# Конструкция foreach предоставляет простой способ перебора массивов.            #
+# foreach работает только с массивами и объектами, и будет генерировать ошибку   #
+# при попытке использования с переменными других типов или                       #
+# неинициализированными переменными.                                             #
+# Существует два вида синтаксиса:                                                #
+# foreach (iterable_expression as $value)                                        #
+#          statement                                                             #
+# foreach (iterable_expression as $key => $value)                                #
+#          statement                                                             #
+# Первый цикл перебирает массив, задаваемый с помощью iterable_expression.       #
+# На каждой итерации значение текущего элемента присваивается переменной $value. #
+# Второй цикл дополнительно присвоит ключ текущего элемента переменной           #
+# $key на каждой итераци                                                         #
+#                                                                                #
+# mysqli_result::fetch_object -- mysqli_fetch_object —                           #
+# Выбирает следующую строку из набора результатов в виде объекта                 #    
+# Выбирает одну строку данных из набора результатов и возвращает её              #
+# как объект, где каждое свойство представляет имя столбца набора результатов.   #
+# Каждый последующий вызов этой функции будет возвращать следующую строку в      # 
+# наборе результатов или null, если строк больше нет.                            #
+#                                                                                #
+# rtrim — Удаляет пробелы (или другие символы) из конца строки                   #
+# rtrim(string $string, string $characters = " \n\r\t\v\x00"): string            #
+#                                                                                #
+#                                                                                #
+##################################################################################
 function getList($name)
 {
     $props = "";
@@ -39,19 +71,24 @@ function getList($name)
     return rtrim($props, ", ");
 }
 
-$page = $_GET['page'] ?? 1;
+$page = $_GET['page'] ?? 1; 
 $notesOnPage = 6;
 $fromNewPageStart = ($page - 1) * $notesOnPage;
 
 
-$item = getCategory($connect);
+$item = getCategory($connect); // При вызове функции выбирает одну строку данных из набора результатов и 
+//возвращает её как объект, где каждое свойство представляет имя столбца набора результатов. 
+//Каждый последующий вызов этой функции будет возвращать следующую строку в наборе 
+//результатов или null, если строк больше нет.
 
-$hooks = "";
+$hook = "";
 $shaft_flex = "";
 $size = "";
 $brand = "";
+
+
 if (isset($_GET['hook'])){
-    $hooks = getList('hook');
+    $hook = getList('hook');
 }
 if (isset($_GET['shaft_flex'])) {
     $shaft_flex = getList('shaft_flex');
@@ -66,31 +103,37 @@ if (isset($_GET['brand'])){
 }
 
 $whereFromProdProp = "1";
-if (!empty($hooks) || !empty($shaft_flex)){
-    if ($hooks === "") {
-        $hooks = "1) OR (1";
+if (!empty($hook) || !empty($shaft_flex)){
+    if ($hook === "") {
+        $hook = "1) OR (1";
     }
     if ($shaft_flex === "") {
         $shaft_flex = "1) OR (1";
     }
+    
+    // записываем в переменную $whereFromProdProp строку, которая будет вставляться в SQL-запрос при подсчёте кол-ва записей,
+    // которые будут выведены в результате запроса (для подсчёта кол-ва страниц, например)... эта строка может выглятеть так:
+    // WHERE property_id IN ( SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value = 'left') AND (prop_title = 'shaft_flex' AND prop_value = '30') )
+    // очень, кстати, круто - я бы сам так сделать никогда бы не догадался... не сообразил, что нужно сделать именно так...
+
     $whereFromProdProp = <<<SQLWHERE
-  property_id IN (
-    SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value IN ($hooks))
-                                 AND (prop_title = 'shaft_flex' AND prop_value IN ($shaft_flex)) 
+    property_id IN (
+    SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value IN ($hook))
+        AND (prop_title = 'shaft_flex' AND prop_value IN ($shaft_flex)) 
     )
 SQLWHERE;
 }
-$whereFormSize = "1";
+$whereFromSize = "1";
 if (!empty($size)){
-    $whereFormSize = <<<SQLWHERE
+    $whereFromSize = <<<SQLWHERE
   size_id IN (
     SELECT id FROM sizes WHERE (size_title = 'shaft_length' AND size_value IN ($size))
     )
 SQLWHERE;
 }
-$whereFormBrand = "1";
+$whereFromBrand = "1";
 if (!empty($brand)){
-    $whereFormBrand = <<<SQLWHERE
+    $whereFromBrand = <<<SQLWHERE
   brand_id IN (
     SELECT id FROM brands WHERE (brand IN ($brand))
     )
@@ -107,8 +150,8 @@ LEFT JOIN prices p2 on p.id = p2.product_id
 WHERE
     p.category_id = 1
 AND $whereFromProdProp
-AND $whereFormSize
-AND $whereFormBrand
+AND $whereFromSize
+AND $whereFromBrand
 ";
 
 $result = $connect->query($sql);
@@ -130,8 +173,8 @@ LEFT JOIN prices p2 on p.id = p2.product_id
 WHERE
     p.category_id = 1
 AND $whereFromProdProp
-AND $whereFormSize
-AND $whereFormBrand
+AND $whereFromSize
+AND $whereFromBrand
 LIMIT $notesOnPage OFFSET $fromNewPageStart
 SQL;
 
@@ -164,7 +207,7 @@ $products = $connect->query($sql);
             <li><a href="basic.php">Базовый ассортимент</a></li>
         </ul>
     </section>
-    <!--Делаем меню типа "Аккордеон"-->
+<!--Делаем меню типа "Аккордеон"-->
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/sticks/aside_with_filters.php" ?>
     <section class="assortiment-cards">
         <div class="assortiment-card">
@@ -207,10 +250,70 @@ $products = $connect->query($sql);
     <?php if($pagesCount > 1): ?>
     <section class="pagination-products">
         <?php
-        $params = $_GET;
-        unset($params['page']);
+        $params = $_GET; //в переменную $params кладётся массив $_GET - Ассоциативный массив параметров, переданных скрипту через URL.
+        unset($params['page']); // unset() удаляет перечисленные переменные.
+        // Если переменная, объявленная глобальной, удаляется внутри функции, то будет удалена только локальная переменная. 
+        //Переменная в области видимости вызова функции сохранит то же значение, что и до вызова unset().
+        // удаляем один элемент массива: unset($bar['quux']);
         $query = http_build_query($params);
-        //$pagesCount = ceil($row_cnt / $notesOnPage);
+
+        ##############################################################################################################
+        #                                                                                                            #
+        #  http_build_query — Генерирует URL-кодированную строку запроса                                             #
+        #                     из предоставленного ассоциативного (или индексированного) массива.                     #
+        #                                                                                                            #
+        #  http_build_query(                                                                                         #
+        #      array|object $data,                                                                                   #
+        #      string $numeric_prefix = "",                                                                          #
+        #      ?string $arg_separator = null,                                                                        #
+        #      int $encoding_type = PHP_QUERY_RFC1738                                                                #
+        #  ): string                                                                                                 #
+        #                                                                                                            #
+        #       data                                                                                                 #
+        # Может быть массив или объект, содержащий свойства. Если data массив, то он может быть простой одномерной   #
+        # структурой или массивом массивов (который, в свою очередь, может содержать другие массивы).                #
+        #                                                                                                            #
+        # Если data объект, тогда только общедоступные свойства будут включены в результат.                          #                                                                                                     #
+        #                                                                                                            #
+        #   numeric_prefix                                                                                           #
+        # Если числовые индексы используются в базовом массиве и этот параметр указан, то он будет добавлен          #
+        # к числовому индексу для элементов только в базовом массиве. Это позволяет обеспечить допустимые имена      #
+        # переменных, в которые позже данные будут декодированы PHP или другим CGI-приложением.                      #                                                                                   #
+        #                                                                                                            #
+        #   arg_separator                                                                                            #
+        # Разделитель аргументов. Если не задан или null, то для разделения аргументов используется                  #
+        # arg_separator.output.                                                                                      #
+        #                                                                                                            #
+        #     encoding_type                                                                                          #
+        # По умолчанию PHP_QUERY_RFC1738. Если encoding_type равен PHP_QUERY_RFC1738, тогда кодирование              #
+        # осуществляется по » RFC 1738 и типу контента application/x-www-form-urlencoded, что подразумевает, что     #
+        # пробелы кодируются как символы "плюс" (+).                                                                 #
+        # Если enc_type равен PHP_QUERY_RFC3986, тогда кодирование осуществляется в соответствии с » RFC 3986,       #
+        # а пробелы будут закодированы в процентах (%20).                                                            #
+        #                                                                                                            #
+        #     Возвращает URL-кодированную строку.                                                                    #
+        # ПРИМЕР ИСПОЛЬЗОВАНИЯ:<?php                                                                                 #
+        # $data = array(                                                                                             #
+        #     'foo' => 'bar',                                                                                        #
+        #     'baz' => 'boom',                                                                                       #
+        #     'cow' => 'milk',                                                                                       #
+        #     'null' => null,                                                                                        #
+        #     'php' => 'hypertext processor'                                                                         #
+        # );                                                                                                         #
+        #                                                                                                            #
+        # echo http_build_query($data) . "\n";                                                                       #
+        # echo http_build_query($data, '', '&amp;');                                                                 #
+        #                                                                                                            #
+        # Результат выполнения данного примера:                                                                      #
+        #                                                                                                            #
+        # foo=bar&baz=boom&cow=milk&php=hypertext+processor                                                          #
+        # foo=bar&amp;baz=boom&amp;cow=milk&amp;php=hypertext+processor                                              #
+        #                                                                                                            #
+        ##############################################################################################################
+
+
+
+        
         // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
         if ($page != 1) {
             $prev = $page - 1; //предыдущая страница

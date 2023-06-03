@@ -105,7 +105,7 @@ function getFiltersBrand($connect){
 ################################################################################
 #                          checkParams($params, $value)                        #
 #                        --------------------------------                      #
-#   ПРОВЕРЯЕТ КАКИЕ ФИЛЬТРЫ БЫЛИ ОТМЕЧЕНЫ В КАЧЕСТВЕ ПАРАМЕТРОВ ДЛЯ ВЫБОРКИ    #
+#               ПРОВЕРЯЕТ БЫЛ ЛИ ВЫБРАН В КАЧЕСТВЕ ФИЛЬТРА ПАРАМЕТР            #
 #                                                                              #
 # $params = $_GET;                                                             #
 #                                                                              #
@@ -164,23 +164,45 @@ $params = $_GET; //в переменную $params кладётся массив
             <div class="prop-list">
                 <?php while ($item = $filters_hook->fetch_object()): ?>
                     <div>
-                        <input type="checkbox" <?= checkParams("hook", $item->prop_value) ?> id="hook_<?= $item->prop_value ?>" name="hook[]" value="<?= $item->prop_value ?>">
+                    <?php
+                        ##########################################################################
+                        # функция объявлена выше, здесь показана для наглядности и анализа:      #
+                        # function checkParams($params, $value){                                 #
+                        #    if (isset($_GET[$params])) {                                        #
+                        #        return in_array($value, $_GET[$params]) ? "checked" : "";       #
+                        # }                                                                      #
+                        # return "";                                                             #
+                        # }                                                                      #
+                        #                                                                        #
+                        #  $params = $_GET;                                                      #
+                        #                                                                        #
+                        ########################################################################## 
+                    ?>   
+                        <input type="checkbox" <?= checkParams("hook", $item->prop_value) ?> // добавляем свойство checked, если данный параметр был выбран в качестве фильтра
+                               id="hook_<?= $item->prop_value ?>" name="hook[]" value="<?= $item->prop_value ?>">
                         <label for="hook_<?= $item->prop_value ?>"><?= $item->prop_value_view ?></label>
                     </div>
                 <?php endwhile; ?>
             </div>
-            <!-- <div>
-                <input type="checkbox" name="hook[]" value="nuetral">
-                <label for="hook">С обеих сторон</label></input>
-            </div>
-            <div>
-                <input type="checkbox" name="hook[]" value="right">
-                <label for="hook">Правый</label></input>
-            </div>
-            <div>
-                <input type="checkbox" name="hook[]" value="left">
-                <label for="hook">Левый</label></input>
-            </div> -->
+
+            <?php 
+            /** изначально я "руками" делал так:
+            * <!-- <div>
+            *    <input type="checkbox" name="hook[]" value="nuetral">
+            *    <label for="hook">С обеих сторон</label></input>
+            *</div>
+            *<div>
+            *    <input type="checkbox" name="hook[]" value="right">
+            *    <label for="hook">Правый</label></input>
+            *</div>
+            *<div>
+            *    <input type="checkbox" name="hook[]" value="left">
+            *    <label for="hook">Левый</label></input>
+            *</div> -->
+            *
+            * и не смог разобраться как обрабатываются "чекбоксы"
+            * */
+            ?>
 
             <div class="pop-up__checkbox-block-hint">Длина рукоятки (см)
                 <div class="pop-up__checkbox-block-hint-text">
@@ -198,7 +220,8 @@ $params = $_GET; //в переменную $params кладётся массив
             <div class="prop-list">
                 <?php while ($item = $filters_size->fetch_object()): ?>
                     <div>
-                        <input type="checkbox" <?= checkParams("size", $item->size_value) ?> id="size_<?= $item->size_value ?>" name="size[]" value="<?= $item->size_value ?>">
+                        <input type="checkbox" <?= checkParams("size", $item->size_value) ?> id="size_<?= $item->size_value ?>" 
+                        name="size[]" value="<?= $item->size_value ?>">
                         <label for="size_<?= $item->size_value ?>"><?= $item->size_value ?></label>
                     </div>
                 <?php endwhile; ?>
@@ -227,26 +250,7 @@ $params = $_GET; //в переменную $params кладётся массив
             </div>
 
             <div class="prop-list">
-                <!-- <div>
-                    <input type="checkbox" name="shaft_flex" value="36">
-                    <label for="shaft_flex">36</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="shaft_flex" value="30">
-                    <label for="shaft_flex">30</label>
-                </div> -->
-                <!-- <div>
-                    <input type="checkbox" name="shaft_flex" value="29">
-                    <label for="shaft_flex">29</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="shaft_flex" value="28">
-                    <label for="shaft_flex">28</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="shaft_flex" value="27 value=""">
-                    <label for="shaft_flex">27</label>
-                </div> -->
+                
             </div>
             <div class="pop-up__checkbox-block-hint">Бренд
                 <div class="pop-up__checkbox-block-hint-text">
@@ -269,7 +273,7 @@ $params = $_GET; //в переменную $params кладётся массив
             <div class="prop-list">
                 <button type="submit" class="submit" value="submit">Применить</button>
                 <div class="reset-form">
-                    <button>Сброс</button>
+                    <button type="reset">Сброс</button>
                 </div>
             </div>
         </form>

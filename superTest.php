@@ -1,20 +1,32 @@
 <?php
-require_once 'db.php';
-$sql = "SELECT * 
-FROM products, categories, brands, properties, prod_prop, prices, sizes, images
-WHERE products.category_id = categories.id AND properties.category_id = categories.id AND products.size_id = sizes.id
-AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id AND prices.product_id = products.id
-AND products.brand_id = brands.id AND products.id = images.product_id AND img_showcase = true
--- AND products.category_id = 3
--- AND prop_title LIKE 'hook' AND prop_value LIKE 'Левый'
--- HAVING prop_title LIKE 'Серия' AND prop_value LIKE 'BASIC COLLECTION'
-AND prop_title LIKE 'hook' AND prop_value LIKE 'left'
-ORDER BY article
-";
-$result=$connect->query($sql);    
-$row_cnt = mysqli_num_rows($result);
+$whereFromProdProp = "1";
+$whereFromSize = "1";
+$whereFromBrand = "1";
+$hook = "1) OR (1";
+  
 
-printf("Получено %d строк.\n", $row_cnt);
+
+  require_once 'db.php';
+  $sql = "SELECT COUNT(DISTINCT p.id) as count FROM products p
+  LEFT JOIN prod_prop pp on p.id = pp.product_id
+  LEFT JOIN brands b on p.brand_id = b.id
+  LEFT JOIN images i on p.id = i.product_id
+  LEFT JOIN sizes s on s.id = p.size_id
+  LEFT JOIN prices p2 on p.id = p2.product_id
+  WHERE
+      p.category_id = 1
+  AND $whereFromProdProp
+  AND $whereFromSize
+  AND $whereFromBrand
+  AND WHERE (prop_title = 'hook' AND prop_value IN 'left')
+  ";
+
+  $result = $connect->query($sql);
+  $count = $result->fetch_assoc()['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
+  //считаем количество страниц
+  
+  var_dump($count);
+
 ?>
 
 <table border = 1>
