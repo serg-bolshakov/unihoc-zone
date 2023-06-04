@@ -21,28 +21,31 @@
                 <div class="products-item product-title">
                     <h1>Крюки для флорбольных клюшек</h1>
                 </div>
-                </div>  
+            </div>  
         </section>
                 
-                <section class="nav-bar">
-                    <ul class="breadcrumb">
-                        <li><a href="/">Главная</a></li>
-                        <li><a href="products.php">Каталог</a></li>
-                        <li><a href="sticks.php">Клюшки</a></li>
-                        <li>Крюки</li>
-                        <li><a href="basic.php">Базовый ассортимент</a></li>
-                    </ul>
-                </section>
-                <!--Делаем меню типа "Аккордеон"-->
-                <aside class="menu-products">
-                    <div class="category-description">
-                        <p><?=$item->cat_description?></p>
-                    </div>
-                    <div class="products-filter__title">
-                        <p>Фильтры для крюков</p>
-                        <img src="icons/slider.png" alt="slider" /></a>
-                    </div>  
-                </aside>
+        <section class="nav-bar">
+            <ul class="breadcrumb">
+                <li><a href="/">Главная</a></li>
+                <li><a href="products.php">Каталог</a></li>
+                <li><a href="sticks.php">Клюшки</a></li>
+                <li>Крюки</li>
+                <li><a href="basic.php">Базовый ассортимент</a></li>
+            </ul>
+        </section>
+        
+        <!-- <aside class="menu-products">
+            <div class="category-description">
+                <p><?=$item->cat_description?></p>
+            </div>
+            <div class="products-filter__title">
+                <p>Фильтры для крюков</p>
+                <img src="icons/slider.png" alt="slider" /></a>
+            </div>  
+        </aside> -->
+
+        <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/blades/aside_with_filters.php" ?>
+
                 <?php
                                
                 //номер страницы преобразовываем в команду, кот. будет доставать записи по 6 штук на страницу
