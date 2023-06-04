@@ -44,7 +44,7 @@
             </div>  
         </aside> -->
 
-        <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/blades/aside_with_filters.php" ?>
+            <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/blades/aside_with_filters.php" ?>
 
                 <?php
                                
@@ -83,68 +83,68 @@
                 $result=$connect->query($sql);
                 ?>    
                           
-                <section class="assortiment-cards">
-                    <div class="assortiment-card">
-                    <?php while ($item = $result->fetch_object()):?> 
-                        <div class="assortiment-card__block">
-                            <img src="<?= $item->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
-                            <div class="assortiment-card_productName"><?= $item->title?> </div>
-                            <div class="assortiment-card_productPrice">
-                            
-                            <?php
-                              /* если не назначена акция (специальная цена, 
-                              то полный блок цен не выводится, его пропускаем - 
-                              выводится только актуальная цена (следующий блок)*/
-                            ?>
+            <section class="assortiment-cards">
+                <div class="assortiment-card">
+                <?php while ($item = $result->fetch_object()):?> 
+                    <div class="assortiment-card__block">
+                        <img src="<?= $item->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
+                        <div class="assortiment-card_productName"><?= $item->title?> </div>
+                        <div class="assortiment-card_productPrice">
+                        
+                        <?php
+                            /* если не назначена акция (специальная цена, 
+                            то полный блок цен не выводится, его пропускаем - 
+                            выводится только актуальная цена (следующий блок)*/
+                        ?>
 
-                            <?php if ($item->price_special): ?> 
-                                <p class="priceCurrentSale"><nobr><?= number_format($price= $item->price_special, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
-                                <p class="priceBeforSale"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
-                                <p class="priceDiscountInPercentage"><nobr>- <?= $discount = ceil(100 - ($price= $item->price_special) / ($price= $item->price_regular) * 100); ?>&#37;</nobr></p>
-                            <?php else: ?>
-                                <p class="priceCurrent"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
-                            <?php endif; ?>
-                            </div>
+                        <?php if ($item->price_special): ?> 
+                            <p class="priceCurrentSale"><nobr><?= number_format($price= $item->price_special, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
+                            <p class="priceBeforSale"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
+                            <p class="priceDiscountInPercentage"><nobr>- <?= $discount = ceil(100 - ($price= $item->price_special) / ($price= $item->price_regular) * 100); ?>&#37;</nobr></p>
+                        <?php else: ?>
+                            <p class="priceCurrent"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
+                        <?php endif; ?>
                         </div>
-                    <?php endwhile; ?>
                     </div>
-                </section>
+                <?php endwhile; ?>
+                </div>
+            </section>
                 
-                <section class="pagination-products">
-                
-                <?php
-                //делаем новый запрос, который посчитает количество записей в БД
-                              
-                $sql = "SELECT COUNT(category_id) as count FROM products
-                        WHERE category_id = 2
-                        "; 
-                $result=$connect->query($sql);
-                $count = $result->fetch_assoc() ['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
-                //считаем количество страниц
-                $pagesCount = ceil($count / $notesOnPage);
-                
-                
-                // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
-                if ($page != 1){
-                    $prev = $page - 1; //предыдущая страница
-                    echo "<a href=\"?page=$prev\"><<</a> ";
-                } else {
-                    echo "<< ";
-                }
-                //запускаем цикл для ссылок на страницы
-                for ($i=1; $i <= $pagesCount; $i++) {
-                    if ($page == $i) {
-                        echo "<a href=\"?page=$i\" class=\"activeProduct\">$i</a> ";
-                    } else echo "<a href=\"?page=$i\">$i</a> ";
-                }
-                
-                if ($page != $pagesCount){
-                    $next = $page + 1; //следующая страница
-                    echo "<a href=\"?page=$next\">>></a> ";
-                } else {
-                    echo " >>";
-                }                
-                ?>    
-                
-                </section>
-                <?php require_once "layout/footer.php"; ?>
+            <section class="pagination-products">
+            
+            <?php
+            //делаем новый запрос, который посчитает количество записей в БД
+                            
+            $sql = "SELECT COUNT(category_id) as count FROM products
+                    WHERE category_id = 2
+                    "; 
+            $result=$connect->query($sql);
+            $count = $result->fetch_assoc() ['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
+            //считаем количество страниц
+            $pagesCount = ceil($count / $notesOnPage);
+            
+            
+            // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
+            if ($page != 1){
+                $prev = $page - 1; //предыдущая страница
+                echo "<a href=\"?page=$prev\"><<</a> ";
+            } else {
+                echo "<< ";
+            }
+            //запускаем цикл для ссылок на страницы
+            for ($i=1; $i <= $pagesCount; $i++) {
+                if ($page == $i) {
+                    echo "<a href=\"?page=$i\" class=\"activeProduct\">$i</a> ";
+                } else echo "<a href=\"?page=$i\">$i</a> ";
+            }
+            
+            if ($page != $pagesCount){
+                $next = $page + 1; //следующая страница
+                echo "<a href=\"?page=$next\">>></a> ";
+            } else {
+                echo " >>";
+            }                
+            ?>    
+            
+            </section>
+            <?php require_once "layout/footer.php"; ?>
