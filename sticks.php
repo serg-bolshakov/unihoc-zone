@@ -79,7 +79,7 @@ $fromNewPageStart = ($page - 1) * $notesOnPage;
 $item = getCategory($connect); // При вызове функции выбирает одну строку данных из набора результатов и 
 //возвращает её как объект, где каждое свойство представляет имя столбца набора результатов. 
 //Каждый последующий вызов этой функции будет возвращать следующую строку в наборе 
-//результатов или null, если строк больше нет.
+//результатов или null, если строк больше нет. В объекте $item - свойства категории, который применяются в head и header...
 
 $hook = "";
 $shaft_flex = "";
@@ -121,7 +121,7 @@ if (!empty($hook) || !empty($shaft_flex)){
     SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value IN ($hook))
         AND (prop_title = 'shaft_flex' AND prop_value IN ($shaft_flex)) 
     )
-SQLWHERE;
+    SQLWHERE;
 }
 $whereFromSize = "1";
 if (!empty($size)){

@@ -1,12 +1,116 @@
 <?php
     //подключаемся к базе данных
     require_once 'db.php';
-    $sql = "SELECT tag_title, cat_description, meta_name_description, meta_name_keywords, meta_name_robots, style_link FROM categories
-    WHERE categories.id = 2";  
-    $result=$connect->query($sql);
-    $item = $result->fetch_object();
+    
+    // объявляем функцию getCategory($connect), которая при подключении к БД  выбирает из неё информацию о категории, кот. используется в head и header
+    function getCategory($connect)
+    {
+        $sql = "SELECT tag_title, cat_description, meta_name_description, meta_name_keywords, 
+        meta_name_robots, style_link FROM categories WHERE id = 2";
+        $result = $connect->query($sql);
+        return $result->fetch_object(); 
+    }
+    /** до этого я не объявлял такую функцию, а тупо сразу делал запрос к БД и получал необходимую информацию, вот так:
+    * $sql = "SELECT tag_title, cat_description, meta_name_description, meta_name_keywords, meta_name_robots, style_link FROM categories
+    * WHERE categories.id = 2";  
+    * $result=$connect->query($sql);
+    * $item = $result->fetch_object();
+     */
+
+        
+    ##################################################################################
+    #                                   getList($name)                               #
+    #                        --------------------------------                        #
+    #        ПОЛУЧАЕМ СПИСОК СВОЙСТВ, ЗАПРОШЕННЫХ ПОЛЬЗОВАТЕЛЕМ ЧЕРЕЗ URL          #
+    #                                                                                #
+    # Конструкция foreach предоставляет простой способ перебора массивов.            #
+    # foreach работает только с массивами и объектами, и будет генерировать ошибку   #
+    # при попытке использования с переменными других типов или                       #
+    # неинициализированными переменными.                                             #
+    # Существует два вида синтаксиса:                                                #
+    # foreach (iterable_expression as $value)                                        #
+    #          statement                                                             #
+    # foreach (iterable_expression as $key => $value)                                #
+    #          statement                                                             #
+    # Первый цикл перебирает массив, задаваемый с помощью iterable_expression.       #
+    # На каждой итерации значение текущего элемента присваивается переменной $value. #
+    # Второй цикл дополнительно присвоит ключ текущего элемента переменной           #
+    # $key на каждой итераци                                                         #
+    #                                                                                #
+    # mysqli_result::fetch_object -- mysqli_fetch_object —                           #
+    # Выбирает следующую строку из набора результатов в виде объекта                 #    
+    # Выбирает одну строку данных из набора результатов и возвращает её              #
+    # как объект, где каждое свойство представляет имя столбца набора результатов.   #
+    # Каждый последующий вызов этой функции будет возвращать следующую строку в      # 
+    # наборе результатов или null, если строк больше нет.                            #
+    #                                                                                #
+    # rtrim — Удаляет пробелы (или другие символы) из конца строки                   #
+    # rtrim(string $string, string $characters = " \n\r\t\v\x00"): string            #
+    #                                                                                #
+    #                                                                                #
+    ##################################################################################
+    function getList($name)  // $hook_blade = getList('hook_blade');
+    {
+        $props = "";
+        foreach ($_GET[$name] as $prop) {
+            $props .= "\"$prop\" , ";
+        }
+        return rtrim($props, ", "); // string (16) ""left", "right""
+    }
+
+    $page = $_GET['page'] ?? 1; 
+    $notesOnPage = 6;
+    $fromNewPageStart = ($page - 1) * $notesOnPage;
+
+    $item = getCategory($connect); // При вызове функции выбирает одну строку данных из набора результатов и 
+    //возвращает её как объект, где каждое свойство представляет имя столбца набора результатов. 
+    //Каждый последующий вызов этой функции будет возвращать следующую строку в наборе 
+    //результатов или null, если строк больше нет. В объекте $item - свойства категории, который применяются в head и header...
+
+    $hook_blade = "";
+    $blade_stiffness = "";
+    $brand = "";
+
+    if (isset($_GET['hook_blade'])){
+        $hook_blade = getList('hook_blade'); // строка с перечислением определённых пользователем 
+        //с помощью формы чекбоксов фильтров: в нашем случае - это строка string (16) ""left", "right""...
+        // строка URL выглядит так: /blades.php?hook_blade%5B%5D=left&hook_blade%5B%5D=right
+    }
+
+    if (isset($_GET['blade_stiffness'])) {
+        $blade_stiffness = getList('blade_stiffness');
+    }
+
+    if (isset($_GET['brand'])){
+        $brand = getList('brand');
+    }
+
+    $whereFromProdProp = "1";
+    if (!empty($hook_blade) || !empty($shaft_flex)){
+        if ($hook_blade === "") {
+            $hook_blade = "1) OR (1";
+        }
+        if ($shaft_flex === "") {
+            $shaft_flex = "1) OR (1";
+        }
+        
+        // записываем в переменную $whereFromProdProp строку, которая будет вставляться в SQL-запрос при подсчёте кол-ва записей,
+        // которые будут выведены в результате запроса (для подсчёта кол-ва страниц, например)... эта строка может выглятеть так:
+        // WHERE property_id IN ( SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value = 'left') AND (prop_title = 'shaft_flex' AND prop_value = '30') )
+        // очень, кстати, круто - я бы сам так сделать никогда бы не догадался... не сообразил, что нужно сделать именно так...
+
+        $whereFromProdProp = <<<SQLWHERE
+        property_id IN (
+        SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value IN ($hook_blade
+        ))
+            AND (prop_title = 'shaft_flex' AND prop_value IN ($shaft_flex)) 
+        )
+        SQLWHERE;
+    }
  ?>   
+
  <?php require_once 'layout/head.php'; ?>
+
 </head>
 
 <body>
