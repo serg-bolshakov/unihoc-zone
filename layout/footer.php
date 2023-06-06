@@ -74,15 +74,15 @@
           <a href="">Обмен и возврат товаров</a>
           <a href="">Оплата и доставка заказов</a>
           <div class="contacts-social">
-            <a href=""><img src="icons/gmail-logo.png" alt="gmail-logo" /></a>
-            <a href=""><img src="icons/vk-logo.png" alt="vk-logo" /></a>
+            <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo.png" alt="Адрес электронной почты" /></a>
+            <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo.png" alt="Напишите нам ВКонтакте" /></a>
             <a href=""
-              ><img src="icons/whatsApp-logo.png" alt="whatsApp-logo"
+              ><img src="icons/whatsApp-logo.png" alt="+7 (953) 415.60.10 (Только сообщения, пожалуйста)"
             /></a>
-            <a href=""
+            <a href="https://t.me/unihoczonerussia/"
               ><img src="icons/telegram-logo.png" alt="telegram-logo"
             /></a>
-            <a href=""><img src="icons/viber-logo.png" alt="viber-logo" /></a>
+            <a href=""><img src="icons/viber-logo.png" alt="+7 (953) 415.60.10 (Только сообщения, пожалуйста)" /></a>
             <a href=""
               ><img src="icons/youTube-logo.png" alt="youTube-logo"
             /></a>

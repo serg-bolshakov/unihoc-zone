@@ -7,25 +7,25 @@ $hook = "1) OR (1";
 
 
   require_once 'db.php';
-  $sql = "SELECT COUNT(DISTINCT p.id) as count FROM products p
+  $sql = "SELECT DISTINCT p.*, b.*, i.*, p2.* FROM products p
   LEFT JOIN prod_prop pp on p.id = pp.product_id
   LEFT JOIN brands b on p.brand_id = b.id
   LEFT JOIN images i on p.id = i.product_id
-  LEFT JOIN sizes s on s.id = p.size_id
+  
   LEFT JOIN prices p2 on p.id = p2.product_id
   WHERE
-      p.category_id = 1
-  AND $whereFromProdProp
-  AND $whereFromSize
-  AND $whereFromBrand
-  AND WHERE (prop_title = 'hook' AND prop_value IN 'left')
+      p.category_id = 2
+  -- AND $whereFromProdProp
+  -- AND $whereFromSize
+  -- AND $whereFromBrand
+  -- AND WHERE (prop_title = 'hook' AND prop_value IN 'left')
   ";
 
   $result = $connect->query($sql);
   $count = $result->fetch_assoc()['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
   //считаем количество страниц
   
-  var_dump($count);
+  var_dump($result);
 
 ?>
 

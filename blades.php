@@ -89,7 +89,7 @@
         $brand = getList('brand');
     }
 
-    $whereFromProdProp = "1";
+        $whereFromProdProp = "1";
     if (!empty($hook_blade) || !empty($blade_stiffness)){
         if ($hook_blade === "") {
             $hook_blade = "1) OR (1";
@@ -100,7 +100,7 @@
         
         // записываем в переменную $whereFromProdProp строку, которая будет вставляться в SQL-запрос при подсчёте кол-ва записей,
         // которые будут выведены в результате запроса (для подсчёта кол-ва страниц, например)... эта строка может выглятеть так:
-        // WHERE property_id IN ( SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value = 'left') AND (prop_title = 'shaft_flex' AND prop_value = '30') )
+        // WHERE property_id IN ( SELECT id FROM properties WHERE (prop_title = 'hook_left' AND prop_value = 'left') AND (prop_title = 'blade_stiffness' AND prop_value = 'medium') )
         // очень, кстати, круто - я бы сам так сделать никогда бы не догадался... не сообразил, что нужно сделать именно так...
 
         $whereFromProdProp = <<<SQLWHERE
@@ -130,8 +130,8 @@
     LEFT JOIN prices p2 on p.id = p2.product_id
     WHERE
         p.category_id = 2
-    AND $whereFromBrand
     AND $whereFromProdProp
+    AND $whereFromBrand
     ";
 
     $result = $connect->query($sql);
