@@ -72,6 +72,10 @@ function getList($name)
 }
 
 $page = $_GET['page'] ?? 1; 
+//проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
+//filter_var — Фильтрует переменную с помощью определённого фильтра
+$page = filter_var($page, FILTER_VALIDATE_INT, ["options" => ['default' => 1, 'min_range' => 1, 'max_range' => 99]]);
+
 $notesOnPage = 6;
 $fromNewPageStart = ($page - 1) * $notesOnPage;
 
@@ -121,7 +125,7 @@ if (!empty($hook) || !empty($shaft_flex)){
     SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value IN ($hook))
         AND (prop_title = 'shaft_flex' AND prop_value IN ($shaft_flex)) 
     )
-    SQLWHERE;
+SQLWHERE;
 }
 $whereFromSize = "1";
 if (!empty($size)){
@@ -140,7 +144,7 @@ if (!empty($brand)){
 SQLWHERE;
 }
 
-//делаем новый запрос, который посчитает количество записей в БД
+//делаем запрос, который посчитает количество записей в БД
 $sql = "SELECT COUNT(DISTINCT p.id) as count FROM products p
 LEFT JOIN prod_prop pp on p.id = pp.product_id
 LEFT JOIN brands b on p.brand_id = b.id
@@ -159,10 +163,6 @@ $count = $result->fetch_assoc()['count']; //и в переменную $count з
 //считаем количество страниц
 $pagesCount = ceil($count / $notesOnPage);
 
-//проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
-$page = filter_var($page, FILTER_VALIDATE_INT, ["options" => ['default' => 1, 'min_range' => 1, 'max_range' => 99]]);
-
-
 $select = <<<SQL
 SELECT DISTINCT p.*, b.*, i.*, p2.*, s.*  FROM products p
 LEFT JOIN prod_prop pp on p.id = pp.product_id
@@ -172,6 +172,7 @@ LEFT JOIN sizes s on s.id = p.size_id
 LEFT JOIN prices p2 on p.id = p2.product_id
 WHERE
     p.category_id = 1
+AND img_showcase = true
 AND $whereFromProdProp
 AND $whereFromSize
 AND $whereFromBrand
@@ -179,7 +180,7 @@ LIMIT $notesOnPage OFFSET $fromNewPageStart
 SQL;
 
 $sql = $select;
-//выполняем запрос и результат кладём в переменную $result
+//выполняем запрос и результат кладём в переменную $products
 $products = $connect->query($sql);
 ?>
 <?php require_once 'layout/head.php'; ?>
@@ -207,8 +208,10 @@ $products = $connect->query($sql);
             <li><a href="basic.php">Базовый ассортимент</a></li>
         </ul>
     </section>
+
 <!--Делаем меню типа "Аккордеон"-->
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/sticks/aside_with_filters.php" ?>
+
     <section class="assortiment-cards">
         <div class="assortiment-card">
             <?php while ($item = $products->fetch_object()): ?>
@@ -250,13 +253,18 @@ $products = $connect->query($sql);
     <?php if($pagesCount > 1): ?>
     <section class="pagination-products">
         <?php
-        $params = $_GET; //в переменную $params кладётся массив $_GET - Ассоциативный массив параметров, переданных скрипту через URL.
-        unset($params['page']); // unset() удаляет перечисленные переменные.
+        $params = $_GET; // в переменную $params кладётся массив $_GET - Ассоциативный массив параметров, переданных скрипту через URL.
+                         // array(1) { ["page"]=> string(1) "3" } (когда выбрали для просмотра третью страницу)
+        
+        unset($params['page']); // результат: array(0) { } 
+        // unset() удаляет перечисленные переменные.
         // Если переменная, объявленная глобальной, удаляется внутри функции, то будет удалена только локальная переменная. 
         //Переменная в области видимости вызова функции сохранит то же значение, что и до вызова unset().
         // удаляем один элемент массива: unset($bar['quux']);
-        $query = http_build_query($params);
-
+        
+        $query = http_build_query($params); // передаём: array(1) { ["page"]=> string(1) "2" } 
+                                            // получаем в результате: string(6) "page=2"
+        
         ##############################################################################################################
         #                                                                                                            #
         #  http_build_query — Генерирует URL-кодированную строку запроса                                             #

@@ -216,8 +216,8 @@ $params = $_GET; //в переменную $params кладётся массив
                     </div>
                     <div class="prop-list">
                         <button type="submit" class="submit" value="submit">Применить</button>
-                        <div class="reset-form">
-                            <button type="reset">Сброс</button>
+                        <div class="reset-link">
+                            <a href = "blades.php">Сбросить</a>
                         </div>
                     </div>                    
                 </form>

@@ -59,6 +59,10 @@
     }
 
     $page = $_GET['page'] ?? 1; 
+    //проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
+    //filter_var — Фильтрует переменную с помощью определённого фильтра
+    $page = filter_var($page, FILTER_VALIDATE_INT, ["options" => ['default' => 1, 'min_range' => 1, 'max_range' => 99]]);
+    
     $notesOnPage = 6;
     $fromNewPageStart = ($page - 1) * $notesOnPage;
 
@@ -86,12 +90,12 @@
     }
 
     $whereFromProdProp = "1";
-    if (!empty($hook_blade) || !empty($shaft_flex)){
+    if (!empty($hook_blade) || !empty($blade_stiffness)){
         if ($hook_blade === "") {
             $hook_blade = "1) OR (1";
         }
-        if ($shaft_flex === "") {
-            $shaft_flex = "1) OR (1";
+        if ($blade_stiffness === "") {
+            $blade_stiffness = "1) OR (1";
         }
         
         // записываем в переменную $whereFromProdProp строку, которая будет вставляться в SQL-запрос при подсчёте кол-ва записей,
@@ -101,12 +105,58 @@
 
         $whereFromProdProp = <<<SQLWHERE
         property_id IN (
-        SELECT id FROM properties WHERE (prop_title = 'hook' AND prop_value IN ($hook_blade
-        ))
-            AND (prop_title = 'shaft_flex' AND prop_value IN ($shaft_flex)) 
+        SELECT id FROM properties WHERE (prop_title = 'hook_blade' AND prop_value IN ($hook_blade))
+            AND (prop_title = 'blade_stiffness' AND prop_value IN ($blade_stiffness)) 
         )
         SQLWHERE;
+        //$whereFromProdProp = "property_id IN ( SELECT id FROM properties WHERE 
+        //(prop_title = 'hook_blade' AND prop_value IN (1) OR (1)) AND (prop_title = 'blade_stiffness' AND prop_value IN ("hard")) )"
     }
+
+        $whereFromBrand = "1";
+    if (!empty($brand)){
+        $whereFromBrand = <<<SQLWHERE
+    brand_id IN (
+        SELECT id FROM brands WHERE (brand IN ($brand))
+        )
+    SQLWHERE; // получаем такую строку: string(75) "brand_id IN ( SELECT id FROM brands WHERE (brand IN ("UNIHOC")) )"
+    }
+    
+    //делаем запрос, который посчитает количество записей в БД
+    $sql = "SELECT COUNT(DISTINCT p.id) as count FROM products p
+    LEFT JOIN prod_prop pp on p.id = pp.product_id
+    LEFT JOIN brands b on p.brand_id = b.id
+    LEFT JOIN images i on p.id = i.product_id
+    LEFT JOIN prices p2 on p.id = p2.product_id
+    WHERE
+        p.category_id = 2
+    AND $whereFromBrand
+    AND $whereFromProdProp
+    ";
+
+    $result = $connect->query($sql);
+    $count = $result->fetch_assoc()['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
+    //считаем количество страниц
+    $pagesCount = ceil($count / $notesOnPage);
+
+    $select = <<<SQL
+    SELECT DISTINCT p.*, b.*, i.*, p2.*, s.*  FROM products p
+    LEFT JOIN prod_prop pp on p.id = pp.product_id
+    LEFT JOIN brands b on p.brand_id = b.id
+    LEFT JOIN images i on p.id = i.product_id
+    LEFT JOIN sizes s on s.id = p.size_id
+    LEFT JOIN prices p2 on p.id = p2.product_id
+    WHERE
+        p.category_id = 2
+    AND img_showcase = true
+    AND $whereFromProdProp
+    AND $whereFromBrand
+    LIMIT $notesOnPage OFFSET $fromNewPageStart
+    SQL;
+    
+    $sql = $select;
+    //выполняем запрос и результат кладём в переменную $products
+    $products = $connect->query($sql);
  ?>   
 
  <?php require_once 'layout/head.php'; ?>
@@ -138,117 +188,74 @@
             </ul>
         </section>
         
-        <!-- <aside class="menu-products">
-            <div class="category-description">
-                <p><?=$item->cat_description?></p>
-            </div>
-            <div class="products-filter__title">
-                <p>Фильтры для крюков</p>
-                <img src="icons/slider.png" alt="slider" /></a>
-            </div>  
-        </aside> -->
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/blades/aside_with_filters.php" ?>
+       
+        <section class="assortiment-cards">
+            <div class="assortiment-card">
+            <?php while ($item = $products->fetch_object()):?> 
+                <div class="assortiment-card__block">
+                    <img src="<?= $item->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
+                    <div class="assortiment-card_productName"><?= $item->title?> </div>
+                    <div class="assortiment-card_productPrice">
+                    
+                    <?php
+                        /* если не назначена акция (специальная цена, 
+                        то полный блок цен не выводится, его пропускаем - 
+                        выводится только актуальная цена (следующий блок)*/
+                    ?>
 
-            <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/blades/aside_with_filters.php" ?>
-
-                <?php
-                               
-                //номер страницы преобразовываем в команду, кот. будет доставать записи по 6 штук на страницу
-                //$sql = "SELECT * FROM products LIMIT $fromNewPageStart, $notesOnPage"; 
-                // стр 1 -> c 0, 6 записей, стр 2 -> с 6, 6 записей, стр 3 -> с 12, 6 записей...
-                //выполняем запрос и результат кладём в переменную $result
-                //$result=$connect->query($sql);
-                
-                $page = $_GET['page'] ?? 1;
-                //проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
-                $page = filter_var($page, FILTER_VALIDATE_INT, array("options" =>
-                        array('default' => 1, 'min_range' => 1, 'max_range' => 99  )));
-
-                $notesOnPage = 6; //LIMIT количество товаров на странице начиная с 0 позиции, 6 товаров, далее с 6-й шесть товаров...
-                $fromNewPageStart = ($page - 1) * $notesOnPage; 
-                
-
-                $sql = "SELECT article, title, category, brand, model, marka, size_value, size_unit, price_regular, price_special, img_link FROM products 
-                        LEFT JOIN categories
-                            ON products.category_id = categories.id
-                        LEFT JOIN brands
-                            ON products.brand_id = brands.id
-                        INNER JOIN prices
-                            ON prices.product_id = products.id
-                        LEFT JOIN sizes
-                            ON products.size_id = sizes.id
-                        INNER JOIN images
-                            ON products.id = images.product_id
-                            WHERE categories.id = 2
-                                AND img_showcase = true
-                        ORDER BY RAND()
-                        LIMIT $notesOnPage OFFSET $fromNewPageStart
-                  ";
-                //выполняем запрос и результат кладём в переменную $result
-                $result=$connect->query($sql);
-                ?>    
-                          
-            <section class="assortiment-cards">
-                <div class="assortiment-card">
-                <?php while ($item = $result->fetch_object()):?> 
-                    <div class="assortiment-card__block">
-                        <img src="<?= $item->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
-                        <div class="assortiment-card_productName"><?= $item->title?> </div>
-                        <div class="assortiment-card_productPrice">
-                        
-                        <?php
-                            /* если не назначена акция (специальная цена, 
-                            то полный блок цен не выводится, его пропускаем - 
-                            выводится только актуальная цена (следующий блок)*/
-                        ?>
-
-                        <?php if ($item->price_special): ?> 
-                            <p class="priceCurrentSale"><nobr><?= number_format($price= $item->price_special, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
-                            <p class="priceBeforSale"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
-                            <p class="priceDiscountInPercentage"><nobr>- <?= $discount = ceil(100 - ($price= $item->price_special) / ($price= $item->price_regular) * 100); ?>&#37;</nobr></p>
-                        <?php else: ?>
-                            <p class="priceCurrent"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
-                        <?php endif; ?>
-                        </div>
+                    <?php if ($item->price_special): ?> 
+                        <p class="priceCurrentSale"><nobr><?= number_format($price= $item->price_special, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
+                        <p class="priceBeforSale"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
+                        <p class="priceDiscountInPercentage"><nobr>- <?= $discount = ceil(100 - ($price= $item->price_special) / ($price= $item->price_regular) * 100); ?>&#37;</nobr></p>
+                    <?php else: ?>
+                        <p class="priceCurrent"><nobr><?= number_format($price= $item->price_regular, 0,",", " " ); ?> <sup>&#8381;</sup></nobr></p>
+                    <?php endif; ?>
                     </div>
-                <?php endwhile; ?>
                 </div>
-            </section>
+            <?php endwhile; ?>
+            </div>
+        </section>
+            
+        <?php if($pagesCount > 1): ?>
+        <section class="pagination-products">
+        <?php
+        $params = $_GET; // в переменную $params кладётся массив $_GET - Ассоциативный массив параметров, переданных скрипту через URL.
+        // array(1) { ["page"]=> string(1) "3" } (когда выбрали для просмотра третью страницу)
+
+        unset($params['page']); // результат: array(0) { } 
+        // unset() удаляет перечисленные переменные.
+        // Если переменная, объявленная глобальной, удаляется внутри функции, то будет удалена только локальная переменная. 
+        //Переменная в области видимости вызова функции сохранит то же значение, что и до вызова unset().
+        // удаляем один элемент массива: unset($bar['quux']);
+
+        $query = http_build_query($params); // передаём: array(1) { ["page"]=> string(1) "2" } 
+                                // получаем в результате: string(6) "page=2"
+        
+        
+        // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
+        if ($page != 1){
+            $prev = $page - 1; //предыдущая страница
+            echo "<a href=\"?page=$prev&{$query}\"><< </a> "; // я до этого делал без {&$query}
+        } else {
+            echo "<< ";
+        }
+        
+        //запускаем цикл для ссылок на страницы
+        for ($i = 1; $i <= $pagesCount; $i++) {
+            if ($page == $i) {
+                echo "<a href=\"?page=$i&{$query}\" class=\"activeProduct\">$i</a> ";
+            } else echo "<a href=\"?page=$i&{$query}\">$i</a> ";
+        }
                 
-            <section class="pagination-products">
-            
-            <?php
-            //делаем новый запрос, который посчитает количество записей в БД
-                            
-            $sql = "SELECT COUNT(category_id) as count FROM products
-                    WHERE category_id = 2
-                    "; 
-            $result=$connect->query($sql);
-            $count = $result->fetch_assoc() ['count']; //и в переменную $count запишем сразу число по ключу ['count'], а не массив
-            //считаем количество страниц
-            $pagesCount = ceil($count / $notesOnPage);
-            
-            
-            // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
-            if ($page != 1){
-                $prev = $page - 1; //предыдущая страница
-                echo "<a href=\"?page=$prev\"><<</a> ";
-            } else {
-                echo "<< ";
-            }
-            //запускаем цикл для ссылок на страницы
-            for ($i=1; $i <= $pagesCount; $i++) {
-                if ($page == $i) {
-                    echo "<a href=\"?page=$i\" class=\"activeProduct\">$i</a> ";
-                } else echo "<a href=\"?page=$i\">$i</a> ";
-            }
-            
-            if ($page != $pagesCount){
-                $next = $page + 1; //следующая страница
-                echo "<a href=\"?page=$next\">>></a> ";
-            } else {
-                echo " >>";
-            }                
-            ?>    
-            
-            </section>
-            <?php require_once "layout/footer.php"; ?>
+        if ($page != $pagesCount) {
+            $next = $page + 1; //следующая страница
+            echo "<a href=\"?page=$next&{$query}\">>></a> ";
+        } else {
+            echo " >>";
+        }         
+        ?>    
+        
+        </section>
+        <?php endif; ?>
+    <?php require_once "layout/footer.php"; ?>
