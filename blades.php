@@ -132,6 +132,7 @@
         p.category_id = 2
     AND $whereFromProdProp
     AND $whereFromBrand
+    
     ";
 
     $result = $connect->query($sql);
@@ -229,8 +230,8 @@
         //Переменная в области видимости вызова функции сохранит то же значение, что и до вызова unset().
         // удаляем один элемент массива: unset($bar['quux']);
 
-        $query = http_build_query($params); // передаём: array(1) { ["page"]=> string(1) "2" } 
-                                // получаем в результате: string(6) "page=2"
+        $query = http_build_query($params); // передаём: array(1) { ["page"]=> string(1) "3" } 
+                                            // получаем в результате: string(6) "page=3"
         
         
         // проверяем для стрелочек влево, что мы на первой странице ... если на первой стрелки деактивируются, но остаются видимыми
