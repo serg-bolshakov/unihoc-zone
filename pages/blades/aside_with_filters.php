@@ -68,7 +68,7 @@ function getFiltersBrand($connect){
 ################################################################################
 #                          checkParams($params, $value)                        #
 #                        --------------------------------                      #
-#               ПРОВЕРЯЕТ БЫЛ ЛИ ВЫБРАН В КАЧЕСТВЕ ФИЛЬТРА ПАРАМЕТР            #
+#          ПРОВЕРЯЕТ БЫЛО ЛИ ВЫБРАНО СВОЙСТВО  В КАЧЕСТВЕ ФИЛЬТРА              #
 #                                                                              #
 # $params = $_GET;                                                             #
 #                                                                              #
@@ -216,9 +216,7 @@ $params = $_GET; //в переменную $params кладётся массив
                     </div>
                     <div class="prop-list">
                         <button type="submit" class="submit" value="submit">Применить</button>
-                        <div class="reset-link">
-                            <a href = "blades.php">Сбросить</a>
-                        </div>
+                        <button type="reset" class="submit" value="submit">Сбросить</button>
                     </div>                    
                 </form>
             </div>

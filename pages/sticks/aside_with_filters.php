@@ -272,9 +272,7 @@ $params = $_GET; //в переменную $params кладётся массив
             </div>
             <div class="prop-list">
                 <button type="submit" class="submit" value="submit">Применить</button>
-                <div class="reset-form">
-                    <button type="reset">Сброс</button>
-                </div>
+                <button type="reset" class="submit" value="submit">Сбросить</button>
             </div>
         </form>
     </div>

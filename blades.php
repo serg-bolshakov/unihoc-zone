@@ -132,7 +132,6 @@
         p.category_id = 2
     AND $whereFromProdProp
     AND $whereFromBrand
-    
     ";
 
     $result = $connect->query($sql);
@@ -141,11 +140,10 @@
     $pagesCount = ceil($count / $notesOnPage);
 
     $select = <<<SQL
-    SELECT DISTINCT p.*, b.*, i.*, p2.*, s.*  FROM products p
+    SELECT DISTINCT p.*, b.*, i.*, p2.*  FROM products p
     LEFT JOIN prod_prop pp on p.id = pp.product_id
     LEFT JOIN brands b on p.brand_id = b.id
     LEFT JOIN images i on p.id = i.product_id
-    LEFT JOIN sizes s on s.id = p.size_id
     LEFT JOIN prices p2 on p.id = p2.product_id
     WHERE
         p.category_id = 2

@@ -507,7 +507,7 @@ ul.breadcrumb li a:hover {
   }  
   
   /*	=	Reset Form */
-.reset-form button {
+.reset-form {
   margin: 20px auto 0 auto;
   padding: 8px 14px;
   width: 100px;
@@ -519,10 +519,10 @@ ul.breadcrumb li a:hover {
 	box-shadow: inset 0 1px 1px #ccc;
 	cursor: pointer;
 }
-.reset-form button:hover {
+.reset-form:hover {
 	box-shadow: 0 0 20px #ccc;
 }
-.reset-form button:active {
+.reset-form:active {
 	margin-top: 1px;
 	margin-bottom: -1px;
 	zoom: 1;
