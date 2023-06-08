@@ -74,17 +74,17 @@
           <a href="">Обмен и возврат товаров</a>
           <a href="">Оплата и доставка заказов</a>
           <div class="contacts-social">
-            <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo.png" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
-            <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
+            <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo-colored.jpg" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
+            <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo-colored.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
             <a href="whatsapp://send?phone=+79534156010" title="Написать в Whatsapp"
-              ><img src="icons/whatsApp-logo.png" alt="whatsApp-logo" title="Написать в Whatsapp"
+              ><img src="icons/whatsapp-logo-colored.png" alt="whatsApp-logo" title="Написать в Whatsapp"
             /></a>
             <a href="https://t.me/unihoczonerussia/"
-              ><img src="icons/telegram-logo.png" alt="telegram-logo" title="Написать в Telegram"
+              ><img src="icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram"
             /></a>
-            <a href="viber://chat?phone=+79534156010" title="Написать в Viber"><img src="icons/viber-logo.png" alt="viber-logo" title="Написать в Viber" /></a>
+            <a href="https://viber.click/79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
             <a href=""
-              ><img src="icons/youTube-logo.png" alt="youTube-logo"
+              ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"
             /></a>
           </div>
           <div class="paymentDelivery-methods">
