@@ -69,20 +69,20 @@
 
         <div class="footer-assistance">
           <h2>ПОДДЕРЖКА ПОКУПАТЕЛЕЙ</h2>
-          <a href="">Свяжитесь с нами</a>
-          <a href="">Заказать обратный звонок</a>
+          <!-- <a href="">Свяжитесь с нами</a>
+          <a href="">Заказать обратный звонок</a> -->
           <a href="">Обмен и возврат товаров</a>
           <a href="">Оплата и доставка заказов</a>
           <div class="contacts-social">
-            <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo.png" alt="Адрес электронной почты" /></a>
-            <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo.png" alt="Напишите нам ВКонтакте" /></a>
-            <a href=""
-              ><img src="icons/whatsApp-logo.png" alt="+7 (953) 415.60.10 (Только сообщения, пожалуйста)"
+            <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo.png" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
+            <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
+            <a href="whatsapp://send?phone=+79534156010" title="Написать в Whatsapp"
+              ><img src="icons/whatsApp-logo.png" alt="whatsApp-logo" title="Написать в Whatsapp"
             /></a>
             <a href="https://t.me/unihoczonerussia/"
-              ><img src="icons/telegram-logo.png" alt="telegram-logo"
+              ><img src="icons/telegram-logo.png" alt="telegram-logo" title="Написать в Telegram"
             /></a>
-            <a href=""><img src="icons/viber-logo.png" alt="+7 (953) 415.60.10 (Только сообщения, пожалуйста)" /></a>
+            <a href="viber://chat?phone=+79534156010" title="Написать в Viber"><img src="icons/viber-logo.png" alt="viber-logo" title="Написать в Viber" /></a>
             <a href=""
               ><img src="icons/youTube-logo.png" alt="youTube-logo"
             /></a>
@@ -95,7 +95,7 @@
               <img src="icons/russianPost-logo.png" alt="russianPost-logo" />
             </p>
           </div>
-          <p class="pop-up__footer-hint">+7 910 795 55 55</p>
+          <p class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></p>
         </div>
     
      </footer>
