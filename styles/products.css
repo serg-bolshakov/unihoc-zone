@@ -506,8 +506,8 @@ ul.breadcrumb li a:hover {
     outline:none;
   }  
   
-  /*	=	Reset Form */
-.reset-form {
+  /*	=	Reset Form  - думал сначала сделать кнопку в div-е*/
+/* .reset-form {
   margin: 20px auto 0 auto;
   padding: 8px 14px;
   width: 100px;
@@ -526,10 +526,10 @@ ul.breadcrumb li a:hover {
 	margin-top: 1px;
 	margin-bottom: -1px;
 	zoom: 1;
-}
+} */
 
- /*	=	Reset Link */
- .reset-link {
+ /*	=	Reset Link - думал сначала сделать не кнопку, а ссылку*/
+ /* .reset-link {
   margin: 20px auto 0 auto;
   padding: 8px 14px;
   width: 100px;
@@ -563,7 +563,7 @@ ul.breadcrumb li a:hover {
   left: 50%;
   margin-right: -50%;                         
   transform: translate(-50%, -50%);
-}
+} */
 
 .assortiment-cards {
     /* background-color: red; */
