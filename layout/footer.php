@@ -35,9 +35,10 @@
           <p>Подбор товаров и экипировки</p>
           <div  class="pop-up__footer-hint">Оплата и доставка товаров
             <div class="pop-up__footer-hint-text"><p><b>Оплата</b>: мы принимаем оплату банковскими картами, другими безналичными денежными средствами (ЭДС) от физических лиц в рамках действующего 
-              законодательства. Оплата покупок и передача фискальных чеков будет осуществляется через онлайн-кассу Robokassa.<br>
+              законодательства. Оплата покупок и передача фискальных чеков будет осуществляется через онлайн-кассу Robokassa.<br>              
               <b>Доставка:</b> мы отгружаем только полностью оплаченные заказы. По умолчанию доставка осуществляется Почтой России с отслеживанием 
-              статуса доставки на сайте компании-перевозчика по номеру отправления. Фиксированная <b>стоимость доставки</b> почтой по России  
+              статуса доставки на сайте компании-перевозчика по номеру отправления.             
+              Фиксированная <b>стоимость доставки</b> почтой по России  
               составляет 360 рублей. Обычно мы отправляем заказы в течение 1-2-х дней с момента поступления оплаты на наш расчётный счёт.
               <br><b>«Самовывоз»</b> из Нижнего Новгорода осуществляется со склада, расположенного по адресу: ул. Бекетова, 3 - район Нагорного дворца спорта, на территории "Базы малого и среднего бизнеса" по воскресеньям с 13:00 до 14:00.
               <br><i>Информация об оплате заказов, статусы отправлений, дополнительная информация</i> будет приходить Вам по электронной почте
@@ -51,11 +52,16 @@
 
         <div class="footer-notes">
           <h2>СТАТЬИ И ЗАМЕТКИ</h2>
-          <a>Про жёсткость (флекс)</a>
+          <div  class="pop-up__footer-hint">Про жёсткость (флекс)
+            <div class="pop-up__footer-hint-text">
+              <p><?=include 'articles/shaft-flex.php';?></p>
+            </div>
+          </div>
           <div  class="pop-up__footer-hint">Как правильно определить хват
-            <div class="pop-up__footer-hint-text"><p>Большинство играет на левую сторону (левый хват) - левая рука внизу, 
-              крюк с левой стороны, - если нормально держать клюшку в обеих руках, клюшка опущена на пол. 
-              И, соответственно, наоборот: правый хват - правая рука внизу.</p>
+            <div class="pop-up__footer-hint-text">
+              <p>
+                <?=include 'articles/hook-side.php';?>
+              </p>
             </div>
           </div>
           <a>Технологии рукояток</a>
@@ -69,32 +75,29 @@
 
         <div class="footer-assistance">
           <h2>ПОДДЕРЖКА ПОКУПАТЕЛЕЙ</h2>
-          <!-- <a href="">Свяжитесь с нами</a>
-          <a href="">Заказать обратный звонок</a> -->
-          <a href="">Оплата и доставка заказов</a>
+            <div class="contacts-social">
+              <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo-colored.jpg" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
+              <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo-colored.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
+              <a href="whatsapp://send?phone=+79534156010" title="Написать в Whatsapp"
+                ><img src="icons/whatsapp-logo-colored.png" alt="whatsApp-logo" title="Написать в Whatsapp"
+              /></a>
+              <a href="https://t.me/unihoczonerussia/"
+                ><img src="icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram"
+              /></a>
+              <a href="https://viber.click/79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
+              <a href=""
+                ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"
+              /></a>
+            </div>
+            <!-- <div class="paymentDelivery-methods">
+              <p><img src="icons/master-card.png" alt="master-card" /></p>
+              <p><img src="icons/visa-card.png" alt="visa-card" /></p>
+            
+              <p>
+                <img src="icons/russianPost-logo.png" alt="russianPost-logo" />
+              </p>
+            </div> -->
           <a href="">Обмен и возврат товаров</a>
-          <div class="contacts-social">
-            <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo-colored.jpg" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
-            <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo-colored.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
-            <a href="whatsapp://send?phone=+79534156010" title="Написать в Whatsapp"
-              ><img src="icons/whatsapp-logo-colored.png" alt="whatsApp-logo" title="Написать в Whatsapp"
-            /></a>
-            <a href="https://t.me/unihoczonerussia/"
-              ><img src="icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram"
-            /></a>
-            <a href="https://viber.click/79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
-            <a href=""
-              ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"
-            /></a>
-          </div>
-          <div class="paymentDelivery-methods">
-            <p><img src="icons/master-card.png" alt="master-card" /></p>
-            <p><img src="icons/visa-card.png" alt="visa-card" /></p>
-           
-            <p>
-              <img src="icons/russianPost-logo.png" alt="russianPost-logo" />
-            </p>
-          </div>
           <p class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></p>
         </div>
     

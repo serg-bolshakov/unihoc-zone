@@ -119,9 +119,7 @@ $params = $_GET; //в переменную $params кладётся массив
                 <form class="checkbox-block" action="" method="get">
                     <div class="pop-up__checkbox-block-hint">Хват (игровая сторона)
                         <div class="pop-up__checkbox-block-hint-text">
-                            Большинство играет на левую сторону (левый хват) - левая рука внизу,
-                            крюк с левой стороны и, соответственно, наоборот: правый хват - правая рука внизу (если
-                            нормально держать клюшку в обеих руках, клюшка опущена на пол).
+                            <?=include 'layout/articles/hook-side.php';?>
                         </div>
                     </div>
                     <div class="prop-list">
@@ -198,12 +196,7 @@ $params = $_GET; //в переменную $params кладётся массив
                     
                     <div class="pop-up__checkbox-block-hint">Бренд
                         <div class="pop-up__checkbox-block-hint-text">
-                            Ведущие мировые производители лучшей флорбольной экипировки работают на рынке с 1972 года
-                            (компания "Юнихок" / UNIHOC)
-                            и с 2001 года (компания "Зоун" / ZONE / ZONEFLOORBALL.) - их объединяют общие цели и ценности по
-                            эгидой
-                            Renew Group Sweden AB. UNIHOC - основной технический партнёр и спонсор международной федерации
-                            флорбола (IFF).
+                            <?=include 'layout/articles/brands-about.php';?>
                         </div>
                     </div>
                     <div class="prop-list">

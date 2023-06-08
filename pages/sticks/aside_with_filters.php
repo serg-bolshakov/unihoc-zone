@@ -254,12 +254,7 @@ $params = $_GET; //в переменную $params кладётся массив
             </div>
             <div class="pop-up__checkbox-block-hint">Бренд
                 <div class="pop-up__checkbox-block-hint-text">
-                    Ведущие мировые производители лучшей флорбольной экипировки работают на рынке с 1972 года
-                    (компания "Юнихок" / UNIHOC)
-                    и с 2001 года (компания "Зоун" / ZONE / ZONEFLOORBALL.) - их объединяют общие цели и ценности по
-                    эгидой
-                    Renew Group Sweden AB. UNIHOC - основной технический партнёр и спонсор международной федерации
-                    флорбола (IFF).
+                    <?=include 'layout/articles/brands-about.php';?>
                 </div>
             </div>
             <div class="prop-list">
