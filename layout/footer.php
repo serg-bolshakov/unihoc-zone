@@ -71,8 +71,8 @@
           <h2>ПОДДЕРЖКА ПОКУПАТЕЛЕЙ</h2>
           <!-- <a href="">Свяжитесь с нами</a>
           <a href="">Заказать обратный звонок</a> -->
-          <a href="">Обмен и возврат товаров</a>
           <a href="">Оплата и доставка заказов</a>
+          <a href="">Обмен и возврат товаров</a>
           <div class="contacts-social">
             <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo-colored.jpg" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
             <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo-colored.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
