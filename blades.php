@@ -92,10 +92,10 @@ if (isset($_GET['brand'])){
     $whereFromProdProp = "1";
 if (!empty($hook_blade) || !empty($blade_stiffness)){
     if ($hook_blade === "") {
-        $hook_blade = "1) OR (1";
+        $hook_blade = "(1) OR (1)";
     }
     if ($blade_stiffness === "") {
-        $blade_stiffness = "1) OR (1";
+        $blade_stiffness = "(1) OR (1)";
     }
     
     // записываем в переменную $whereFromProdProp строку, которая будет вставляться в SQL-запрос при подсчёте кол-ва записей,
@@ -105,8 +105,7 @@ if (!empty($hook_blade) || !empty($blade_stiffness)){
 
     $whereFromProdProp = <<<SQLWHERE
     property_id IN (
-    SELECT id FROM properties WHERE (prop_title = 'hook_blade' AND prop_value IN ($hook_blade))
-        AND (prop_title = 'blade_stiffness' AND prop_value IN ($blade_stiffness)) 
+    SELECT id FROM properties WHERE (prop_title IN ('hook_blade', 'blade_stiffness') AND prop_value IN ($hook_blade, $blade_stiffness)) 
     )
 SQLWHERE;
     //$whereFromProdProp = "property_id IN ( SELECT id FROM properties WHERE 
