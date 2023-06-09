@@ -690,7 +690,7 @@ footer a:active {
 }
 
 .contacts-social {
-    margin-top: 5%;
+    margin: 10px 0;
     display: flex;
 }
 

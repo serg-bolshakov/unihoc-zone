@@ -84,11 +84,11 @@
               <a href="https://t.me/unihoczonerussia/"
                 ><img src="icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram"
               /></a>
-              <a href="https://viber.click/79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
+              <!--<a href="https://viber.click/79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>-->
               <a href="viber://chat?number=%2B79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
-              <a href=""
+              <!--<a href=""
                 ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"
-              /></a>
+              /></a>-->
             </div>
             <!-- <div class="paymentDelivery-methods">
               <p><img src="icons/master-card.png" alt="master-card" /></p>
@@ -98,11 +98,16 @@
                 <img src="icons/russianPost-logo.png" alt="russianPost-logo" />
               </p>
             </div> -->
+            <p></p>
             <div  class="pop-up__footer-hint">Обмен и возврат товаров
-
-
-            </div>
-          <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div>
+              <div class="pop-up__footer-hint-text">
+                <p>
+                  <?=include 'articles/products-return-and-exchange.php';?>
+                </p>
+              </div>
+          </div>
+            <p></p>
+            <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div>
           
         </div>
         
