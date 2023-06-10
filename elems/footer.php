@@ -76,19 +76,20 @@
         <div class="footer-assistance">
           <h2>ПОДДЕРЖКА ПОКУПАТЕЛЕЙ</h2>
             <div class="contacts-social">
-              <a href="mailto: unihoczonerussia@gmail.com"><img src="icons/gmail-logo-colored.jpg" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
-              <a href="https://vk.com/unihoczonerussia"><img src="icons/vk-logo-colored.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
+              <a href="mailto: unihoczonerussia@gmail.com"><img src="/icons/gmail-logo-colored.jpg" alt="gmail-logo" title="Отправить письмо по электронной почте"/></a>
+              <a href="https://vk.com/unihoczonerussia"><img src="/icons/vk-logo-colored.png" alt="vk-logo" title="Написать ВКонтакте" /></a>
               <a href="whatsapp://send?phone=+79534156010" title="Написать в Whatsapp"
-                ><img src="icons/whatsapp-logo-colored.png" alt="whatsApp-logo" title="Написать в Whatsapp"
+                ><img src="/icons/whatsapp-logo-colored.png" alt="whatsApp-logo" title="Написать в Whatsapp"
               /></a>
               <a href="https://t.me/unihoczonerussia/"
-                ><img src="icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram"
+                ><img src="/icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram"
               /></a>
-              <!--<a href="https://viber.click/79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>-->
-              <a href="viber://chat?number=%2B79534156010" title="Написать в Viber"><img src="icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
+              <!--<a href="https://viber.click/79534156010" title="Написать в Viber"><img src="/icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>-->
+              <a href="viber://chat?number=%2B79534156010" title="Написать в Viber"><img src="/icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber" /></a>
               <!--<a href=""
                 ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"
               /></a>-->
+              <a href="tel:+79107955555" title="Позвонить директору"><img src="/icons/telefon-logo.png" alt="telefon-logo" title="Позвонить директору" /></a>
             </div>
             <!-- <div class="paymentDelivery-methods">
               <p><img src="icons/master-card.png" alt="master-card" /></p>
@@ -107,13 +108,13 @@
               </div>
           </div>
             <p></p>
-            <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div>
+            <!-- <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div> -->
           
         </div>
         
     
      </footer>
     </container>
-    <script src="scripts/menu-accordion.js"></script>
+    <script src="/scripts/menu-accordion.js"></script>
     </body>
 </html>

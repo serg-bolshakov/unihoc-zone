@@ -89,6 +89,7 @@
               <!--<a href=""
                 ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"
               /></a>-->
+              <a href="tel:+79107955555" title="Позвонить директору"><img src="/icons/telefon-logo.png" alt="telefon-logo" title="Позвонить директору" /></a>
             </div>
             <!-- <div class="paymentDelivery-methods">
               <p><img src="icons/master-card.png" alt="master-card" /></p>
@@ -106,8 +107,8 @@
                 </p>
               </div>
           </div>
-            <p></p>
-            <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div>
+            <!-- <p></p>
+            <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div> -->
           
         </div>
         
