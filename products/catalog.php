@@ -23,7 +23,7 @@
 
 <body>
     <container class="container-products">
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/header.php"; ?>    
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] .'/elems/header.php'; ?>    
         <section class="content-products">
             <div class="products-type">
                 <img
@@ -36,7 +36,7 @@
             </div>  
         </section>
         <section class="nav-bar">
-            <?php include "nav-bar.php"?>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/nav-bar.php'?>
         </section>
 
         <!--Делаем меню типа "Аккордеон"-->
@@ -191,13 +191,13 @@ SQL;
         ?>    
 
         <section class="assortiment-cards">
-            <?php include "assortiment-cards.php"?>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/assortiment-cards.php'?>
         </section>
        
         <?php /*если количество страниц больше, чем 1 - запускаем пагинацию страниц*/if($pagesCount > 1): ?>
         <section class="pagination-products">
-            <?php include "pagination.php"?>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/pagination.php'?>
         </section>
         <?php endif; ?>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/footer.php"; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] .'/elems/footer.php'; ?>
         

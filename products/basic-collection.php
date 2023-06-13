@@ -23,7 +23,7 @@
 
 <body>
     <container class="container-products">
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/header.php"; ?>   
+    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/header.php'; ?>   
         <section class="content-products">
             <div class="products-type">
                 <img
@@ -37,7 +37,7 @@
         </section>
                 
         <section class="nav-bar">
-            <?php include "nav-bar.php"?>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/nav-bar.php'?>
         </section>
                 
         <aside class="menu-products">
@@ -86,8 +86,6 @@
                 WHERE images.img_showcase = true  
                     AND prod_prop.property_id = properties.id
                     AND prop_value LIKE 'basic_collection'
-                     
-                       
         ";
 
         $resultCount = $connect->query($sqlCount);
@@ -117,12 +115,12 @@ SQL;
         ?>    
 
         <section class="assortiment-cards">
-            <?php include "assortiment-cards.php"?>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/assortiment-cards.php'?>
         </section>
        
         <?php /*если количество страниц больше, чем 1 - запускаем пагинацию страниц*/if($pagesCount > 1): ?>
         <section class="pagination-products">
-            <?php include "pagination.php"?>
+            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/pagination.php'?>
         </section>
         <?php endif; ?>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/footer.php"; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/footer.php'; ?>

@@ -1,8 +1,8 @@
 <footer class="footer">
         <div class="footer-assortiment">
           <h2>АССОРТИМЕНТ</h2>
-          <a href="../sticks.php">Клюшки</a>
-          <a href="../blades.php">Крюки</a>
+          <a href="/products/sticks/index.php">Клюшки</a>
+          <a href="/products/blades/index.php">Крюки</a>
           <p>Обмотки</p>
           <p>Обувь</p>
           <p>Вратарская экипировка</p>

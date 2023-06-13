@@ -21,7 +21,7 @@
           <a href="/"><img class="header-main__logo-img" src="/icons/logo.png" alt="logo" /></a>
           <nav class="main-header__nav">
             <ul>
-              <li><a href="../products.php">UnihocZoneRussia</a></li>
+              <li><a href="/products/catalog.php">UnihocZoneRussia</a></li>
               <li><a href="">UNIHOC</a></li>
                   <div class="dropdown-main">
                     <img src="/icons/expand-arrow.png" alt="external-link"/>
