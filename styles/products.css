@@ -102,7 +102,6 @@
 ul.breadcrumb {
     padding: 5px 8px;
     list-style: none;
-    /* background-color: #eee; */
 }
 
 /* Display list items side by side */
@@ -116,6 +115,16 @@ ul.breadcrumb li+li:before {
     padding: 8px;
     color: black;
     content: "/\00a0";
+}
+
+ /* Стиль активной/текущей ссылки */
+ ul.breadcrumb li a.activeBreadcrumb {
+  color: #444;
+}
+/* Стиль активной/текущей ссылки - при наведении курсора ничего не меняется */
+ul.breadcrumb li a.activeBreadcrumb:hover {
+  color: #444;
+  text-decoration: none;
 }
 
 /* Add a color to all links inside the list */
@@ -205,7 +214,8 @@ ul.breadcrumb li a:hover {
     transition: 0.4s;
   } 
   
-  /* Добавить цвет фона для кнопки, если она нажата (добавить .активный класс с JS), а при наведении на него курсора мыши (наведите курсор) */
+  /* Добавить цвет фона для кнопки, если она нажата (добавить .активный класс с JS), 
+  а при наведении на него курсора мыши (наведите курсор) */
   .active, .accordion:hover {
     background-color: #ccc;
   } 
