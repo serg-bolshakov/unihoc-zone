@@ -19,5 +19,5 @@
   if (file_exists($path)) {
     include $path;
   } else {
-    include 'file not found';
+    echo 'file not found';
   }
