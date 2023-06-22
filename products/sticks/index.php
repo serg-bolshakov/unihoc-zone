@@ -55,7 +55,7 @@ function getList($name)  // $hook_blade = getList('hook_blade');
     foreach ($_GET[$name] as $prop) {
         $props .= "\"$prop\" , ";
     }
-    return rtrim($props, ", "); // string (16) ""left", "right""
+    return rtrim($props, ", "); // var_dump($hook); => string (16) ""left", "right""
 }
 
 $page = $_GET['page'] ?? 1; 
@@ -80,6 +80,9 @@ $brand = "";
 if (isset($_GET['hook'])){
     $hook = getList('hook');
 }
+
+// var_dump($hook); => string (16) ""left", "right""
+
 if (isset($_GET['shaft_flex'])) {
     $shaft_flex = getList('shaft_flex');
 }
@@ -164,7 +167,6 @@ AND $whereFromSize
 AND $whereFromBrand
 LIMIT $notesOnPage OFFSET $fromNewPageStart
 SQL;
-
 
 $sql = $select;
 //выполняем запрос и результат кладём в переменную $products

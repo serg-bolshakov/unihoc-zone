@@ -607,7 +607,6 @@ ul.breadcrumb li a:hover {
 }
 
 .assortiment-card {
-    /* display: grid; */
     display: flex;
     flex-wrap: wrap;
     width: 100%;

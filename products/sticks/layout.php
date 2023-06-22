@@ -31,4 +31,5 @@
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems//pagination.php'?>
         </section>
         <?php endif; ?>
+        
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/footer.php'; ?>

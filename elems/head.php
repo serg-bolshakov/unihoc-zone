@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="<?=$item->meta_name_description?>" />
     <meta name="keywords" content="<?=$item->meta_name_keywords?>" />
-    <meta name="robots" content="<?=$item->meta_name_robots?>" />
+    <meta name="robots" content="INDEX,FOLLOW" />
     <link type="image/png" sizes="16x16" rel="icon" href="/icon/favicon-16x16.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/icons/favicon-32x32.png">
     <link type="image/png" sizes="96x96" rel="icon" href="/icons/favicon-96x96.png">
