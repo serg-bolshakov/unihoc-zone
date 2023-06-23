@@ -150,7 +150,7 @@ $params = $_GET; //в переменную $params кладётся массив
         </div>
         <div class="products-filter__title">
             <p>Фильтры для клюшек</p>
-            <img src="/icons/slider.png" alt="slider"></a>
+            <img src="/icons/slider.png" alt="slider">
         </div>
         <div class="filter-products">
             <form class="checkbox-block" action="" method="get">
@@ -176,7 +176,7 @@ $params = $_GET; //в переменную $params кладётся массив
                             #                                                                        #
                             ########################################################################## 
                         ?>   
-                            <input type="checkbox" <?= checkParams("hook", $item->prop_value) ?> // добавляем свойство checked, если данный параметр был выбран в качестве фильтра
+                            <input type="checkbox" <?= checkParams("hook", $item->prop_value) // добавляем свойство checked, если данный параметр был выбран в качестве фильтра ?>
                                 id="hook_<?= $item->prop_value ?>" name="hook[]" value="<?= $item->prop_value ?>">
                             <label for="hook_<?= $item->prop_value ?>"><?= $item->prop_value_view ?></label>
                         </div>

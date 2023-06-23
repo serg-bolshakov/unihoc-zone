@@ -9,7 +9,7 @@
         </section>
         
         <div class="card-stick">
-            <h1><?= $item->category?> <?= $item->model ?> <?= $item->marka ?></h1>
+            <h1><?= $item->title ?> </h1>
             <img class="card-stick__logo" src="<?= $item->url?>"  alt="<?= $item->brand?>" title ="<?= $item->brand?> LOGO">
             <p class="card-stick__article">Артикульный<br>номер:</p>
             <p class="card-stick__article-number"><?= $item->article?></p>

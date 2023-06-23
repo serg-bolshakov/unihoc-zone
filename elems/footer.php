@@ -1,4 +1,4 @@
-<footer class="footer">
+      <footer class="footer">
         <div class="footer-assortiment">
           <h2>АССОРТИМЕНТ</h2>
           <a href="/products/sticks/index.php">Клюшки</a>
@@ -99,22 +99,16 @@
                 <img src="icons/russianPost-logo.png" alt="russianPost-logo" />
               </p>
             </div> -->
-            <p></p>
             <div  class="pop-up__footer-hint">Обмен и возврат товаров
               <div class="pop-up__footer-hint-text">
                 <p>
                   <?=include 'articles/products-return-and-exchange.php';?>
                 </p>
               </div>
-          </div>
-            <p></p>
-            <!-- <div class="pop-up__footer-hint"><a href="tel:+79107955555" title="Позвонить директору">+7 (910) 795-55-55</a></div> -->
-          
+          </div>          
         </div>
-        
-    
-     </footer>
-    </container>
-    <script src="/scripts/menu-accordion.js"></script>
-    </body>
+    </footer>
+  </container>
+  <script src="/scripts/menu-accordion.js"></script>
+</body>
 </html>

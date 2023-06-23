@@ -113,7 +113,7 @@ $params = $_GET; //в переменную $params кладётся массив
         </div>
         <div class="products-filter__title">
             <p>Фильтры для крюков</p>
-            <img src="/icons/slider.png" alt="slider"></a>
+            <img src="/icons/slider.png" alt="slider">
         </div>
         <div class="filter-products">
             <form class="checkbox-block" action="" method="get">

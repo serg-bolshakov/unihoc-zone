@@ -15,7 +15,7 @@
           но главное&nbsp;&mdash;&nbsp;это победа!
         </div>
       </header>
-
+      
       <header class="main-header">
         <div class="header-main__left">
           <a href="/"><img class="header-main__logo-img" src="/icons/logo.png" alt="logo" /></a>
@@ -122,7 +122,7 @@
         </div>
 
         <div class="header-main__right">
-          <form class="header-main__right-form"action="" method="get">
+          <form class="header-main__right-form" action="" method="get">
             <input class="header-main__right-input" name="search" placeholder="Что вы ищете..." type="search" />
             <button class="header-main__right-button" type="submit">
               <img src="/icons/search.png" alt="search" />

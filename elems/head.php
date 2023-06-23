@@ -11,7 +11,7 @@
     <link type="image/png" sizes="32x32" rel="icon" href="/icons/favicon-32x32.png">
     <link type="image/png" sizes="96x96" rel="icon" href="/icons/favicon-96x96.png">
     <link type="image/png" sizes="120x120" rel="icon" href="/icons/favicon-120x120.png">
-    <link type="image/png" sizes="256x256" rel="icon" href="/icons/favicon-256x256.png"
+    <link type="image/png" sizes="256x256" rel="icon" href="/icons/favicon-256x256.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />

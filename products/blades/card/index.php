@@ -36,8 +36,6 @@ $pathInfo = pathinfo($textname);
 $pathInfo = $pathInfo["filename"];
 // echo gettype($pathInfo); //string
 
-$test = '11411-klyushka-dlya-florbola-unihoc-cavity-youngster-36mm-neon-green-55cm-left';
-
 $prodId = "SELECT id from products
 WHERE prod_url_semantic LIKE ('$pathInfo')
 ";
@@ -53,7 +51,7 @@ LEFT JOIN prod_prop pp on p.id = pp.product_id
     LEFT JOIN brands b on p.brand_id = b.id
     LEFT JOIN categories c on p.category_id = c.id
     LEFT JOIN images i on p.id = i.product_id
-    LEFT JOIN sizes s on s.id = p.size_id
+    LEFT JOIN statuses s on s.product_id = p.id
     LEFT JOIN prices p2 on p.id = p2.product_id
        WHERE p.id = $prodId
 SQL;
@@ -74,61 +72,17 @@ $propFlex = "SELECT prop_value_view
 FROM products, categories, properties, prod_prop
 WHERE products.category_id = categories.id AND properties.category_id = categories.id 
 AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-AND prop_title LIKE 'shaft_flex' AND products.id = $prodId
+AND prop_title LIKE 'blade_stiffness' AND products.id = $prodId
 ";
 $result = $connect->query($propFlex);
 $propFlex = $result->fetch_object();
 
-$propProfile = "SELECT prop_value_view 
-FROM products, categories, properties, prod_prop
-WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-AND prop_title LIKE 'shaft_profile' AND products.id = $prodId
-";
-$result = $connect->query($propProfile);
-$propProfile = $result->fetch_object();
+// $prodStatus = "SELECT in_stock, on_sale, reserved, on_order FROM statuses
+//     LEFT JOIN products on statuses.product_id = products.id 
+//     WHERE products.id = $prodId
+// ";
+// $result = $connect->query($prodStatus);
+// 
 
-$propGrip = "SELECT prop_value_view 
-FROM products, categories, properties, prod_prop
-WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-AND prop_title LIKE 'grip_type' AND products.id = $prodId
-";
-$result = $connect->query($propGrip);
-$propGrip = $result->fetch_object();
-
-$propBlade = "SELECT prop_value_view 
-FROM products, categories, properties, prod_prop
-WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-AND prop_title LIKE 'blade_model' AND products.id = $prodId
-";
-$result = $connect->query($propBlade);
-$propBlade = $result->fetch_object();
-
-$propSeries = "SELECT prop_value_view 
-FROM products, categories, properties, prod_prop
-WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-AND prop_title LIKE 'series' AND products.id = $prodId
-";
-$result = $connect->query($propSeries);
-$propSeries = $result->fetch_object();
-
-$propCollection = "SELECT prop_value_view 
-FROM products, categories, properties, prod_prop
-WHERE products.category_id = categories.id AND properties.category_id = categories.id 
-AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
-AND prop_title LIKE 'collection' AND products.id = $prodId
-";
-$result = $connect->query($propCollection);
-$propCollection = $result->fetch_object();
-
-$prodStatus = "SELECT in_stock, on_sale, reserved, on_order FROM statuses
-    LEFT JOIN products on statuses.product_id = products.id 
-    WHERE products.id = $prodId
-";
-$result = $connect->query($prodStatus);
-$prodStatus = $result->fetch_object();
 
 include 'layout.php';

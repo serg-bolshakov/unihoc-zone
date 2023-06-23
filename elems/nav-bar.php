@@ -33,10 +33,13 @@
         echo "<a href=\"$href\"$class>$title</a>";
     }
 ?> 
-            <ul class="breadcrumb">
-                <li><?=creatLink('/', 'Главная');?></li>
-                <li><?=creatLink('/products/catalog.php', 'Каталог');?></li>
-                <li><?=creatLink('/products/sticks/index.php', 'Клюшки');?></li>
-                <li><?=creatLink('/products/blades/index.php', 'Крюки');?></li>
-                <li><?=creatLink('/products/basic-collection.php', 'Базовый ассортимент');?></li>
-            </ul>
+            <div class="nav-bar">
+                <ul class="breadcrumb">
+                    <li><?=creatLink('/', 'Главная');?></li>
+                    <li><?=creatLink('/products/catalog.php', 'Каталог');?></li>
+                    <li><?=creatLink('/products/sticks/index.php', 'Клюшки');?></li>
+                    <li><?=creatLink('/products/blades/index.php', 'Крюки');?></li>
+                    <li><?=creatLink('/products/basic-collection.php', 'Базовый ассортимент');?></li>
+                </ul>
+            </div>
+            

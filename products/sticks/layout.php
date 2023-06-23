@@ -32,4 +32,4 @@
         </section>
         <?php endif; ?>
         
-    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/footer.php'; ?>
+        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/footer.php'; ?>
