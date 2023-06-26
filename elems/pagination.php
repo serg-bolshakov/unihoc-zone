@@ -32,7 +32,7 @@
             $next = $page + 1; //следующая страница
             echo "<a href=\"?page=$next&{$query}\">>></a> ";
         } else {
-            echo " >>";
+            echo " &gt;&gt;";
         }         
     ?>    
 
