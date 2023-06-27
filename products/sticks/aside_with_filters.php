@@ -237,7 +237,7 @@ $params = $_GET; //в переменную $params кладётся массив
                 </div>
                 <div class="pop-up__checkbox-block-hint">Бренд
                     <div class="pop-up__checkbox-block-hint-text">
-                        <?=include $_SERVER['DOCUMENT_ROOT'] . "layout/articles/brands-about.php";?>
+                        <?=include $_SERVER['DOCUMENT_ROOT'] . "/elems/articles/brands-about.php";?>
                     </div>
                 </div>
                 <div class="prop-list">

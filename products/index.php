@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/main.css" />
-    <title>Флорбольная экипировка UnihocZoneRussia из Швеции </title>
+    <title>Флорбольная экипировка UnihocZoneRussia Всё для флорбола. Купить</title>
 </head>
 
 <body>
