@@ -54,7 +54,7 @@ function getFiltersHook($connect){
 ################################################################################
 
 function getFiltersSize($connect){
-    $sql = "SELECT DISTINCT size_title, size_value
+    $sql = "SELECT DISTINCT size_title, size_value, size_recommendation
                 FROM products
                     INNER JOIN sizes ON products.size_id = sizes.id 
                 ";
@@ -204,7 +204,7 @@ $params = $_GET; //в переменную $params кладётся массив
 
                 <div class="pop-up__checkbox-block-hint">Длина рукоятки (см)
                     <div class="pop-up__checkbox-block-hint-text">
-                        <?=include $_SERVER['DOCUMENT_ROOT'] . "/elems/articles/hook-side.php";?>
+                        <?=include $_SERVER['DOCUMENT_ROOT'] . "/elems/articles/shaft-length.php";?>
                     </div>
                 </div>
                 <div class="prop-list">
@@ -212,7 +212,7 @@ $params = $_GET; //в переменную $params кладётся массив
                         <div>
                             <input type="checkbox" <?= checkParams("size", $item->size_value) ?> id="size_<?= $item->size_value ?>" 
                             name="size[]" value="<?= $item->size_value ?>">
-                            <label for="size_<?= $item->size_value ?>"><?= $item->size_value ?></label>
+                            <label for="size_<?= $item->size_value ?>"><div class="pop-up__checkbox-block-prop-hint"><?= $item->size_value ?><div class="pop-up__checkbox-block-prop-hint-text"><?= $item->size_recommendation ?></div></div></label>
                         </div>
                     <?php endwhile; ?>
                 </div>

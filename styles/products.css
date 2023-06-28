@@ -414,7 +414,7 @@ ul.breadcrumb li a:hover {
     font-style: normal;
     font-size: 12px;
     cursor: pointer;
-    margin: 8px 0;;
+    margin: 8px 0;
   } 
   
   .pop-up__checkbox-block-hint-text {
@@ -456,6 +456,55 @@ ul.breadcrumb li a:hover {
     opacity: 1;
   }
   
+  .pop-up__checkbox-block-prop-hint {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted rgb(193, 193, 193);
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    cursor: pointer;
+  } 
+  
+  .pop-up__checkbox-block-prop-hint-text {
+    display: block;
+    width: 340px;
+    height: auto;
+    background-color: rgb(247, 247, 247);
+    padding: 8px;
+    font-family: 'Noto Sans';
+    /* font-weight: 400; */
+    font-style: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .pop-up__checkbox-block-prop-hint .pop-up__checkbox-block-prop-hint-text {
+    visibility: hidden;
+    text-align:left;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1;
+    transform: translate(15%, -60%);
+    opacity: 0;
+    transition: opacity 1.2s;
+  }
+  
+  .pop-up__checkbox-block-prop-hint .pop-up__checkbox-block-prop-hint-text::before {
+    content: "";
+    position: absolute;
+    top: 35%;
+    right: 100%;
+    border: 10px solid transparent;
+    border-right: 20px solid  rgb(247, 247, 247);
+  }
+  
+  .pop-up__checkbox-block-prop-hint:hover .pop-up__checkbox-block-prop-hint-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
   /* Задумано, чтобы убрать квадратики у чекбоксов, но функцию чекбоксов не выполняют переключатели, хотя должны... нужно разобраться */
   /* input[type="checkbox"],
     input[type="radio"] {
