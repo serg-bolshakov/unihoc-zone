@@ -153,8 +153,9 @@ $count = $result->fetch_assoc()['count']; //и в переменную $count з
 $pagesCount = ceil($count / $notesOnPage);
 
 $select = <<<SQL
-SELECT DISTINCT p.*, b.*, i.*, p2.*, s.*  FROM products p
+SELECT DISTINCT p.*, b.*, i.*, p2.*, s.*, c.*  FROM products p
 LEFT JOIN prod_prop pp on p.id = pp.product_id
+LEFT JOIN categories c on p.category_id = c.id
 LEFT JOIN brands b on p.brand_id = b.id
 LEFT JOIN images i on p.id = i.product_id
 LEFT JOIN sizes s on s.id = p.size_id

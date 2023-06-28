@@ -1,7 +1,7 @@
             <div class="assortiment-card">
             <?php while ($item = $products->fetch_object()):?> 
                 <div class="assortiment-card__block">
-                    <a href = "<?=$item->prod_url_semantic?>"><img src="/<?= $item->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>"></a>
+                    <a href = "<?=$item->prod_url_semantic?>"><img src="/<?= $item->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>" title="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>"></a>
                     <div class="assortiment-card_productName"><?= $item->title?> </div>
                     <div class="assortiment-card_productPrice">
                     
