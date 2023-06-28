@@ -10,7 +10,7 @@
         
         <div class="card-blade">
             <h1><?= $item->title ?> </h1>
-            <img class="card-blade__logo" src="<?= $item->url?>"  alt="<?= $item->brand?>" title ="<?= $item->brand?> LOGO">
+            <img class="card-blade__logo" src="<?= $item->url?>"  alt="<?= $item->brand?>" title ="<?= $item->description?> LOGO">
             <p class="card-blade__article">Артикульный<br>номер:</p>
             <p class="card-blade__article-number"><?= $item->article?></p>
             
