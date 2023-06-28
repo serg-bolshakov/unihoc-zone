@@ -16,11 +16,11 @@
             
             <?php if ($imageMain): ?> 
                 <a class="card-stick__main-img" href="/<?= $imageMain->img_link?>">
-                <img class="card-stick__main-img" src="/<?= $imageMain->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>" title ="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
+                <img class="card-stick__main-img" src="/<?= $imageMain->img_link?>" alt="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>" title ="Кликни на изображение, чтобы посмотреть его на всём экране. <?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
                 </a>
             <?php else: ?>
                 <a class="card-stick__main-img" href="/<?= $item->img_link?>">
-                    <img class="card-stick__main-img" src="/<?= $item->img_link?>"  title ="<?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
+                    <img class="card-stick__main-img" src="/<?= $item->img_link?>" <?= $item->category?> <?= $item->brand?> <?= $item->model ?> <?= $item->marka ?>">
                 </a>
             <?php endif; ?>
             <div class="card-stick__hook pop-up__card-stick-hint">Хват (игровая сторона)
@@ -137,6 +137,10 @@
             <?php endif; ?>
             </div>
 
+            <div class="card-stick_productTarget">   
+                <span><b>Кому идеально подойдёт эта клюшка?</b> </br>Выбранная модель с длиной рукоятки <?=$item->size_value?><?=$item->size_unit?> 
+                <?=$item->size_recommendation?>, играющих <?=$propHook->prop_description?></span>
+            </div>
         </div>
         
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/footer.php'; ?>

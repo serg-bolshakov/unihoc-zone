@@ -70,6 +70,15 @@ WHERE
 $result = $connect->query($imageMain);
 $imageMain = $result->fetch_object();
 
+$propHook = "SELECT prop_description 
+FROM products, categories, properties, prod_prop
+WHERE products.category_id = categories.id AND properties.category_id = categories.id 
+AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
+AND prop_title LIKE 'hook' AND products.id = $prodId
+";
+$result = $connect->query($propHook);
+$propHook = $result->fetch_object();
+
 $propFlex = "SELECT prop_value_view 
 FROM products, categories, properties, prod_prop
 WHERE products.category_id = categories.id AND properties.category_id = categories.id 

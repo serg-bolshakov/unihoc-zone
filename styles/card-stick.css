@@ -374,3 +374,16 @@ background:
   grid-column: 8 / -1;
   grid-row: 20;
 }
+
+
+.card-stick_productTarget {
+  grid-column: 8 / -1;
+  grid-row: 20 / span 5;
+  display: flex;
+  font-family: 'Noto Sans';
+  font-weight: 400;
+  font-size: 14px;
+  align-items: center;
+  text-align: justify;
+  padding: 8px;
+}
