@@ -1,4 +1,4 @@
-<footer class="footer">
+    <footer class="footer">
       <div class="footer-block">
         <h2>АССОРТИМЕНТ</h2>
         <a href="/products/sticks/index.php">Клюшки</a>
@@ -20,6 +20,7 @@
           </div>
         </div>
         <br> 
+        
         <div class="pop-up__footer-hint">Оплата и доставка товаров
           <div class="pop-up__footer-hint-text">
               <?= include $_SERVER['DOCUMENT_ROOT'] . '/elems/articles/payment-and-delivery.php'; ?>
@@ -28,25 +29,26 @@
         <br>
         
         <div class="pop-up__footer-hint">Обмен и возврат товаров
-            <div class="pop-up__footer-hint-text">
-                <?= include $_SERVER['DOCUMENT_ROOT'] . '/elems/articles/products-return-and-exchange.php'; ?>
-            </div>
+          <div class="pop-up__footer-hint-text">
+              <?= include $_SERVER['DOCUMENT_ROOT'] . '/elems/articles/products-return-and-exchange.php'; ?>
           </div>
+        </div>
         <p>Чем отличаются наши товары</p>
         <p>Где посмотреть и как купить</p>
         <p>Подбор товаров и экипировки</p>
-          <p>Подписка на новости</p>
+        <p>Подписка на новости</p>
         <p>Карта сайта</p>
       </div>
 
       <div class="footer-block">
         <h2>СТАТЬИ И ЗАМЕТКИ</h2>
         <div  class="pop-up__footer-hint">Про жёсткость (флекс)
-            <div class="pop-up__footer-hint-text">
-            <?=include $_SERVER['DOCUMENT_ROOT'] . '/elems/articles/shaft-flex.php';?>
-            </div>
+          <div class="pop-up__footer-hint-text">
+          <?=include $_SERVER['DOCUMENT_ROOT'] . '/elems/articles/shaft-flex.php';?>
+          </div>
         </div>
         <br>
+
         <div  class="pop-up__footer-hint">Как правильно определить хват
           <div class="pop-up__footer-hint-text">
             <?=include $_SERVER['DOCUMENT_ROOT'] . '/elems/articles/hook-side.php';?>
@@ -73,7 +75,6 @@
           <a href="https://t.me/unihoczonerussia/"
             ><img src="/icons/telegram-logo-colored.png" alt="telegram-logo" title="Написать в Telegram">
           </a>
-          <!--<a href="https://viber.click/79534156010" title="Написать в Viber"><img src="/icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber"></a>-->
           <a href="viber://chat?number=%2B79534156010" title="Написать в Viber"><img src="/icons/viber-logo-colored.jpg" alt="viber-logo" title="Написать в Viber"></a>
           <!--<a href=""
             ><img src="icons/youtube-logo-colored-250x250.png" alt="youTube-logo"

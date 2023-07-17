@@ -10,7 +10,6 @@
     background-color: white;
     padding: 12px;
     width: 90%;
-
 }
 
 .main-header__top {
@@ -118,7 +117,7 @@ nav ul>li>a {
 }
 
 .header-main__right-input {
-    /* width: 100%;
+    width: 80%;
     height: 35px;
     padding-left: 10px;
     border: none;
@@ -126,18 +125,8 @@ nav ul>li>a {
     outline: none;
     background: rgba(0, 0, 0, 0.0);
     color: black;
-    font-size: 12px; */
-
-    width: 80%;
-  height: 35px;
-  padding-left: 10px;
-  border: none;
-  border-bottom: 1px solid  rgba(0, 0, 0, 0.2);
-  outline: none;
-  background: rgba(0, 0, 0, 0.0);
-  color: black;
-  font-size: 12px;
-  }
+    font-size: 12px;
+}
   
 .header-main__right-button {
     position: absolute; 
@@ -550,17 +539,11 @@ nav ul>li>a {
 }
 
 .footer {
-    /* grid-area: footer;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
     padding: 1%;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    column-gap: 2px; */
-    display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: space-between;
-  padding: 1%;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .footer>* {
@@ -589,7 +572,6 @@ footer a:active {
     font-family: 'Inter';
     font-weight: normal;
     font-style: normal;
-    /* font-display: swap; */
     font-size: 12px;
     line-height: 2;
 }
@@ -604,29 +586,12 @@ footer a:active {
     display: flex;
     text-decoration: none;
     color: black;
-
 }
 
 .footer-block {
     display: block;
     margin-top: 12px;
   }
-
-/* .footer-assortiment {
-    grid-column: 1/ span 2;
-} */
-
-/* .footer-information {
-    grid-column: 3/5;
-} */
-
-/* .footer-notes {
-   grid-column: 5/7;
-} */
-
-/* .footer-assistance {
-  grid-column: 7/9;
-} */
 
 .contacts-social {
     margin: 10px 0;
@@ -646,21 +611,11 @@ footer a:active {
 }
 
 .paymentDelivery-methods img {
-    /* width: 30px; */
     height: 20px;
     margin-right: 10px;
 }
 
 .pop-up__footer-hint {
-    /* position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted rgb(193, 193, 193);
-    font-family: 'Noto Sans';
-    font-weight: 400;
-    font-style: normal;
-    font-size: 12px;
-    cursor: pointer; */
-
     position: relative;
     display: inline-block;
     border-bottom: 1px dotted rgb(193, 193, 193);
@@ -672,22 +627,6 @@ footer a:active {
 } 
 
 .pop-up__footer-hint .pop-up__footer-hint-text {
-    /* visibility: hidden;
-    width: 440px;
-    background-color: rgb(248, 248, 228);
-    padding: 8px;
-    font-family: 'Noto Sans';
-    font-style: normal;
-    color: rgba(0, 0, 0, 0.7);
-    text-align:left;
-    border-radius: 8px;
-    position: absolute;
-    z-index: 1;
-    transform: translate(45%, -55%);
-    -ms-transform: translate(45%, -55%);   
-    opacity: 0;
-    transition: opacity 1.2s; */
-
     visibility: hidden;
     width: 200px;
     background-color: rgb(248, 248, 228);
