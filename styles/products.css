@@ -88,6 +88,8 @@ ul.breadcrumb {
     list-style: none;
     margin-bottom: 24px;
     margin-top: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 /* Display list items side by side */
