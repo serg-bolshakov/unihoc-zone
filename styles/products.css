@@ -125,6 +125,14 @@ ul.breadcrumb li a:hover {
     text-decoration: underline;
 }
 
+.breadcrumb-link__product-card {
+  visibility: hidden;
+}
+
+.breadcrumb-link__product-card-active {
+  visibility: visible;
+}
+
 .products-content {
   display: grid;
   grid-template-columns: 30% 70%;

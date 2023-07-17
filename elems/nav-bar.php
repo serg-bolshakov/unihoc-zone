@@ -25,11 +25,22 @@
     
     */
 
+    function isProductCardLink() {
+        $uri = $_SERVER['REQUEST_URI'];
+        $basename = basename($uri);
+        $basenameArtickleNumber = mb_substr($basename, 0, 5);
+        if (is_numeric($basenameArtickleNumber)) {
+            return "breadcrumb-link__product-card-active";
+        } else {
+            return "breadcrumb-link__product-card";
+        }
+    }
+    
     function creatLink($href, $title) {
         if ($_SERVER['REQUEST_URI'] == $href) {
             $class = ' class="activeBreadcrumb"';
-        } else $class = "";
-        
+        }  else $class = "";
+
         echo "<a href=\"$href\"$class>$title</a>";
     }
 ?> 
@@ -40,6 +51,7 @@
                     <li><?=creatLink('/products/sticks/index.php', 'Клюшки');?></li>
                     <li><?=creatLink('/products/blades/index.php', 'Крюки');?></li>
                     <li><?=creatLink('/products/basic-collection.php', 'Базовый ассортимент');?></li>
+                    <li class = <?php echo isProductCardLink()?>><?=creatLink($_SERVER['REQUEST_URI'], 'Карточка товара');?></li>
                 </ul>
             </div>
             
