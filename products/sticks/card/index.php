@@ -140,4 +140,11 @@ $prodStatus = "SELECT in_stock, on_sale, reserved, on_order FROM statuses
 $result = $connect->query($prodStatus);
 $prodStatus = $result->fetch_object();
 
+$imagePromo = "SELECT img_link FROM images
+    WHERE product_id = $prodId
+    AND img_promo = 1
+";
+$resultImagePromo = $connect->query($imagePromo);
+// $imagePromo = $result->fetch_object();
+
 include 'layout.php';

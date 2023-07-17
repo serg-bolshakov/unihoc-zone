@@ -1,4 +1,24 @@
 <?php
+
+require_once 'db.php';
+$imagePromo = "SELECT id, img_link FROM images
+WHERE product_id = 20
+AND img_promo = true
+";
+$resultImagePromo = $connect->query($imagePromo);
+// $imagePromo = $result->fetch_object();
+
+var_dump($imagePromo);
+
+?>
+<table border = 1>
+  <tr><td>Id</td><td>Наименование</td><td>Бренд</td><td>ссылка</td><td>значение</td><td>значение</td><td>Цена</td></tr>
+  <?php while ($imagePromo = $resultImagePromo->fetch_object()):?>
+  <tr><td><?= $imagePromo->id?></td><td><?= $imagePromo->img_link?></td></tr>
+  <?php endwhile; ?>
+</table>
+
+<?php
 $hook_blade = "";
 $blade_stiffness = "";
 $brand = "";
@@ -29,7 +49,7 @@ if (!empty($brand)){
 SQLWHERE; // получаем такую строку: string(75) "brand_id IN ( SELECT id FROM brands WHERE (brand IN ("UNIHOC")) )"
 }
     
-require_once 'db.php';
+
 //делаем запрос свойств
 $prop = "SELECT id FROM properties 
           WHERE (prop_title IN ('hook_blade', 'blade_stiffness') AND prop_value IN ('right', 'hard')) 

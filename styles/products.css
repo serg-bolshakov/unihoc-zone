@@ -8,7 +8,7 @@
 
 .container-products {
     /* height: 100vh; */
-    margin: 0 auto 0 auto;
+    /* margin: 0 auto 0 auto;
     background-color: white;
     padding: 12px;
     width: 1140px;
@@ -23,27 +23,30 @@
     "menu-products assortiment-cards"
     "pagination-products pagination-products"
     "footer footer"
-    ;
+    ; */
+
+    display: block;
+    margin: 0 auto 0 auto;
+    background-color: white;
+    padding: 12px;
+    width: 90%;
 }
 
 .content-products {
-    grid-area: content;
-    margin-top: 4px;
+    /* grid-area: content; */
+    margin-top: 14px;
 } 
 
-.content-products img {
+.products-type img {
     width: 100%;
+    /* height: 12vw; */
     overflow: hidden;
-    object-fit: contain;
-    border-radius: 4px;
+    /* object-fit: contain; */
+    border-radius: 8px;
 } 
 
 .products-type {
   position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 4px;
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
@@ -61,25 +64,25 @@
 
 .product-title {
   width: 100%;
-  font-size: 25px;
+  padding: 2%;
+  font-size: 2vw;
   letter-spacing: 5.25px;
+  text-align: center;
 }
 
 .nav-bar {
-  grid-area: nav-bar;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin: 4px 0 4px 0;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  margin: 0;
 }
 
 .category-description {
   margin-top: 6px;
   margin-bottom: 20px;
   padding: 8px;
-  font-size: 14px;
-  letter-spacing: 0;
+  font-size: 1vw;
+  font-family: 'Inter';
   text-align: justify;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
@@ -102,6 +105,8 @@
 ul.breadcrumb {
     padding: 5px 8px;
     list-style: none;
+    margin-bottom: 24px;
+    margin-top: 24px;
 }
 
 /* Display list items side by side */
@@ -139,9 +144,14 @@ ul.breadcrumb li a:hover {
     text-decoration: underline;
 }
 
+.products-content {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: auto;
+  /* background-color: yellow; */
+}
+
 .menu-products {
-    grid-area: menu-products;
-    width: 300px;
     margin: 4px 0 2px 0;
     border-radius: 8px;
 }
@@ -164,7 +174,7 @@ ul.breadcrumb li a:hover {
 .aside-products_list ul>li>a {
   font-family: 'Noto Sans';
   font-style: normal;
-  font-size: 16px;
+  font-size: 1vmax;
   font-weight: 100;
 }
 
@@ -198,14 +208,14 @@ ul.breadcrumb li a:hover {
     background-color: white;
     color: #444;
     cursor: pointer;
-    padding: 18px;
+    padding: 8px;
     width: 100%;
     height: 40px;
     font-family: 'Noto Sans';
     font-weight: 500;
     font-style: normal;
-    font-size: 16px;
-    font-display: swap;
+    font-size: 1vmax;
+    /* font-display: swap; */
     text-align: left;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -222,13 +232,18 @@ ul.breadcrumb li a:hover {
   
   /* Стиль аккордеон панели. Примечание: скрыто по умолчанию */
   .panel {
-    padding: 12px 12px;
+    padding: 4px 4px;
+    margin: 8px 0;
     background-color: white;
     display: none;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 1vmax;
     align-items: center;
   } 
+
+.panel p {
+  margin: 12px 0;
+}
 
   .panel a {
     text-decoration: none;
@@ -382,22 +397,20 @@ ul.breadcrumb li a:hover {
     border-radius: 8px;
     padding: 8px;
     font-size: 12px;
+    /* background-color: #444; */
   }
   
-  .filter-products p {
-    height: 20px;
-  }
-  
-
-  .prop-list {
+.prop-list {
     display: grid;
     grid-template-columns: 50% 50%;
+    column-gap: 4px;
+    padding-right: 4px;
     height: auto;
+    /* text-align: center; */
     }
 
   .checkbox-block {
     position: relative;
-    align-items: center;
     /* background-color: rgba(40, 38, 38, 0.1); */
     /* border: 1px solid rgba(0, 0, 0, 0.2); */
     border-radius: 4px;
@@ -419,7 +432,7 @@ ul.breadcrumb li a:hover {
   
   .pop-up__checkbox-block-hint-text {
     display: block;
-    width: 340px;
+    width: 200px;
     height: auto;
     background-color: rgb(248, 248, 228);
     padding: 8px;
@@ -437,7 +450,7 @@ ul.breadcrumb li a:hover {
     position: absolute;
     z-index: 1;
     transform: translate(55%, -55%);
-    -ms-transform: translate(555%, -55%);   
+    /* -ms-transform: translate(555%, -55%);    */
     opacity: 0;
     transition: opacity 1.2s;
   }
@@ -465,11 +478,13 @@ ul.breadcrumb li a:hover {
     font-style: normal;
     font-size: 12px;
     cursor: pointer;
+    /* background-color: magenta; */
+    align-content: center ;
   } 
   
   .pop-up__checkbox-block-prop-hint-text {
     display: block;
-    width: 340px;
+    width: 200px;
     height: auto;
     background-color: rgb(247, 247, 247);
     padding: 8px;
@@ -491,6 +506,7 @@ ul.breadcrumb li a:hover {
     transition: opacity 1.2s;
   }
   
+  /*   "стрелочки в блоке всплывающей подсказки - не попадают именно на тот самый блок - лучше убрать совсем, чтобы не "подгонять"
   .pop-up__checkbox-block-prop-hint .pop-up__checkbox-block-prop-hint-text::before {
     content: "";
     position: absolute;
@@ -498,11 +514,19 @@ ul.breadcrumb li a:hover {
     right: 100%;
     border: 10px solid transparent;
     border-right: 20px solid  rgb(247, 247, 247);
-  }
+  } */
   
   .pop-up__checkbox-block-prop-hint:hover .pop-up__checkbox-block-prop-hint-text {
     visibility: visible;
     opacity: 1;
+  }
+
+  .label-hook__value-view {
+    font-size: 1.9vmin;
+  }
+
+  .label-brand__value-view {
+    font-size: 1.9vmin;
   }
 
   /* Задумано, чтобы убрать квадратики у чекбоксов, но функцию чекбоксов не выполняют переключатели, хотя должны... нужно разобраться */
@@ -522,6 +546,7 @@ ul.breadcrumb li a:hover {
   
   input[type="checkbox"] + label {
     padding: 0 0 0 50px;
+    /* margin: 0 28px 0 0; */
   }
   
   /* Дальше начинаем рисовать сами элементы. 
@@ -565,10 +590,14 @@ ul.breadcrumb li a:hover {
     background: #f6f6f6;
     box-shadow: inset 0px 20px 20px #ffffff;
     border-radius: 8px;
-    margin: 20px auto 0 auto;
+    margin: 20px auto 0 0;
     padding: 8px 14px;
-    width: 100px;
+    width: auto;
     height: 30px;
+    display: block;
+    /* justify-content: center; */
+    font-size: 1.9vmin;
+    
   }
   .submit:hover {
     box-shadow: inset 0px -20px 20px #ffffff;
@@ -648,46 +677,41 @@ ul.breadcrumb li a:hover {
 
 .assortiment-cards {
     /* background-color: red; */
-    grid-area: assortiment-cards;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     width: 100%;
     margin: 2px auto 0 auto;
     border-radius: 8px;
     /* padding: 4px; */
 }
 
-.assortiment-card {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    border-radius: 8px;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    /* padding: 4px; */
-    justify-content: flex-start;
-    /* grid-template-columns: repeat(3, 1fr); */
-    /* margin: 0; */
+.assortiment-cards>* {
+  flex: 1 0 280px;
 }
 
 .assortiment-card__block {
+  flex: 0 1 280px;
+  /* background-color: #9FD468; */
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  width: 31%;
-  height: 392px;
   margin: 8px;
   padding: 10px;
 }
 
-.assortiment-card img {
-    display: block;
+.assortiment-card__block img {
+    /* display: block; */
     border-radius: 10px;  
     width: 100%;
-    height: 70%;
+    height: auto;
     overflow: hidden;
     object-fit: contain;
       
 }
 
 .assortiment-card_productName {
-    height: 20%;
+    height: auto;
+    margin: 4px 0;
     display: flex;
     align-items: flex-start;
     font-family: 'Inter';
@@ -695,6 +719,7 @@ ul.breadcrumb li a:hover {
     font-style: normal;
     font-size: 14px;
     padding: 4px;
+    /* background-color: #0275d8; */
 }
 
 .assortiment-card_productPrice {
@@ -709,7 +734,8 @@ ul.breadcrumb li a:hover {
     font-style: normal;
     font-size: 16px;
     padding: 4px;
-    margin-bottom: 12px;
+    /* margin-bottom: 4px;
+    background-color: yellow; */
 }
 
 .priceCurrent {

@@ -1,31 +1,31 @@
-<!-- <container class="main-container"> -->
-      <header class="main-header__top">
+<header class="main-header__top">
         <div class="main-welcome__block">
-          <span class="main-welcome__text">Добро пожаловать</span>&nbsp;
-          <span class="main-welcome__invitation">в команду UNIHOC</span>
-          <div class="welcome-link">
+        <span class="main-welcome__text">Добро пожаловать</span>&nbsp;
+        <span class="main-welcome__invitation">в команду UNIHOC</span>&nbsp;
+        <div class="welcome-link">
             <a href="https://www.unihoc.com/teams" target="_blank">
-              <img class="main-external__link" src="/icons/external-link.png" alt="external-link"/>
+                <img class="main-external__link" src="/icons/external-link.png" alt="external-link">
             </a>
-            <div>(страница в новой вкладке)</div>
-          </div>
+            <div class = "new-tab">(страница в новой вкладке)</div>
+        </div>
         </div>
         <div class="main-welcome__invitation main-header__top-slogan">
-          &mdash;&nbsp;Участие важно,<br />
-          но главное&nbsp;&mdash;&nbsp;это победа!
+        &mdash;&nbsp;Участие важно,<br>
+        но главное&nbsp;&mdash;&nbsp;это победа!
         </div>
-      </header>
-      
-      <header class="main-header">
-        <div class="header-main__left">
-          <a href="/"><img class="header-main__logo-img" src="/icons/logo.png" alt="logo" /></a>
-          <nav class="main-header__nav">
-            <ul>
-              <li><a href="/products/catalog.php">UnihocZoneRussia</a></li>
-              <li><a href="">UNIHOC</a></li>
+    </header>
+
+    <header class="main-header">
+      <div class="header-main__left">
+        <a href="/"><img class="header-main__logo-img" src="/icons/logo.png" alt="logo"></a>
+        <nav class="main-header__nav">
+          <ul>
+                <li><a href="/products/catalog.php">UnihocZoneRussia</a></li>
+                <li><a href="">UNIHOC</a></li>
                   <div class="dropdown-main">
-                    <img src="/icons/expand-arrow.png" alt="external-link"/>
+                    <img src="/icons/expand-arrow.png" alt="external-link">
                     <div class="pop-up__main-menu">
+                      
                       <div class="pop-up__main-menu-sticks">
                         <h2>КЛЮШКИ</h2>
                         <p>EVOLAB</p>
@@ -111,46 +111,46 @@
                       </div>
 
                     </div>
-                  </div>  
-    
-              <li><a href="">ZONEFLOORBALL.</a></li>
-              <a href=""
-                ><img src="/icons/expand-arrow.png" alt="expand-arrow"
-              /></a>
-            </ul>
-          </nav>
-        </div>
+                  </div>
+                <li><a href="">ZONE</a></li>
+                  <div class="dropdown-main">
+                    <img src="/icons/expand-arrow.png" alt="external-link">
+                  </div>
+          </ul>    
+        </nav>
+      </div>
 
-        <div class="header-main__right">
-          <form class="header-main__right-form" action="" method="get">
-            <input class="header-main__right-input" name="search" placeholder="Что вы ищете..." type="search" />
-            <button class="header-main__right-button" type="submit">
-              <img src="/icons/search.png" alt="search" />
-            </button>
-          </form>
-          <a class="header-main__right-icon-combo-chart" href=""
-            ><img
-              src="/icons/combo-chart.png"
-              alt="combo-chart"
-              title="Добавить в сравнение"
-          /></a>
-          <a class="header-main__right-icon-favorite" href=""
-            ><img
-              src="/icons/favorite.png"
-              alt="favorite"
-              title="Добавить в избранное"
-          /></a>
-          <a class="header-main__right-icon-login" href=""
-            ><img
-              src="/icons/login.png"
-              alt="login"
-              title="Войти в личный кабинет / зарегистрироваться"
-          /></a>
-          <a class="header-main__right-icon-basket" href=""
-            ><img
-              src="/icons/opencart.png"
-              alt="opencart"
-              title="Посмотреть корзину"
-          /></a>
-        </div>
-      </header>
+      <div class="header-main__right">
+        
+        <form class="header-main__right-form" action="" method="get">
+          <input class="header-main__right-input" name="search" placeholder="Что вы ищете..." type="search">
+          <button class="header-main__right-button" type="submit">
+            <img src="/icons/search.png" alt="search">
+          </button>
+        </form>
+        <a class="header-main__right-icon-combo-chart" href=""
+          ><img
+            src="/icons/combo-chart.png"
+            alt="combo-chart"
+            title="Добавить в сравнение">
+        </a>
+        <a class="header-main__right-icon-favorite" href=""
+          ><img
+            src="/icons/favorite.png"
+            alt="favorite"
+            title="Добавить в избранное">
+        </a>
+        <a class="header-main__right-icon-login" href=""
+          ><img
+            src="/icons/login.png"
+            alt="login"
+            title="Войти в личный кабинет / зарегистрироваться">
+        </a>
+        <a class="header-main__right-icon-basket" href=""
+          ><img
+            src="/icons/opencart.png"
+            alt="opencart"
+            title="Посмотреть корзину">
+        </a>
+      </div>
+    </header>

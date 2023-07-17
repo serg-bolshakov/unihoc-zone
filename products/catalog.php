@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/styles/style.css" />
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/products.css"> 
-    <title>UnihocZoneRussia. Флорбол. Экипировка Unihoc и Zonefloorball</title>
+    <title>UnihocZoneRussia. Флорбол. Unihoc и Zonefloorball экипировка</title>
 </head>
 
 <body>
@@ -40,128 +40,129 @@
         </section>
 
         <!--Делаем меню типа "Аккордеон"-->
-        <aside class="menu-products">
-            <div class="category-description">
-                <p>Ведущий мировой производитель флорбольной экипировки представлен нами в России 
-                с момента зарождения этой игры у нас в стране в 1993-м году. Сегодня Юнихок (UNIHOC) - официальный партнёр и спонсор международной федерации флорбола (IFF), 
-                производит высококачественную и профессиональную экипировку для игроков всех возрастов и квалификации. 
-                Бренд ZONE вошёл в историю в 2011-м году, произведя революцию в самом понимании и представлении игры в флорбол. 
-                Это, пожалуй, лучшее, что есть на сегодня в мире.</p>
-            </div>
+        <div class="products-content">
+            <aside class="menu-products">
+                <div class="category-description">
+                    <p>Ведущий мировой производитель флорбольной экипировки представлен нами в России 
+                    с момента зарождения этой игры у нас в стране в 1993-м году. Сегодня Юнихок (UNIHOC) - официальный партнёр и спонсор международной федерации флорбола (IFF), 
+                    производит высококачественную и профессиональную экипировку для игроков всех возрастов и квалификации. 
+                    Бренд ZONE вошёл в историю в 2011-м году, произведя революцию в самом понимании и представлении игры в флорбол. 
+                    Это, пожалуй, лучшее, что есть на сегодня в мире.</p>
+                </div>
             
-            <button class="accordion">КЛЮШКИ</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p><a href="">EVOLAB</a></p>
-                <p><a href="">EVOLAB</a></p>
-                <p><a href="">CARBSKIN</a></p>
-                <p><a href="">CARBSKIN CURVE</a></p>
-                <p>EVOLAB</p>
-                <p>CARBSKIN</p>
-                <p>CARBSKIN CURVE</p>
-                <p>SUPERSKIN</p>
-                <p>SIGNATURE SERIES</p>
-                <p>ECO</p>
-                <p>SUPERSHAPE</p>
-                <p>TITAN SERIES</p>
-                <p>OVAL SERIES</p>
-                <p>COMPOSITE</p>
-                <p>COMPOSITE YOUNGSTER</p>
-                <p>PLAYER</p>
-                <p>ZORRO</p>
-            </div>
-                              
-            <button class="accordion">КРЮКИ</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p><a href="">UNILITE</a></p>
-                <p><a href="">ICONIC</a></p>
-                <p><a href="">EPIC</a></p>  
-                <p><a href="">SONIC</a></p>
-                <p><a href="">UNITY</a></p>
-                <p><a href="">CAVITY Z</a></p> 
-                <p><a href="">EVO 3 HOOK</a></p>
-                <p><a href="">HARDER</a></p>
-                <p><a href="">HYPER</a></p>
-                <p><a href="">MAKER</a></p>
-                <p><a href="">MONSTR</a></p>
-                <p><a href="">ZUPER</a></p>      
-            </div>
+                <button class="accordion">КЛЮШКИ</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p><a href="">EVOLAB</a></p>
+                    <p><a href="">EVOLAB</a></p>
+                    <p><a href="">CARBSKIN</a></p>
+                    <p><a href="">CARBSKIN CURVE</a></p>
+                    <p>EVOLAB</p>
+                    <p>CARBSKIN</p>
+                    <p>CARBSKIN CURVE</p>
+                    <p>SUPERSKIN</p>
+                    <p>SIGNATURE SERIES</p>
+                    <p>ECO</p>
+                    <p>SUPERSHAPE</p>
+                    <p>TITAN SERIES</p>
+                    <p>OVAL SERIES</p>
+                    <p>COMPOSITE</p>
+                    <p>COMPOSITE YOUNGSTER</p>
+                    <p>PLAYER</p>
+                    <p>ZORRO</p>
+                </div>
+                                
+                <button class="accordion">КРЮКИ</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p><a href="">UNILITE</a></p>
+                    <p><a href="">ICONIC</a></p>
+                    <p><a href="">EPIC</a></p>  
+                    <p><a href="">SONIC</a></p>
+                    <p><a href="">UNITY</a></p>
+                    <p><a href="">CAVITY Z</a></p> 
+                    <p><a href="">EVO 3 HOOK</a></p>
+                    <p><a href="">HARDER</a></p>
+                    <p><a href="">HYPER</a></p>
+                    <p><a href="">MAKER</a></p>
+                    <p><a href="">MONSTR</a></p>
+                    <p><a href="">ZUPER</a></p>      
+                </div>
 
-            <button class="accordion">ОБМОТКИ</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p>ELITE</p>
-                <p>PRO</p>
-                <p>TOP</p>
-            </div>
-                    
-            <button class="accordion">ОБУВЬ</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p>ВРАТАРСКАЯ</p>
-                <p>ДЛЯ ПОЛЕВЫХ ИГРОКОВ</p>
-            </div>
+                <button class="accordion">ОБМОТКИ</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p>ELITE</p>
+                    <p>PRO</p>
+                    <p>TOP</p>
+                </div>
+                        
+                <button class="accordion">ОБУВЬ</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p>ВРАТАРСКАЯ</p>
+                    <p>ДЛЯ ПОЛЕВЫХ ИГРОКОВ</p>
+                </div>
 
-            <button class="accordion">ВРАТАРСКАЯ ЭКИПИРОВКА</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p>ШЛЕМЫ</p>
-                <p>СВИТЕРЫ</p>
-                <p>ШТАНЫ</p>
-            </div>
+                <button class="accordion">ВРАТАРСКАЯ ЭКИПИРОВКА</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p>ШЛЕМЫ</p>
+                    <p>СВИТЕРЫ</p>
+                    <p>ШТАНЫ</p>
+                </div>
 
-            <button class="accordion">ОДЕЖДА</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p>ИГРОВАЯ ФОРМА</p>
-                <p>ТРЕНИРОВОЧНАЯ</p>
-                <p>ПОВСЕДНЕВНАЯ</p>
-            </div>
+                <button class="accordion">ОДЕЖДА</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p>ИГРОВАЯ ФОРМА</p>
+                    <p>ТРЕНИРОВОЧНАЯ</p>
+                    <p>ПОВСЕДНЕВНАЯ</p>
+                </div>
 
-            <button class="accordion">СУМКИ И ЧЕХЛЫ</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p>ЧЕХЛЫ ДЛЯ КЛЮШЕК</p>
-                <p>ВРАТАРСКИЕ БАУЛЫ</p>
-                <p>СПОРТИВНЫЕ СУМКИ</p>
-            </div>
+                <button class="accordion">СУМКИ И ЧЕХЛЫ</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p>ЧЕХЛЫ ДЛЯ КЛЮШЕК</p>
+                    <p>ВРАТАРСКИЕ БАУЛЫ</p>
+                    <p>СПОРТИВНЫЕ СУМКИ</p>
+                </div>
 
-            <button class="accordion">АКСЕССУАРЫ</button>
-            <div class="panel">
-                <p><a href="">Смотреть все</a></p>
-                <p><a href="">ОЧКИ ФЛОРБОЛЬНЫЕ</a></p>
-                <p>НАПУЛЬСКИКИ И ПОВЯЗКИ</p>
-                <p>БУТЫЛКИ ДЛЯ ВОДЫ</p>
-                <p>РАЗНОЕ</p>
-            </div>
+                <button class="accordion">АКСЕССУАРЫ</button>
+                <div class="panel">
+                    <p><a href="">Смотреть все</a></p>
+                    <p><a href="">ОЧКИ ФЛОРБОЛЬНЫЕ</a></p>
+                    <p>НАПУЛЬСКИКИ И ПОВЯЗКИ</p>
+                    <p>БУТЫЛКИ ДЛЯ ВОДЫ</p>
+                    <p>РАЗНОЕ</p>
+                </div>
 
-            <button class="accordion">БАЗОВЫЙ АССОРТИМЕНТ</button>
-            <div class="panel">
-                <p>КЛЮШКИ</p>
-                <p>МЯЧИ</p>
-                <p>ОБОРУДОВАНИЕ</p>
-            </div>
-        </aside>
+                <button class="accordion">БАЗОВЫЙ АССОРТИМЕНТ</button>
+                <div class="panel">
+                    <p>КЛЮШКИ</p>
+                    <p>МЯЧИ</p>
+                    <p>ОБОРУДОВАНИЕ</p>
+                </div>
+            </aside>
        
-        <?php require_once $_SERVER['DOCUMENT_ROOT'].'/db.php';
-        //номер страницы преобразовываем в команду, кот. будет доставать записи по 6 штук на страницу
-        //$sql = "SELECT * FROM products LIMIT $fromNewPageStart, $notesOnPage"; 
-        // стр 1 -> c 0, 6 записей, стр 2 -> с 6, 6 записей, стр 3 -> с 12, 6 записей...
-        //выполняем запрос и результат кладём в переменную $result
-        //$result=$connect->query($sql);
-        
-        $page = $_GET['page'] ?? 1;
-        //проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
-        $page = filter_var($page, FILTER_VALIDATE_INT, array("options" =>
-                    array('default' => 1, 'min_range' => 1, 'max_range' => 99  )));
+                    <?php require_once $_SERVER['DOCUMENT_ROOT'].'/db.php';
+                    //номер страницы преобразовываем в команду, кот. будет доставать записи по 6 штук на страницу
+                    //$sql = "SELECT * FROM products LIMIT $fromNewPageStart, $notesOnPage"; 
+                    // стр 1 -> c 0, 6 записей, стр 2 -> с 6, 6 записей, стр 3 -> с 12, 6 записей...
+                    //выполняем запрос и результат кладём в переменную $result
+                    //$result=$connect->query($sql);
+                    
+                    $page = $_GET['page'] ?? 1;
+                    //проверяем, чтобы не ввели чего лишнего в адресную строну с номером страницы, чтобы скрипт не завис
+                    $page = filter_var($page, FILTER_VALIDATE_INT, array("options" =>
+                                array('default' => 1, 'min_range' => 1, 'max_range' => 99  )));
 
-        $notesOnPage = 6; //LIMIT количество товаров на странице начиная с 0 позиции, 6 товаров, далее с 6-й шесть товаров...
-        $fromNewPageStart = ($page - 1) * $notesOnPage; 
-        
+                    $notesOnPage = 6; //LIMIT количество товаров на странице начиная с 0 позиции, 6 товаров, далее с 6-й шесть товаров...
+                    $fromNewPageStart = ($page - 1) * $notesOnPage; 
+                    
 
-        //делаем запрос, который посчитает количество записей в БД
-        $sqlCount = "SELECT COUNT(DISTINCT p.id) as count FROM products p
+                    //делаем запрос, который посчитает количество записей в БД
+                    $sqlCount = "SELECT COUNT(DISTINCT p.id) as count FROM products p
                         LEFT JOIN prod_prop pp on p.id = pp.product_id
                         LEFT JOIN brands b on p.brand_id = b.id
                         LEFT JOIN images i on p.id = i.product_id
@@ -191,14 +192,18 @@ SQL;
         $products = $connect->query($sql);
         ?>    
 
-        <section class="assortiment-cards">
-            <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/assortiment-cards.php'?>
-        </section>
-       
+            <section class="assortiment-cards">
+                <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/assortiment-cards.php'?>
+            </section>
+        </div>
         <?php /*если количество страниц больше, чем 1 - запускаем пагинацию страниц*/if($pagesCount > 1): ?>
         <section class="pagination-products">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/pagination.php'?>
         </section>
         <?php endif; ?>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] .'/elems/footer.php'; ?>
+
+    <script src="/scripts/menu-accordion.js"></script>
+</body>
+</html>
         

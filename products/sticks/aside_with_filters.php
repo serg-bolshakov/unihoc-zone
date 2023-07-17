@@ -178,7 +178,7 @@ $params = $_GET; //в переменную $params кладётся массив
                         ?>   
                             <input type="checkbox" <?= checkParams("hook", $item->prop_value) // добавляем свойство checked, если данный параметр был выбран в качестве фильтра ?>
                                 id="hook_<?= $item->prop_value ?>" name="hook[]" value="<?= $item->prop_value ?>">
-                            <label for="hook_<?= $item->prop_value ?>"><?= $item->prop_value_view ?></label>
+                            <label for="hook_<?= $item->prop_value ?>" class = "label-hook__value-view"><?= $item->prop_value_view ?></label>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -244,13 +244,13 @@ $params = $_GET; //в переменную $params кладётся массив
                     <?php while ($item = $filters_brand->fetch_object()): ?>
                         <div>
                             <input type="checkbox" <?= checkParams("brand", $item->brand) ?> id="brand_<?= $item->brand ?>" name="brand[]" value="<?= $item->brand ?>">
-                            <label for="brand_<?= $item->brand ?>"><?= $item->brand_view ?></label>
+                            <label for="brand_<?= $item->brand ?>" class = "label-brand__value-view"><?= $item->brand_view ?></label>
                         </div>
                     <?php endwhile; ?>
                 </div>
                 <div class="prop-list">
                     <button type="submit" class="submit" value="submit">Применить</button>
-                    <button type="reset" class="submit" value="submit">Сбросить</button>
+                    <!-- <button type="reset" class="submit" value="submit">Сбросить</button> -->
                 </div>
             </form>
         </div>

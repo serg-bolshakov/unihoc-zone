@@ -22,11 +22,11 @@
 
 <body>
 
-<container class="main-container">
+  <div class="main-container">
   
-<?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/header.php"; ?>
-<main class="main-content__products">
-        <div class="main-content__products-type main-content__products-sticks">
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/header.php"; ?>
+      <main class="main-content__products">
+        <div class="main-content__products-type">
           <img class="main-content__image"
             src="images/main/sticks.jpg"
             alt="sticks"
@@ -36,7 +36,7 @@
           </div>
         </div>  
 
-        <div class="main-content__products-type main-content__products-blades">
+        <div class="main-content__products-type">
           <img class="main-content__image"
             src="images/main/blades.jpg"
             alt="blades"
@@ -46,7 +46,7 @@
           </div>
         </div>  
 
-        <div class="main-content__products-type main-content__products-grips">
+        <div class="main-content__products-type">
           <img class="main-content__image"
             src="images/main/grips.jpg"
             alt="grips"
@@ -56,7 +56,7 @@
           </div>
         </div>  
         
-        <div class="main-content__products-container main-content__products-shoes">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/main/shoes.jpg"
             alt="apparel"
@@ -66,7 +66,7 @@
           </div>
         </div>
 
-        <div class="main-content__products-container main-content__products-goalie">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/showcase/showcase-goalkeepers.png"
             alt="goalie"
@@ -76,7 +76,7 @@
           </div>
         </div>  
 
-        <div class="main-content__products-container main-content__products-eyewear">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/showcase/showcase-eyewear.png"
             alt="eyewear"
@@ -86,7 +86,7 @@
           </div>
         </div>
 
-        <div class="main-content__products-container main-content__products-apparel">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/main/apparel.jpg"
             alt="apparel"
@@ -96,7 +96,7 @@
           </div>
         </div>
 
-        <div class="main-content__products-container main-content__products-bags">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/showcase/showcase-bags.png"
             alt="apparel"
@@ -106,7 +106,7 @@
           </div>
         </div>
 
-        <div class="main-content__products-container main-content__products-accessories">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/main/accessories.jpg"
             alt="apparel"
@@ -116,7 +116,7 @@
           </div>
         </div>
         
-        <div class="main-content__products-container main-content__products-basic_collection">
+        <div class="main-content__products-container">
           <img class="main-content__image"
             src="images/main/basic-collection.jpg"
             alt="apparel"
@@ -202,3 +202,6 @@
         </div>
       </main>
       <?php require_once $_SERVER['DOCUMENT_ROOT'] ."/elems/footer.php"; ?>
+    </div> 
+  </body>
+</html>

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/styles/style.css" />
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/products.css"> 
-    <title>UnihocZoneRussia. Флорбол. Базовая коллекция</title>
+    <title>UnihocZoneRussia. Флорбольная экипировка. Базовый набор</title>
 </head>
 
 <body>
@@ -39,23 +39,26 @@
         <section class="nav-bar">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/nav-bar.php'?>
         </section>
-                
-        <aside class="menu-products">
-            <div class="category-description">
-                <p>Базовая коллекция от лидера мирового производства флорбольной экипировки UNIHOC создана, 
-                чтобы способствовать распространению этого фантастического вида спорта по всему миру. Флорбол 
-                с каждым годом становится все более и более узнаваемым и распространенным, и чтобы иметь возможность 
-                быстро начать играть в флорбол, мы представляем ряд продуктов, идеально подходящих для этой цели. 
-                Все, от ворот, мячей и моделей клюшек начального уровня, доступно с несколькими вариантами на выбор.</p>
-            </div>
-            <nav class="aside-products_list">
-                <ul>
-                    <li><a href="">КЛЮШКИ</a></li>
-                    <li><a href="">МЯЧИ</a></li>
-                    <li><a href="">ОБОРУДОВАНИЕ</a></li>
-                </ul>
-            </nav>
-        </aside>
+        
+        
+        <div class="products-content">
+
+            <aside class="menu-products">
+                <div class="category-description">
+                    <p>Базовая коллекция от лидера мирового производства флорбольной экипировки UNIHOC создана, 
+                    чтобы способствовать распространению этого фантастического вида спорта по всему миру. Флорбол 
+                    с каждым годом становится все более и более узнаваемым и распространенным, и чтобы иметь возможность 
+                    быстро начать играть в флорбол, мы представляем ряд продуктов, идеально подходящих для этой цели. 
+                    Все, от ворот, мячей и моделей клюшек начального уровня, доступно с несколькими вариантами на выбор.</p>
+                </div>
+                <nav class="aside-products_list">
+                    <ul>
+                        <li><a href="">КЛЮШКИ</a></li>
+                        <li><a href="">МЯЧИ</a></li>
+                        <li><a href="">ОБОРУДОВАНИЕ</a></li>
+                    </ul>
+                </nav>
+            </aside>
         
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/db.php';
         
@@ -117,10 +120,13 @@ SQL;
         <section class="assortiment-cards">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/assortiment-cards.php'?>
         </section>
-       
+    </div>
         <?php /*если количество страниц больше, чем 1 - запускаем пагинацию страниц*/if($pagesCount > 1): ?>
         <section class="pagination-products">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/pagination.php'?>
         </section>
         <?php endif; ?>
     <?php require_once $_SERVER['DOCUMENT_ROOT'].'/elems/footer.php'; ?>
+
+</body>
+</html>

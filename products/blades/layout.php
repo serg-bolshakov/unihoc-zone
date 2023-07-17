@@ -21,12 +21,15 @@
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/nav-bar.php'?>
         </section>
         
+        <content class = "products-content">
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/products/blades/aside_with_filters.php' ?>
        
         <section class="assortiment-cards">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/assortiment-cards.php'?>
         </section>
             
+        </content>
+
         <?php /*если количество страниц больше, чем 1 - запускаем пагинацию страниц*/if($pagesCount > 1): ?>
         <section class="pagination-products">
             <?php include $_SERVER['DOCUMENT_ROOT'].'/elems/pagination.php'?>
