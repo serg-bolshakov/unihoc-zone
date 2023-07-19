@@ -1,0 +1,7 @@
+.cardProduct-mainImg {
+    width: 25%;
+    border-radius: 10px;  
+    overflow: hidden;
+    object-fit: contain;
+    translate: 25%;
+  }

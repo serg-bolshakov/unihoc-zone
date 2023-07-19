@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^.*klyushka.*$ sticks/card/index.php
+RewriteRule ^.*kryuk.*$ blades/card/index.php
+RewriteRule ^.*myach.*$ balls/card/index.php
