@@ -19,32 +19,35 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/db.php';
 // var_dump($_SERVER['REQUEST_URI']);
 // var_dump($_SERVER['DOCUMENT_ROOT']);
+// var_dump($_SERVER['QUERY_STRING']);
 
 // basename — Возвращает последний компонент имени из указанного пути
 // basename(string $path, string $suffix = ""): string
 // Если компонент имени заканчивается на suffix, то он также будет отброшен.
 
 $textname= basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
-//echo $textname; //index.php
+//echo $textname; //10379-klyushka-dlya-florbola-unihoc-sniper-white-blue-104cm-left
 
 // pathinfo — Возвращает информацию о пути к файлу
 //pathinfo(string $path, int $flags = PATHINFO_ALL): array|string
 
 $pathInfo = pathinfo($textname); 
-//echo $pathInfo["filename"];
-//index
+// var_dump($pathInfo); // array(3) { 
+// ["dirname"]=> string(1) "." 
+// ["basename"]=> string(64) "10379-klyushka-dlya-florbola-unihoc-sniper-white-blue-104cm-left" 
+// ["filename"]=> string(64) "10379-klyushka-dlya-florbola-unihoc-sniper-white-blue-104cm-left" }
+
 $pathInfo = $pathInfo["filename"];
-// echo gettype($pathInfo); //string
+// echo $pathInfo; 10379-klyushka-dlya-florbola-unihoc-sniper-white-blue-104cm-left
 
-$test = '11411-klyushka-dlya-florbola-unihoc-cavity-youngster-36mm-neon-green-55cm-left';
-
-$prodId = "SELECT id from products
+// получаем id запрошенного товара:
+$prodId = "SELECT id from products 
 WHERE prod_url_semantic LIKE ('$pathInfo')
 ";
 $result = $connect->query($prodId);
 $prodId = $result->fetch_assoc()['id'];
-// echo $prodId;
-// echo gettype($prodId);
+// echo $prodId; // 15
+// echo gettype($prodId); //string
 
 
 $select = <<<SQL
@@ -59,8 +62,7 @@ LEFT JOIN prod_prop pp on p.id = pp.product_id
 SQL;
 $products = $connect->query($select);
 $item = $products->fetch_object();
-
-// var_dump($item->img_link);
+// var_dump($item); //object(stdClass)#4 (39) { ["id"]=> string(2) "12" ["article"]=> string(5) "10379" ["title"]=> string(82) "Клюшка для флорбола Unihoc SNIPER 30 white/blue 104cm, Левая" ["category_id"]=> string(1) "1" ["brand_id"]=> string(1) "1" ["model"]=> NULL ["marka"]=> string(6) "SNIPER" ["size_id"]=> string(2) "12" ["colour"]=> string(10) "white/blue" ["material"]=> string(33) "стекловолокно - 100%" ["weight"]=> string(3) "251" ["prod_desc"]=> string(1014) " и так далее: полная информация о товаре из БД
 
 $imageMain = "SELECT * FROM images 
 WHERE
@@ -69,6 +71,23 @@ WHERE
 ";
 $result = $connect->query($imageMain);
 $imageMain = $result->fetch_object();
+// var_dump($imageMain);
+// object(stdClass)#2 (6) { 
+// ["id"]=> string(2) "50" 
+// ["product_id"]=> string(2) "15" 
+// ["img_link"]=> string(62) "images/sticks/10371-stick-unihoc-sniper-30-white-blue-main.jpg" 
+// ["img_main"]=> string(1) "1" 
+// ["img_showcase"]=> string(1) "0" 
+// ["img_promo"]=> string(1) "0" }
+
+// если сделать запрос: $imageMain = $result->fetch_assoc();, то получим (тоже самое, только  массив, НЕ ОБЪЕКТ):
+// array(6) { 
+// ["id"]=> string(2) "50" 
+// ["product_id"]=> string(2) "15" 
+// ["img_link"]=> string(62) "images/sticks/10371-stick-unihoc-sniper-30-white-blue-main.jpg" 
+// ["img_main"]=> string(1) "1" 
+// ["img_showcase"]=> string(1) "0" 
+// ["img_promo"]=> string(1) "0" }
 
 $propHook = "SELECT prop_description 
 FROM products, categories, properties, prod_prop

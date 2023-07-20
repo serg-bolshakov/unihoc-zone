@@ -15,7 +15,7 @@
           <h1><?= $item->title ?> </h1>
       </div>
       <div class="cardProduct-block__logo-article">
-          <img class="cardProduct-logo" src="<?= $item->url?>"  alt="Zonefloorball. logo" title ="Zonefloorball. logo">
+          <img class="cardProduct-logo" src="<?= $item->url?>"  alt="<?= $item->brand_view?>. logo" title ="<?= $item->brand_view?>. logo">
           <p class="cardProduct-article__title">Артикульный<br>номер:</p>
           <p class="cardProduct-article__number"><?= $item->article?></p>
       </div>
