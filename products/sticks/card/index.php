@@ -62,7 +62,7 @@ LEFT JOIN prod_prop pp on p.id = pp.product_id
 SQL;
 $products = $connect->query($select);
 $item = $products->fetch_object();
-// var_dump($item); //object(stdClass)#4 (39) { ["id"]=> string(2) "12" ["article"]=> string(5) "10379" ["title"]=> string(82) "Клюшка для флорбола Unihoc SNIPER 30 white/blue 104cm, Левая" ["category_id"]=> string(1) "1" ["brand_id"]=> string(1) "1" ["model"]=> NULL ["marka"]=> string(6) "SNIPER" ["size_id"]=> string(2) "12" ["colour"]=> string(10) "white/blue" ["material"]=> string(33) "стекловолокно - 100%" ["weight"]=> string(3) "251" ["prod_desc"]=> string(1014) " и так далее: полная информация о товаре из БД
+//var_dump($item); //object(stdClass)#4 (39) { ["id"]=> string(2) "12" ["article"]=> string(5) "10379" ["title"]=> string(82) "Клюшка для флорбола Unihoc SNIPER 30 white/blue 104cm, Левая" ["category_id"]=> string(1) "1" ["brand_id"]=> string(1) "1" ["model"]=> NULL ["marka"]=> string(6) "SNIPER" ["size_id"]=> string(2) "12" ["colour"]=> string(10) "white/blue" ["material"]=> string(33) "стекловолокно - 100%" ["weight"]=> string(3) "251" ["prod_desc"]=> string(1014) " и так далее: полная информация о товаре из БД
 
 $imageMain = "SELECT * FROM images 
 WHERE
@@ -89,7 +89,7 @@ $imageMain = $result->fetch_object();
 // ["img_showcase"]=> string(1) "0" 
 // ["img_promo"]=> string(1) "0" }
 
-$propHook = "SELECT prop_description 
+$propHook = "SELECT prop_description, prop_value_view
 FROM products, categories, properties, prod_prop
 WHERE products.category_id = categories.id AND properties.category_id = categories.id 
 AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id 
@@ -97,6 +97,8 @@ AND prop_title LIKE 'hook' AND products.id = $prodId
 ";
 $result = $connect->query($propHook);
 $propHook = $result->fetch_object();
+// var_dump($result);
+// var_dump($propHook);
 
 $propFlex = "SELECT prop_value_view 
 FROM products, categories, properties, prod_prop

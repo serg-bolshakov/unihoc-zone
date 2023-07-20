@@ -1,3 +1,18 @@
+.cardStick-props__item-hook {
+  display: block;
+  margin-right: 8px;
+  /* height: 18px; */
+  padding: 4px 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .cardStick-props__item-hook-left {
   display: block;
   margin-right: 8px;

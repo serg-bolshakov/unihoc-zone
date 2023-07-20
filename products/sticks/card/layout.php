@@ -39,8 +39,11 @@
                     <?=include $_SERVER['DOCUMENT_ROOT'] . "/elems/articles/hook-side.php";?>
                 </div>
             </div>
-            <div class="cardStick-props__item-hook-left">Левый</div>
-            <div class="cardStick-props__item-hook-right">Правый</div>
+            <div class="cardStick-props__item-hook">
+              <?= $propHook->prop_value_view ?>
+            </div>
+            <!-- <div class="cardStick-props__item-hook-left">Левый</div>
+            <div class="cardStick-props__item-hook-right">Правый</div> -->
         </div>
         <div class="cardProduct-props__item">
           <div class="cardStick-props__item-shaftLength-title pop-up__cardProduct-hint">Длина рукоятки (см):
@@ -48,11 +51,11 @@
                 <?=include $_SERVER['DOCUMENT_ROOT'] . "/elems/articles/shaft-length.php";?>
             </div>
           </div>
-          <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">87</div>
-          <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">92</div>
-          <div class="cardStick-shaftLength__item">96</div>
-          <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">100</div>
-          <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">104</div>
+          <!-- <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">87</div>
+          <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">92</div> -->
+          <div class="cardStick-shaftLength__item"><?= $item->size_value ?></div>
+          <!-- <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">100</div>
+          <div class="cardStick-shaftLength__item cardStick-shaftLength__item-missing">104</div> -->
         </div>
 
           <div class="cardProduct-productPrice__block">   
