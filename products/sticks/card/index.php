@@ -96,9 +96,10 @@ AND prod_prop.product_id = products.id AND prod_prop.property_id = properties.id
 AND prop_title LIKE 'hook' AND products.id = $prodId
 ";
 $result = $connect->query($propHook);
-$propHook = $result->fetch_object();
+$propHook = $result->fetch_assoc();
 // var_dump($result);
-// var_dump($propHook);
+// var_dump($propHook); // array(2) { ["prop_description"]=> string(85) "на левую сторону (левый хват, левая рука внизу) " ["prop_value_view"]=> string(10) "Левый" }
+// echo $propHook['prop_value_view'];
 
 $propFlex = "SELECT prop_value_view 
 FROM products, categories, properties, prod_prop

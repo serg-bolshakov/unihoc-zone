@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="cardStick-props__item-hook">
-              <?= $propHook->prop_value_view ?>
+              <?php echo $propHook['prop_value_view']; ?>
             </div>
             <!-- <div class="cardStick-props__item-hook-left">Левый</div>
             <div class="cardStick-props__item-hook-right">Правый</div> -->
@@ -81,7 +81,7 @@
         <?php endif; ?>
         <div class="cardProduct-productTarget">   
           <span><b>Кому идеально подойдёт эта клюшка?</b><br>Просматриваемая модель с длиной рукоятки <?=$item->size_value?><?=$item->size_unit?> 
-          <?=$item->size_recommendation?>, играющих <?=$propHook->prop_description?></span>
+          <?=$item->size_recommendation?>, играющих <?php echo $propHook['prop_description']; ?></span>
         </div>
       </div>
       <div class = "cardProduct-details">

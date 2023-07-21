@@ -1,20 +1,19 @@
 <?php
 
 require_once 'db.php';
-$imagePromo = "SELECT id, img_link FROM images
-WHERE product_id = 20
-AND img_promo = true
+$prodCard = "SELECT id FROM products
+WHERE marka = 'SNIPER'
 ";
-$resultImagePromo = $connect->query($imagePromo);
+$resultprodCard = $connect->query($prodCard);
 // $imagePromo = $result->fetch_object();
 
-var_dump($imagePromo);
+var_dump($resultprodCard);
 
 ?>
 <table border = 1>
   <tr><td>Id</td><td>Наименование</td><td>Бренд</td><td>ссылка</td><td>значение</td><td>значение</td><td>Цена</td></tr>
-  <?php while ($imagePromo = $resultImagePromo->fetch_object()):?>
-  <tr><td><?= $imagePromo->id?></td><td><?= $imagePromo->img_link?></td></tr>
+  <?php while ($prodCard = $resultprodCard->fetch_object()):?>
+  <tr><td><?= $prodCard->id?></td></tr>
   <?php endwhile; ?>
 </table>
 
