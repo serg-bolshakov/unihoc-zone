@@ -660,3 +660,71 @@ footer a:active {
     opacity: 1;
 }
 
+.registration {
+    display: block;
+    width: 300px;
+    background-color: rgb(248, 248, 228, 0.2);
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    padding: 8px;
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.7);
+    text-align:left;
+    border-radius: 8px;
+    border: 1px solid #cecece;
+}
+
+.registration-form__input {
+    width: 250px;
+    font-size: 13px;
+    padding: 6px 0 4px 10px;
+    border: 1px solid #cecece;
+    background: #f6f6f6;
+    border-radius: 8px;
+}
+
+.registration-form__input-item {
+    margin: 16px auto;
+}
+
+.registration-form__submit-btn {
+    cursor: pointer;
+    border: 1px solid #cecece;
+    background: #f6f6f6;
+    box-shadow: inset 0px 20px 20px #ffffff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin: 4px 0 4px 0;
+    width: 120px;
+}
+
+.registration-form__submit-btn:hover {
+    box-shadow: inset 0px -20px 20px #ffffff;
+}
+
+.registration-form__submit-btn:active {
+    margin-top: 1px;
+    margin-bottom: -1px;
+    zoom: 1;
+}
+
+.registration-form__submit-btn:focus {
+    outline: none;
+}
+
+.registration-error {
+    color: red;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.registration-form__star {
+    color: red;
+    font-size: 16px;
+}

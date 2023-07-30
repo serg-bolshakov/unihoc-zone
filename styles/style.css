@@ -1,8 +1,12 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} 
+
+дублируется в main.css - нужно убрать отсюда. Пока смотрим, чтобы нигде "не посыпалось"
+
+*/
 
 body {
     background-color: hsl(240, 28%, 97%);
