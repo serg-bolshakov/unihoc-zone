@@ -46,9 +46,10 @@ function test_input($data) {
     return $data;
 }
 
+
+/*-------------------------------------------------------------------------------------------------------------------
 // соль + пароль: соль для каждого пользователя будет разной и генерироваться случайным образом в момент регистрации.
 // функция, которая будет это делать:
-
 function generateSalt() {
     $salt = '';
     $saltLength = 8; // длина соли
@@ -58,9 +59,9 @@ function generateSalt() {
     }
     return $salt;
 }
-
 // mt_rand — Генерирует случайное значение методом с помощью генератора простых чисел на базе Вихря Мерсенна. mt_rand(int $min, int $max): int
 // chr — Генерирует односимвольную строку по заданному числу
+-------------------------------------------------------------------------------------------------------------------*/
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -109,24 +110,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $loginErr = 'Поле обязательно для заполнения';
     }
 
-    $salt = generateSalt();
+    // $salt = generateSalt(); - уже не используем метод md5 - используем password_hash
     
     if (!empty ($_POST['password'])) {
-        $password = md5($salt.$_POST['password']);
+        //$password = md5($salt.$_POST['password']);
+        // md5 - считается устаревшим способом - сокращаем выполненную выше функцию function generateSalt()  до:
+        $passwordPosted = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     } else {
         $passwordErr = 'Поле не может быть пустым.'; 
     }
 
     if (!empty ($_POST['confirm'])) {
-        $confirm = md5($salt.$_POST['confirm']);
+        // $confirm = md5($salt.$_POST['confirm']);
+        // $confirm = password_hash($_POST['confirm'], PASSWORD_DEFAULT); // солёные и хешированные пароль и подтверждение будут разными - пока комментируем
+        $confirmPosted = $_POST['confirm'];
     } else {
         $confirmErr = 'Поле не может быть пустым.'; 
     }
 
-    if (!empty($name) and !empty($email) and !empty($login) and !empty($password) and !empty($confirm)) {
-        if ($password == $confirm) {
+    if (!empty($name) and !empty($email) and !empty($login) and !empty($password) and !empty($confirmPosted)) {
+        if ($passwordPosted == $confirmPosted) {
         $redDate = date('d.m.Y');
-        $query = "INSERT INTO users SET name = '$name', login = '$login', password = '$password', salt = '$salt', date_of_birth = '$dateOfBirth', email = '$email', reg_date = '$redDate'";
+        $query = "INSERT INTO users SET name = '$name', login = '$login', password = '$password', date_of_birth = '$dateOfBirth', email = '$email', reg_date = '$redDate'";
         $connect->query($query); 
         $_SESSION['auth'] = true; // пометка об авторизации
         $id = mysqli_insert_id($connect);
