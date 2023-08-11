@@ -137,9 +137,8 @@ ul.breadcrumb li a:hover {
 
 .products-content {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 68%;
   grid-template-rows: auto;
-  /* background-color: yellow; */
 }
 
 .menu-products {
@@ -147,19 +146,23 @@ ul.breadcrumb li a:hover {
     border-radius: 8px;
 }
 
-.aside-products_list {
+/* класс, который не применяется */
+/* .aside-products_list {
   width: 70%;
   margin-top: 30px;
-}
+  background-color: yellow;
+} */
 
 .aside-products_list ul {
   display: block;
+  background-color: yellow;
 }
 
 .aside-products_list  ul>li {
   margin: 10px 0;
   text-align: left;
   text-decoration: underline 0.5px;
+  background-color: yellow;
 }
 
 .aside-products_list ul>li>a {
@@ -167,6 +170,7 @@ ul.breadcrumb li a:hover {
   font-style: normal;
   font-size: 1vmax;
   font-weight: 100;
+  background-color: yellow;
 }
 
 .accordion-non {
@@ -672,12 +676,11 @@ ul.breadcrumb li a:hover {
 }
 
 .assortiment-cards>* {
-  flex: 1 1 300px;
+  flex: 1 1 280px;
 }
 
 .assortiment-card__block {
-  flex: 0 1 280px;
-  /* background-color: #9FD468; */
+  flex: 0 1 270px;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin: 8px;
@@ -691,7 +694,6 @@ ul.breadcrumb li a:hover {
     height: auto;
     overflow: hidden;
     object-fit: contain;
-      
 }
 
 .assortiment-card_productName {

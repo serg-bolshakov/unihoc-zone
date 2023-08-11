@@ -32,11 +32,14 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {   
     if (!empty($_POST['password']) and !empty($_POST['login']) ) {
         $login = $_POST['login'];
-        $query = "SELECT * FROM users WHERE login = '$login'";
-        
-        $res = mysqli_query($connect, $query);
+        //$query = "SELECT * FROM users WHERE login = '$login'"; 
+        //$res = mysqli_query($connect, $query);
         // $res = $connect->query($query); - можно в таком виде запрос оформлять (подключение к БД и запрос)
 
+        // получаем юзера по логину и джойним его статус
+        $query = "SELECT users.*, user_statuses.name as status FROM users
+        LEFT JOIN user_statuses ON users.status_id = user_statuses.id WHERE login = '$login'";
+        $res = mysqli_query($connect, $query) or die(mysqli_error($connect));
         $user = mysqli_fetch_assoc($res);
 
         if (!empty($user)) {
@@ -60,7 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($_POST['password'], $hash)) {
                 // всё ок, авторизуем
                 $_SESSION['auth'] = true;
-                $_SESSION['flash'] = 'Вы авторизовались. Мы ждали вас, '.$user['name']; 
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['flash'] = 'Вы авторизовались. Мы ждали вас, '.$user['name'];
+                $_SESSION['user_status'] = $user['status']; // пометка о статусе зарегистрированного пользователя 
+                $_SESSION['name'] = $user['name'];
+                header("Location: /"); // переадресовываем на индексную страницу
+                die();  
             } else {
                 // пароль не подошёл, выведем сообщение
                 $_SESSION['flash'] = 'Неверно введены логин или пароль (не подошёл пароль)'; 
@@ -77,10 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo $_SESSION['flash'].'!';
         unset($_SESSION['flash']);
     }
-
-   	if (!empty($_SESSION['auth'])) {
-		var_dump($_SESSION['auth']);
-	}
 }
     
 ?>

@@ -131,13 +131,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($name) and !empty($email) and !empty($login) and !empty($password) and !empty($confirmPosted)) {
         if ($passwordPosted == $confirmPosted) {
-        $redDate = date('d.m.Y');
-        $query = "INSERT INTO users SET name = '$name', login = '$login', password = '$password', date_of_birth = '$dateOfBirth', email = '$email', reg_date = '$redDate'";
+        $redDate = date('Y.m.d');
+        
+        $query = "INSERT INTO users SET status_id = '1', name = '$name', login = '$login', password = '$password', date_of_birth = '$dateOfBirth', email = '$email', reg_date = '$redDate'";
         $connect->query($query); 
         $_SESSION['auth'] = true; // пометка об авторизации
         $id = mysqli_insert_id($connect);
         $_SESSION['id'] = $id;
-        echo "Ваш регистрационный номер: $id";
+        $_SESSION['flash'] = "Добро пожаловать! Ваш регистрационный номер: $id"; // не работает
+        $_SESSION['user_status'] = 'user'; // пометка о статусе зарегистрированного пользователя 
+        $_SESSION['name'] = $name;
+        if (isset($_SESSION['flash'])) { // одинаково работает и isset, и !empty - пробовал. Выводит и так, и так.
+            echo $_SESSION['flash'].'!';
+            unset($_SESSION['flash']);
+        }
+        $textname= basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+        echo $textname;
+        
+        //header("Location:" . $_SERVER["PHP_SELF"]);
+
         } else {
             $confirmErr = 'Ведённые вами пароли не совпадают!';
         }
@@ -147,10 +159,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <div class="registration">
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> " method="POST"> 
+<form action="<?php /*echo htmlspecialchars($_SERVER["PHP_SELF"]); // пробуем обрабатывать форму на той странице, где был пользователь*/?> " 
+      method="POST"> 
+    <p class="registration-form__input-item"><span class="registration-form__title">Регистрационная форма</span></p>
     <p class="registration-form__input-item"><span class="registration-form__star">*</span> - поля, обязательные для заполнения </p>
     <p class="registration-form__input-item">
-        <label for="name">Имя: </label>
+        <label for="name">Фамилия, Имя: </label>
         <input class = "registration-form__input" type="text" required id="name" name="name" value = "<?php if (isset ($_POST['name'])) echo $_POST['name'] ?>">
         <span class="registration-error">* <?php echo $nameErr;?>
     </p>
@@ -169,8 +183,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </p>
     <p class="registration-form__input-item">
         <label for="login">Логин: </label>
-        <input class = "registration-form__input" type="text" placeholder="user1234" name="login" required value = "<?php if (isset ($_POST['login'])) echo $_POST['login'] ?>">
-        <span class="registration-error">*<br><?php echo $loginErr;?>
+        <input class = "registration-form__input" type="text" name="login" required value = "<?php if (isset ($_POST['login'])) echo $_POST['login'] ?>">
+        <span class="registration-error">*<br><?php echo $loginErr;?></span>
+        <span class="registration-form__clearance">Логин должен быть длиной от 4 до 16 символов, содержать только латинские буквы и цифры</span>
     </p>
 	
             

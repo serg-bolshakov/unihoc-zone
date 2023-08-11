@@ -1,3 +1,13 @@
+<?php
+  //   session_start();
+
+  // if (isset($_SESSION['flash'])) { // одинаково работает и isset, и !empty - пробовал. Выводит и так, и так.
+  //         echo $_SESSION['flash'].'!';
+  //         unset($_SESSION['flash']);
+  // }
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>

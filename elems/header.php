@@ -1,3 +1,15 @@
+<?php
+//    session_start();
+$visitor_status = 'guest';
+
+if (isset($_GET['visitor_status'])) {
+  $visitor_status = $_GET['visitor_status'];
+  require_once $_SERVER['DOCUMENT_ROOT'].'/register.php';
+  //header("Location:" . $_SERVER["PHP_SELF"]); // перезапрашиваем страницу методом GET
+  //die();            
+}
+
+?>
 <header class="main-header__top">
         <div class="main-welcome__block">
         <span class="main-welcome__text">Добро пожаловать</span>&nbsp;
@@ -128,29 +140,60 @@
             <img src="/icons/search.png" alt="search">
           </button>
         </form>
-        <a class="header-main__right-icon-combo-chart" href=""
-          ><img
-            src="/icons/combo-chart.png"
-            alt="combo-chart"
-            title="Добавить в сравнение">
-        </a>
-        <a class="header-main__right-icon-favorite" href=""
-          ><img
-            src="/icons/favorite.png"
-            alt="favorite"
-            title="Добавить в избранное">
-        </a>
-        <a class="header-main__right-icon-login" href=""
+        
+        <div class = "header-main__right-icon-block">
+          <a class="header-main__right-icon-combo-chart" href=""
+            ><img
+              src="/icons/combo-chart.png"
+              alt="combo-chart"
+              title="Добавить в сравнение">
+          </a>
+          <p>Сравнение</p>
+        </div>
+        <div class = "header-main__right-icon-block">
+          <a class="header-main__right-icon-favorite" href=""
+            ><img
+              src="/icons/favorite.png"
+              alt="favorite"
+              title="Добавить в избранное">
+          </a>
+          <p>Избранное</p>
+        </div>
+        
+        <div class = "header-main__right-icon-block">
+          <a class="header-main__right-icon-login" href="
+          <?php echo $_SERVER['REQUEST_URI']?>?visitor_status=guest"
           ><img
             src="/icons/login.png"
             alt="login"
             title="Войти в личный кабинет / зарегистрироваться">
-        </a>
-        <a class="header-main__right-icon-basket" href=""
-          ><img
-            src="/icons/opencart.png"
-            alt="opencart"
-            title="Посмотреть корзину">
-        </a>
+          </a>
+          <p>
+            <?php 
+              if (isset($_SESSION['name'])) {
+                $user_name = $_SESSION['name'];
+                $user_name = explode(' ', $user_name);
+                echo $user_name[0];
+              } else {
+                echo 'Войти';
+              }
+           ?>
+           </p>
+           <?php
+           if (isset($_SESSION['user_status']) && $_SESSION['user_status'] == 'admin') { ?>
+            <p><a href="/admin.php">admin</a></p>
+           <?php 
+           }
+           ?>
+        </div>
+        <div class = "header-main__right-icon-block">
+          <a class="header-main__right-icon-basket" href=""
+            ><img
+              src="/icons/opencart.png"
+              alt="opencart"
+              title="Посмотреть корзину">
+          </a>
+          <p>Корзина</p>
+        </div>
       </div>
     </header>
